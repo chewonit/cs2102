@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 			<p>
 				<h4>Project Description</h4>
-				The system is a catalogue of job offers and job applicatnts. 
+				The system is a catalogue of job offers and job applicants. 
 				Employers can create job offers and search the applicants' database. 
 				Job applicants can advertise themselves, search the job offers' database.  
 				projects and fund projects. Basic forms of automatic matching can be investigated. 
