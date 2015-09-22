@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         Make a copy of Demo_page.php and rename.                 
                     </li>
                     <li>
-                        The url pointing to your page will be "localhost/cs2102/demo/<job>/".   
+                        The url pointing to your page will be "localhost/cs2102/demo/job/". Where job can be "query", "insert", "update" or "delete".   
                     </li>
 		        </ul>
 		        
