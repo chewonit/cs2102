@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </li>
                     <li>
                         <b>Insert</b>: "$this -> demo_model -> insert($data)". <br />
-                        "$data" is an array containing all the form inputs (Company ID, Company Name, Job Title, etc...). <br />
+                        "$data" is an array containing all the form inputs (Job ID, Company Name, Job Title, etc...). <br />
                         Go to <?php echo anchor('demo/test/insert/'); ?> for demo.
                     </li>
                     <li>
@@ -52,12 +52,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         $result = "$this -> demo_model -> get($id)". <br />
                         "$id" is the row to be updated. Retrieve the current values to populate into the form. <br /> 
                         "$this -> demo_model -> update($data)". <br />
-                        "$data" is an array containing all the UPDATED form inputs by the user after clicking submit button (Company ID, Company Name, Job Title, etc...). <br />
+                        "$data" is an array containing all the UPDATED form inputs by the user after clicking submit button (Job ID, Company Name, Job Title, etc...). <br />
                         Go to <?php echo anchor('demo/test/update/'); ?> for demo.
                     </li>
                     <li>
                         <b>Delete</b>: "$this -> demo_model -> delete($id)". <br />
-                        "$id" is the Company ID. <br />
+                        "$id" is the Job ID. <br />
                         Go to <?php echo anchor('demo/test/delete/'); ?> for demo.
                     </li>
 		        </ul>
