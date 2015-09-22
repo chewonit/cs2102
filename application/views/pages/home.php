@@ -27,6 +27,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</p>
 			
 			<hr />
+			
+			<?php echo $this->table->generate($demo_list); ?>
+				
+			<hr />
 		
 			<p>
 				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 

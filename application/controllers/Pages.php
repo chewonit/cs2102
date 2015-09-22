@@ -14,6 +14,10 @@ class Pages extends CI_Controller {
         }
 
         $data['site_title'] = $this->site_title;
+		
+		/* Demo get from database */
+		$this->load->library('table');
+		$data['demo_list'] = $this->db->get('demo');
 
         $this->load->view('templates/header', $data);
         $this->load->view('pages/'.$page, $data);
