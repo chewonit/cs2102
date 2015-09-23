@@ -31,7 +31,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?php echo $row->Location; ?></td>
 					<td>
 						<button onclick="myFunction(<?php echo "'jobTable-".$row->Id."'";?>)" 
-							class="btn btn-default">Edit</button>
+							class="btn btn-default">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+						</button>
 					</td>
 				</tr>
 				<?php $count += 1 ?>

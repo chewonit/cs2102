@@ -19,8 +19,6 @@ class Update_controller extends CI_Controller {
 		$data['page_title'] = "Update Controller Page";
 
 		/* Demo get from database */
-		$this -> load -> library('table');
-		$this -> load -> model('demo_model');
 		$data['demo_list'] = $this -> demo_model -> get();
 
 		$this -> load -> view('templates/header', $data);
@@ -39,21 +37,7 @@ class Update_controller extends CI_Controller {
 		);
 		
 		$this -> demo_model -> update($data);
-		
-		/*
-		echo "Row Updated <br /><br />";
-
-		$result = $this -> demo_model -> get($data['id']);
-		echo $this -> table -> generate($result);
-
-		echo "<br /><br />";
-
-		$result = $this -> demo_model -> get();
-		echo $this -> table -> generate($result);
-		return;
-		*/
-		
-		$this->view();
+		redirect('/demo/update');
 	}
 	
 }
