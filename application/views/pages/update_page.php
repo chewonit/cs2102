@@ -20,8 +20,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<th>Title</th>
 					<th>Description</th>
 					<th>Location</th>
+					<th></th>
 				</thead>
-				<?php $count = 1 ?>
 				<?php foreach($demo_list->result() as $row): ?>
 				<tr id="jobTable-<?php echo $row->Id; ?>">
 					<td><?php echo $row->Id; ?></td>
@@ -36,7 +36,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</button>
 					</td>
 				</tr>
-				<?php $count += 1 ?>
 				<?php endforeach; ?>
 			</table>
 			

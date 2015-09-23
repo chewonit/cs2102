@@ -29,11 +29,12 @@ class Delete_controller extends CI_Controller {
 	public function delete()
 	{
 		$id = $this->input->post('inputJobId');
+		if(is_null($id)) {
+			redirect('/demo/delete');
+		}
 		$this -> demo_model -> delete($id);
-		$result = $this -> demo_model -> get();
-
-		$this -> demo_model -> delete($data);
-		redirect('/demo/delete');
+		
+		echo "id: $id | Row deleted";
 	}
 	
 }
