@@ -13,103 +13,84 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 		<div class="col-md-9">
 		    
-		    <p>
-		        <h3>Note to Team</h3>
-		        <ul>
-		            <li>
-                        Use "controllers/Demo_controller.php" and "views/Demo_page.php" as reference.
-                    </li>
-		            <li>
-                        Create a Controller PHP file of your respective job (Query, Insert, Update, Delete). <br />
-                        Make a copy of Demo_controller.php and rename.		                
-		            </li>
-		            <li>
-                        Create a View PHP file of your respective job (Query, Insert, Update, Delete). <br />
-                        Make a copy of Demo_page.php and rename.                 
-                    </li>
-                    <li>
-                        The url pointing to your page will be "localhost/cs2102/demo/job/". Where job can be "query", "insert", "update" or "delete".   
-                    </li>
-		        </ul>
-		        
-		        <p>
-		          <h4>Refer to "Demo_controller.php" test() function for help.</h4>
-		        </p>
-		        
-		        <ul>
-                    <li>
-                        <b>Query</b>: "$this -> demo_model -> get()". <br />
-                        Go to <?php echo anchor('demo/test/query/'); ?> for demo.
-                    </li>
-                    <li>
-                        <b>Insert</b>: "$this -> demo_model -> insert($data)". <br />
-                        "$data" is an array containing all the form inputs (Company ID, Company Name, Job Title, etc...). <br />
-                        Go to <?php echo anchor('demo/test/insert/'); ?> for demo.
-                    </li>
-                    <li>
-                        <b>Update</b>: <br />
-                        $result = "$this -> demo_model -> get($id)". <br />
-                        "$id" is the row to be updated. Retrieve the current values to populate into the form. <br /> 
-                        "$this -> demo_model -> update($data)". <br />
-                        "$data" is an array containing all the UPDATED form inputs by the user after clicking submit button (Company ID, Company Name, Job Title, etc...). <br />
-                        Go to <?php echo anchor('demo/test/update/'); ?> for demo.
-                    </li>
-                    <li>
-                        <b>Delete</b>: "$this -> demo_model -> delete($id)". <br />
-                        "$id" is the Company ID. <br />
-                        Go to <?php echo anchor('demo/test/delete/'); ?> for demo.
-                    </li>
-		        </ul>
-		        
-		    </p>
-			<hr />
+			<table id="jobTable" class="table table-striped">
+				<thead>
+					<th>Job ID</th>
+					<th>Company</th>
+					<th>Title</th>
+					<th>Description</th>
+					<th>Location</th>
+				</thead>
+				<?php $count = 1 ?>
+				<?php foreach($demo_list->result() as $row): ?>
+				<tr id="jobTable-<?php echo $row->Id; ?>">
+					<td><?php echo $row->Id; ?></td>
+					<td><?php echo $row->Name; ?></td>
+					<td><?php echo $row->Title; ?></td>
+					<td><?php echo $row->Description; ?></td>
+					<td><?php echo $row->Location; ?></td>
+					<td>
+						<button onclick="myFunction(<?php echo "'jobTable-".$row->Id."'";?>)" 
+							class="btn btn-default">Edit</button>
+					</td>
+				</tr>
+				<?php $count += 1 ?>
+				<?php endforeach; ?>
+			</table>
 			
-			<h2>Update</h2>
-			<?php echo form_open('Update_controller/update');?>
-			<p>
-				<label for = "id"> Id: </label>
-				<input type = "text" name = "id" id="id"/>
-			</p>
-			<p>
-				<label for = "name"> Name: </label>
-				<input type = "text" name = "name" id="name"/>
-			</p>
-			<p>
-				<label for = "title"> Title: </label>
-				<input type = "text" name = "title" id="title"/>
-			</p>
-			<p>
-				<label for = "description"> Description: </label>
-				<input type = "text" name = "description" id="description"/>
-			</p>
-			<p>
-				<label for = "location"> Location: </label>
-				<input type = "text" name = "location" id="location"/>
-			</p>
-			<p>
-				<input type = "submit" value = "Update"/>
-			</p>
-		    <?php echo form_close();?>
-		    <hr />
-		
-			<p>
-				<h4>Project Description</h4>
-				The system is a catalogue of job offers and job applicants. 
-				Employers can create job offers and search the applicants' database. 
-				Job applicants can advertise themselves, search the job offers' database.  
-				projects and fund projects. Basic forms of automatic matching can be investigated. 
-				Administrators can create, modify and delete all entries.  
-				Please refer to <a href="http://www.monster.com.sg" target="_blank">www.monster.com.sg</a>, 
-				<a href="http://www.dice.com" target="_blank">www.dice.com</a> or other job offer sites for examples and data.
-			
-			</p>
-			
-			<hr />
-			
-			<?php echo $this -> table -> generate($demo_list); ?>
+			<script type="text/javascript">
+				var jq = $.noConflict();
 				
-			<hr />
-		
+				var formInputIds = ["#inputJobId", "#inputCompanyName", "#inputTitle", "#inputDescription", "#inputLocation"];
+				
+				function myFunction(id) {
+					jq('html,body').animate({
+						scrollTop: jq("#updateForm").offset().top
+					});
+					jq("#jobTable").find("#"+id).find('td').each( function(index) {
+						if (index < formInputIds.length) {
+							jq( formInputIds[index] ).val(jq( this ).html());
+						}
+					});
+				}
+			</script>
+			
+			
+			<h2>Update Job Entry</h2>
+			
+			<?php echo form_open('Update_controller/update/');?>
+			<div id="updateForm" class="fluid-container">
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="inputJobId">Job ID</label>
+					<input type="text" class="form-control" name="inputJobId" id="inputJobId" placeholder="Job ID" readonly>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputCompanyName">Company Name</label>
+					<input type="text" class="form-control" name="inputCompanyName" id="inputCompanyName" placeholder="Company Name">
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="inputTitle">Job Title</label>
+					<input type="text" class="form-control" name="inputTitle" id="inputTitle" placeholder="Job Title">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputLocation">Location</label>
+					<input type="text" class="form-control" name="inputLocation" id="inputLocation" placeholder="Location">
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label for="inputDescription">Description</label>
+					<textarea rows="3" class="form-control" name="inputDescription" id="inputDescription" placeholder="Description"></textarea>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-default">Update</button>
+			</div>
+			
+		    <?php echo form_close();?>
+			
 		</div>
 		<div class="col-md-3">
 			<p>

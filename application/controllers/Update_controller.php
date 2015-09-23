@@ -27,36 +27,33 @@ class Update_controller extends CI_Controller {
 		$this -> load -> view('pages/' . $page, $data);
 		$this -> load -> view('templates/footer', $data);
 	}
-
+	
 	public function update()
 	{
-		$segment = $this -> uri -> segment(2);
-		echo "<h3>Segment: " . $segment . "</h3>";
+		$data = array(
+		'id' => $this->input->post('inputJobId'),
+		'name' => $this->input->post('inputCompanyName'),
+		'title' => $this->input->post('inputTitle'),
+		'description' => $this->input->post('inputDescription'),
+		'location' => $this->input->post('inputLocation')
+		);
+		
+		$this -> demo_model -> update($data);
+		
+		/*
+		echo "Row Updated <br /><br />";
 
-		echo '<ul>';
-		echo '<li>' . anchor('demo/update', 'Update') . '</li>';
-		echo '</ul>';
+		$result = $this -> demo_model -> get($data['id']);
+		echo $this -> table -> generate($result);
 
-		if($segment == 'update') {
-			$data = array(
-			'id' => $this->input->post('id'),
-			'name' => $this->input->post('name'),
-			'title' => $this->input->post('title'),
-			'description' => $this->input->post('description'),
-			'location' => $this->input->post('location')
-			);
-			
-			$this -> demo_model -> update($data);
-			echo "Row Updated <br /><br />";
+		echo "<br /><br />";
 
-			$result = $this -> demo_model -> get($data['id']);
-			echo $this -> table -> generate($result);
-			
-			echo "<br /><br />";
-
-			$result = $this -> demo_model -> get();
-			echo $this -> table -> generate($result);
-			return;
-		}
+		$result = $this -> demo_model -> get();
+		echo $this -> table -> generate($result);
+		return;
+		*/
+		
+		$this->view();
 	}
+	
 }
