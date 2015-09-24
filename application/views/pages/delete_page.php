@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?php echo $row->Description; ?></td>
 					<td><?php echo $row->Location; ?></td>
 					<td>
-						<button onclick="myFunction(<?php echo "$row->Id"; ?>)" 
+						<button onclick="myFunction(<?php echo "'$row->Id'"; ?>)" 
 							class="btn btn-default btn-danger">
 								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 						</button>

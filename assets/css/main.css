@@ -23,3 +23,7 @@ body > .container {
 .container .text-muted {
   margin: 20px 0;
 }
+
+form .error {
+    color: red;
+}

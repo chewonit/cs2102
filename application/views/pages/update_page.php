@@ -54,6 +54,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						}
 					});
 				}
+				
+				jq('#updateForm').parent().validate(); 
 			</script>
 			
 			
@@ -64,27 +66,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="row">
 				<div class="form-group col-md-6">
 					<label for="inputJobId">Job ID</label>
-					<input type="text" class="form-control" name="inputJobId" id="inputJobId" placeholder="Job ID" readonly>
+					<input type="text" class="form-control" name="inputJobId" id="inputJobId" placeholder="Job ID" readonly required>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="inputCompanyName">Company Name</label>
-					<input type="text" class="form-control" name="inputCompanyName" id="inputCompanyName" placeholder="Company Name">
+					<input type="text" class="form-control" name="inputCompanyName" id="inputCompanyName" placeholder="Company Name" required>
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-6">
 					<label for="inputTitle">Job Title</label>
-					<input type="text" class="form-control" name="inputTitle" id="inputTitle" placeholder="Job Title">
+					<input type="text" class="form-control" name="inputTitle" id="inputTitle" placeholder="Job Title" required>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="inputLocation">Location</label>
-					<input type="text" class="form-control" name="inputLocation" id="inputLocation" placeholder="Location">
+					<input type="text" class="form-control" name="inputLocation" id="inputLocation" placeholder="Location" required>
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label for="inputDescription">Description</label>
-					<textarea rows="3" class="form-control" name="inputDescription" id="inputDescription" placeholder="Description"></textarea>
+					<textarea rows="3" class="form-control" name="inputDescription" id="inputDescription" placeholder="Description" required></textarea>
 				</div>
 			</div>
 			<button type="submit" class="btn btn-default">Update</button>

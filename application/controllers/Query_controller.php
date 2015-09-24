@@ -25,27 +25,6 @@ class Query_controller extends CI_Controller {
 		$this -> load -> view('pages/' . $page, $data);
 		$this -> load -> view('templates/footer', $data);
 	}
-	
-/**public function query(){
-	{
-		echo '<script language="javascript">';
-		echo 'alert("aaa")';
-		echo '</script>';
-		$id = $this->input->post('inputJobId');
-		//redirect('/demo/query');
-		echo '<script language="javascript">';
-		echo 'alert("aaabbb")';
-		echo '</script>';
-		?>
-		<script type="text/javascript">
-			window.alert("1");
-		myFunction(<?php echo "$id"?>);
-			</script>
-		
-		<?php
-			
-	
-	**/
 
 }
 	
