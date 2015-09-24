@@ -2,6 +2,26 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
+<section class="home-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="home-message">
+					<h1><strong></Strong>Make Today Great</h1>
+					<form class="form-inline">
+						<div class="form-group">
+							<input type="text" class="form-control" id="inputSearch" placeholder="Search Jobs">
+						</div>
+						<button type="submit" class="btn btn-default">Search</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+	
+<div class="container">
+
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
@@ -26,10 +46,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			</p>
 			
-			<hr />
-			
-			<?php echo $this->table->generate($demo_list); ?>
-				
 			<hr />
 		
 			<p>
@@ -76,3 +92,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</p>
 		</div>
 	</div>
+</div>

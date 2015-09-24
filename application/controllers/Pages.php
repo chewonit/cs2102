@@ -18,9 +18,9 @@ class Pages extends CI_Controller {
         /* Demo get from database */
         $data['demo_list'] = $this -> demo_model -> get();
 
-        $this -> load -> view('templates/header', $data);
+        $this -> load -> view('templates/header-home', $data);
         $this -> load -> view('pages/' . $page, $data);
-        $this -> load -> view('templates/footer', $data);
+        $this -> load -> view('templates/footer-home', $data);
     }
     
 }

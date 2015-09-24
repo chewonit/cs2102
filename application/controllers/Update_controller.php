@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Update_controller extends CI_Controller {
 
-	private $site_title = "CS2102 Group 9 Update";
+	private $site_title = "CS2102 Group 9";
 
 	public function view()
 	{

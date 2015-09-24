@@ -11,14 +11,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div class="row">
 	
-		<div class="col-md-9">
+		<div class="col-md-12">
 		    
 			<h2>Insert Job Entry</h2>
-			
-			<script> 
-				var jq = $.noConflict(); 
-				jq('#insertForm').parent().validate(); 
-			</script>
 			
 			<?php echo form_open('Insert_controller/insert/');?>
 			<div id="insertForm" class="fluid-container">
@@ -50,6 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			<button type="submit" class="btn btn-default">Insert</button>
 			</div>
+			<?php echo form_close();?>
 			
 			<hr />
 			
@@ -72,17 +68,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?php endforeach; ?>
 			</table>
 			
-		    <?php echo form_close();?>
-			
-		</div>
-		<div class="col-md-3">
-			<p>
-				Sed accumsan augue a lacus luctus condimentum. Aenean aliquam id sapien id molestie. 
-				Maecenas eu pharetra turpis. Aenean nec facilisis odio. Mauris sodales sodales suscipit. 
-				Morbi rhoncus elit et egestas interdum. Ut et magna ac nisi ultrices mattis in sit amet leo. 
-				Nunc consectetur egestas ligula, id vulputate ligula congue id. Pellentesque nec hendrerit arcu, at accumsan massa. 
-				Etiam eu varius purus. Vivamus et purus risus. Nam vulputate tempus nulla, id tempor quam pellentesque sed. 
-				Etiam mi est, tempus in dapibus sit amet, ultrices et nibh.
-			</p>
 		</div>
 	</div>

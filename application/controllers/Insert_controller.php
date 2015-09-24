@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Insert_controller extends CI_Controller {
-    private $site_title = "CS2102 Group 9 Insert";
+    private $site_title = "CS2102 Group 9";
     public function view()
     {
         $page = 'insert_page';
