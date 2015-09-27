@@ -42,14 +42,12 @@ class MY_Controller extends CI_Controller {
 	 * @return	
 	 */
 	public function login(){
-		echo $this->input->post('inputLoginEmail')."<br />";
-		echo $this->input->post('inputLoginPassword')."<br />";
 		if ( $this->auth->login($this->input->post('inputLoginEmail'), $this->input->post('inputLoginPassword')) ) 
 		{
-			echo 'true | logged in';
+			redirect('home/?login=true');
 		}
-		echo 'false | failed to log in';
-		redirect('home');
+		redirect('home/?login=false');
+		
 	}
 	
 	/**
@@ -61,10 +59,9 @@ class MY_Controller extends CI_Controller {
 	public function logout(){
 		if ( $this->auth->logout() ) 
 		{
-			echo 'true | logged out';
+			redirect('home/?logout=true');
 		}
-		echo 'false | failed to log in';
-		redirect('home');
+		redirect('home/?logout=false');
 	}
 	
 	/**
