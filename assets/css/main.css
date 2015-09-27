@@ -9,12 +9,18 @@ body {
   margin-bottom: 60px;
 }
 
-#home-body, #home-html {
-	/*height:100%;*/
+body > .container {
+  padding-bottom: 30px;
 }
 
 nav.home {
 	margin-bottom:0;
+}
+
+@media screen and (max-width: 768px) {
+    #login-buttons-section, #logout-buttons-section {
+		text-align: center;
+	}
 }
 
 .footer {
@@ -26,21 +32,12 @@ nav.home {
   background-color: #333333;
 }
 
-body > .container {
-  padding-bottom: 30px;
-}
 .container .text-muted {
   margin: 20px 0;
 }
 
 form .error {
     color: red;
-}
-
-#section1 {
-	background-color: rgba(0,0,0,0.7);
-	color:#fff;
-	font-family: 'Bitter', serif;
 }
 
 .home-header {
@@ -63,5 +60,14 @@ form .error {
 	padding-bottom: 20px;
 }
 .home-message > form > .form-group > input {
-	width: 400px;
+	display: inline-block !important;
+	max-width: 70%;
 }
+
+@media screen and (min-width: 769px) {
+    .home-message > form > .form-group > input {
+		width: 400px;
+		max-width: none;
+	}
+}
+

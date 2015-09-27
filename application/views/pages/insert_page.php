@@ -49,24 +49,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<hr />
 			
-			<table id="jobTable" class="table table-striped">
-				<thead>
-					<th>Job ID</th>
-					<th>Company</th>
-					<th>Title</th>
-					<th>Description</th>
-					<th>Location</th>
-				</thead>
-				<?php foreach($demo_list->result() as $row): ?>
-				<tr id="jobTable-<?php echo $row->Id; ?>">
-					<td><?php echo $row->Id; ?></td>
-					<td><?php echo $row->Name; ?></td>
-					<td><?php echo $row->Title; ?></td>
-					<td><?php echo $row->Description; ?></td>
-					<td><?php echo $row->Location; ?></td>
-				</tr>
-				<?php endforeach; ?>
-			</table>
+			<div class="table-responsive">
+				<table id="jobTable" class="table table-striped">
+					<thead>
+						<th>Job ID</th>
+						<th>Company</th>
+						<th>Title</th>
+						<th>Description</th>
+						<th>Location</th>
+					</thead>
+					<?php foreach($demo_list->result() as $row): ?>
+					<tr id="jobTable-<?php echo $row->Id; ?>">
+						<td><?php echo $row->Id; ?></td>
+						<td><?php echo $row->Name; ?></td>
+						<td><?php echo $row->Title; ?></td>
+						<td><?php echo $row->Description; ?></td>
+						<td><?php echo $row->Location; ?></td>
+					</tr>
+					<?php endforeach; ?>
+				</table>
+			</div>
 			
 		</div>
 	</div>

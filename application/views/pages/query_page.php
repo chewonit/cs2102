@@ -15,25 +15,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 		<div class="col-md-12">
 		    
-			<table id="jobTable" class="table table-striped">
-				<thead>
-					<th>Job ID</th>
-					<th>Company</th>
-					<th>Title</th>
-					<th>Description</th>
-					<th>Location</th>
-				</thead>
-				<?php $count = 1 ?>
-				<?php foreach($demo_list->result() as $row): ?>
-				<tr id="jobTable-<?php echo $row->Id; ?>">
-					<td><?php echo $row->Id; ?></td>
-					<td><?php echo $row->Name; ?></td>
-					<td><?php echo $row->Title; ?></td>
-					<td><?php echo $row->Description; ?></td>
-					<td><?php echo $row->Location; ?></td>
-				</tr>
-				<?php endforeach; ?>
-			</table>
+			<div class="table-responsive">
+				<table id="jobTable" class="table table-striped">
+					<thead>
+						<th>Job ID</th>
+						<th>Company</th>
+						<th>Title</th>
+						<th>Description</th>
+						<th>Location</th>
+					</thead>
+					<?php $count = 1 ?>
+					<?php foreach($demo_list->result() as $row): ?>
+					<tr id="jobTable-<?php echo $row->Id; ?>">
+						<td><?php echo $row->Id; ?></td>
+						<td><?php echo $row->Name; ?></td>
+						<td><?php echo $row->Title; ?></td>
+						<td><?php echo $row->Description; ?></td>
+						<td><?php echo $row->Location; ?></td>
+					</tr>
+					<?php endforeach; ?>
+				</table>
+			</div>
 			
 		</form>
 		</div>
