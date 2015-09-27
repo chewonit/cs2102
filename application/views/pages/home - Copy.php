@@ -34,6 +34,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 		<div class="col-md-9">
 		
+		<h2>Modal Example</h2>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+		
 			<p>
 				<h4>Project Description</h4>
 				The system is a catalogue of job offers and job applicants. 
@@ -82,13 +107,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		</div>
 		<div class="col-md-3">
-			<div class="well">
-				User ID: demo@demo.com<br />
-				Password: pass1234
-			</div>
-			<div class="well">
-				Is Logged in: <?php echo $is_login ? 'True' : 'False'; ?>
-			</div>
+			<p>
+				Sed accumsan augue a lacus luctus condimentum. Aenean aliquam id sapien id molestie. 
+				Maecenas eu pharetra turpis. Aenean nec facilisis odio. Mauris sodales sodales suscipit. 
+				Morbi rhoncus elit et egestas interdum. Ut et magna ac nisi ultrices mattis in sit amet leo. 
+				Nunc consectetur egestas ligula, id vulputate ligula congue id. Pellentesque nec hendrerit arcu, at accumsan massa. 
+				Etiam eu varius purus. Vivamus et purus risus. Nam vulputate tempus nulla, id tempor quam pellentesque sed. 
+				Etiam mi est, tempus in dapibus sit amet, ultrices et nibh.
+			</p>
 		</div>
 	</div>
 </div>

@@ -1,29 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Delete_controller extends CI_Controller {
-
-	private $site_title = "CS2102 Group 9";
+class Delete_controller extends MY_Controller {
 
 	public function view()
 	{
 		$page = 'delete_page';
 
-		if (!file_exists(APPPATH . '/views/pages/' . $page . '.php'))
-		{
-			// Whoops, page not found!
-			show_404();
-		}
-
-		$data['site_title'] = $this -> site_title;
+		$this -> check_page_files('/views/pages/' . $page . '.php');
+		
 		$data['page_title'] = "Delete Controller Page";
 
 		/* Demo get from database */
 		$data['demo_list'] = $this -> demo_model -> get();
 
-		$this -> load -> view('templates/header', $data);
-		$this -> load -> view('pages/' . $page, $data);
-		$this -> load -> view('templates/footer', $data);
+		$this -> load_view($data, $page);
 	}
 	
 	public function delete()

@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<!-- jquery -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -53,18 +53,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
+			<?php if($is_login) : ?>
+			<div id="logout-buttons-section">
+				<a href="<?php echo site_url("Pages/logout/"); ?>">			
+					<button type="button" class="btn btn-default navbar-btn btn-danger">
+						<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log out
+					</button>
+				</a>
+			</div>
+			<?php else : ?>
 			<div id="login-buttons-section">
 				<a href="<?php echo site_url("register/"); ?>">			
 					<button type="button" class="btn btn-default navbar-btn">
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span> Sign up
 					</button>
 				</a>
-				<a href="#" >
-					<button type="button" class="btn btn-default navbar-btn btn-success">
-						<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Log in
-					</button>
-				</a>
+				<button type="button" class="btn btn-default navbar-btn btn-success" data-toggle="modal" data-target="#loginModel">
+					<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Log in
+				</button>
 			</div>
+			<?php endif; ?>
 		</ul>
 	</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
