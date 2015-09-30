@@ -18,50 +18,15 @@ class MY_Controller extends CI_Controller {
 	
 		$data['is_login'] = $this->auth->is_loggedin();
 		$data['site_title'] = $this -> site_title;
-	
-		if (file_exists(APPPATH . "views/templates/header-$postfix" . '.php')) {
-           $this -> load -> view("templates/header-$postfix", $data);
-        } else {
-			$this -> load -> view("templates/header", $data);
-		}
 		
+		if (!array_key_exists("nav_class",$data))
+		{
+			$data['nav_class'] = "";
+		}
+	
+		$this -> load -> view("templates/header", $data);
         $this -> load -> view('pages/' . $page, $data);
-		
-		if (file_exists(APPPATH . "views/templates/footer-$postfix" . '.php')) {
-           $this -> load -> view("templates/footer-$postfix", $data);
-        } else {
-			$this -> load -> view("templates/footer", $data);
-		}
-	}
-	
-	/**
-	 * Log in the user and redirects to home page.
-	 * Form parameters are grabbed via POST.
-	 *
-	 * @access	public
-	 * @return	
-	 */
-	public function login(){
-		if ( $this->auth->login($this->input->post('inputLoginEmail'), $this->input->post('inputLoginPassword')) ) 
-		{
-			redirect('home/?login=true');
-		}
-		redirect('home/?login=false');
-		
-	}
-	
-	/**
-	 * Logs the user out and redirects to home page.
-	 *
-	 * @access	public
-	 * @return	
-	 */
-	public function logout(){
-		if ( $this->auth->logout() ) 
-		{
-			redirect('home/?logout=true');
-		}
-		redirect('home/?logout=false');
+		$this -> load -> view("templates/footer", $data);
 	}
 	
 	/**
@@ -78,5 +43,9 @@ class MY_Controller extends CI_Controller {
 			// Whoops, page not found!
 			show_404();
 		}
+	}
+	
+	protected function is_loggedin() {
+		return $this->auth->is_loggedin();
 	}
 }

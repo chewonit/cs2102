@@ -14,6 +14,8 @@ class Pages extends MY_Controller {
 		/* Demo get from database */
         $data['demo_list'] = $this -> demo_model -> get();
 
+		$data['nav_class'] = "home";
+		
         $this -> load_view($data, $page, $page);
-    }    
+    }
 }

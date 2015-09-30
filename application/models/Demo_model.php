@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Demo_model extends CI_Model {
     
     private $table_name = "demo";
+	private $search_fields = "Name, Title, Description, Location";
     
     public function __construct()
     {
@@ -15,8 +16,7 @@ class Demo_model extends CI_Model {
         if ( !is_null($id )) {
             $this -> db -> where('id', $id);
         }
-        $query = $this -> db -> get($this->table_name);
-        return $query;
+        return $this -> db -> get($this->table_name);
     }
 
     public function insert($data)
@@ -37,4 +37,8 @@ class Demo_model extends CI_Model {
         $this -> db -> delete($this->table_name);
     }
 
+	public function search($keywords) {
+		$this->db->where("MATCH (".$this->search_fields.") AGAINST ('$keywords')", NULL, FALSE);
+		return $this -> db -> get($this->table_name);
+	}
 }

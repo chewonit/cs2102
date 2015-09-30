@@ -1,27 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Register extends MY_Controller {
+class Dashboard extends MY_Controller {
 
 	public function view()
 	{
-		if ($this->is_loggedin()) 
+		if (!$this->is_loggedin()) 
 		{
-			redirect('dashboard/');
+			redirect("login/");
 		}
 	
-		$page = 'register_page';
+		$page = 'dashboard_page';
 
 		$this->check_page_files('/views/pages/' . $page . '.php');
 
-		$data['page_title'] = "Register";
+		$data['page_title'] = "Dashboard";
 
 		$this->load_view($data, $page);
 	}
-	
-	public function register_user()
-	{
-		
-	}
-	
 }

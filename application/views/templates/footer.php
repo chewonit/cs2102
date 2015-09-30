@@ -2,8 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-</div><!-- container -->
-
 <footer class="footer">
 	<div class="container">
 		<p class="text-muted">CS2102 Group 9.</p>
@@ -21,18 +19,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<h4 class="modal-title">Log In</h4>
 			</div>
 			<div class="modal-body">
+				
 				<?php $attributes = array('class' => 'form-horizontal', 'id' => 'loginForm'); ?>
-				<?php echo form_open('Pages/login', $attributes); ?>
+				<?php echo form_open('Login/login_user/', $attributes); ?>
 				<div class="form-group">
 					<label for="inputLoginEmail" class="col-sm-2 control-label">Email</label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputLoginEmail" name="inputLoginEmail" placeholder="Email">
+						<input type="email" class="form-control" id="inputLoginEmail" name="inputLoginEmail" placeholder="Email" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputLoginPassword" class="col-sm-2 control-label">Password</label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputLoginPassword" name="inputLoginPassword" placeholder="Password">
+						<input type="password" class="form-control" id="inputLoginPassword" name="inputLoginPassword" placeholder="Password" required>
 					</div>
 				</div>
 				<!-- Remember me option not yet implemented
@@ -51,6 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</div>
 				<?php echo form_close(); ?>
+				
 			</div>
 		</div>
 	</div>

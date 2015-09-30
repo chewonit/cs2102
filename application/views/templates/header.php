@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 
-<nav class="navbar navbar-default">
+<nav class="<?php echo $nav_class ?> navbar navbar-default">
 	<div class="container">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
@@ -41,7 +41,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
 			<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
-			<!--<li><a href="#">Link</a></li>-->
+			<li><a href="<?php echo site_url("browse/"); ?>">Browse</a></li>
+			<li><a href="<?php echo site_url("search/"); ?>">Search</a></li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Demo <span class="caret"></span></a>
 				<ul class="dropdown-menu">
@@ -53,9 +54,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
+			
 			<?php if($is_login) : ?>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="<?php echo site_url("dashboard/"); ?>">Dashboard</a></li>
+					<li><a href="<?php echo site_url("profile/"); ?>">Profile</a></li>
+					<li><a href="#">My Jobs</a></li>
+				</ul>
+			</li>
 			<div id="logout-buttons-section">
-				<a href="<?php echo site_url("Pages/logout/"); ?>">			
+				<a href="<?php echo site_url("Login/logout_user/"); ?>">			
 					<button type="button" class="btn btn-default navbar-btn btn-danger">
 						<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log out
 					</button>
@@ -73,9 +83,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</button>
 			</div>
 			<?php endif; ?>
+			
 		</ul>
 	</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
 </nav>
-
-<div class="container">

@@ -8,12 +8,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="col-lg-12">
 				<div class="home-message">
 					<h1><strong></Strong>Make Today Great</h1>
-					<form class="form-inline">
+					<?php $attributes = array('class' => 'form-inline', 'id' => 'searchForm'); ?>
+					<?php echo form_open('search/', $attributes); ?>
 						<div class="form-group">
-							<input type="text" class="form-control" id="inputSearch" placeholder="Search Jobs">
+							<input type="text" class="form-control" id="inputSearch" name="inputSearch" placeholder="Search Jobs">
 						</div>
 						<button type="submit" class="btn btn-default">Search</button>
-					</form>
+					<?php echo form_close() ?>
 				</div>
 			</div>
 		</div>
