@@ -21,20 +21,19 @@ class Demo_model extends CI_Model {
 
     public function insert($data)
     {
-        $this -> db -> insert($this->table_name, $data);
-        return;
+        return $this -> db -> insert($this->table_name, $data);
     }
 
     public function update($data)
     {
         $this -> db -> where('id', $data['id']);
-        $this -> db -> update($this->table_name, $data);
+        return $this -> db -> update($this->table_name, $data);
     }
 
     public function delete($id)
     {
         $this -> db -> where('id', $id);
-        $this -> db -> delete($this->table_name);
+        return $this -> db -> delete($this->table_name);
     }
 
 	public function search($keywords) {

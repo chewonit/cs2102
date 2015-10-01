@@ -85,7 +85,7 @@ form .error {
 	}
 }
 
-#dashboard-content section , #dashboard-content section h4{
+.dashboard-content section , .dashboard-content section h4{
 	padding: 5px 0;
 }
 #dashboard-content section:last {

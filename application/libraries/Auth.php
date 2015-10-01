@@ -10,8 +10,7 @@ class Auth {
 	
 	private $ci;
 	private $user_table;
-	private $identifier_field;
-	private $username_field;
+	private $email_field;
 	private $password_field;
 	
 	function __construct()
@@ -21,8 +20,7 @@ class Auth {
 		
 		// Set database table names and attributes
 		$this->user_table = 'users';
-		$this->identifier_field = 'email';
-		$this->username_field = 'email';
+		$this->email_field = 'email';
 		$this->password_field = 'password';
 		
 		$this->ci->load->database();
@@ -48,7 +46,7 @@ class Auth {
 			'gender' => $data['gender']
 		);
 		
-		return $this->ci->db->insert($this->user_table, $create_user_data);
+		return $this->ci->users_model->insert($create_user_data);
 	}
 	
 	/**
@@ -60,43 +58,35 @@ class Auth {
 	 */
 	public function check_unique_email($email)
 	{
-		$query = $this->ci->db
-			->where($this->username_field, $email)
-			->get($this->user_table);
+		$query = $this->ci->users_model->get($email);
 			
-		if ($query->num_rows() > 0)
+		if ($query->num_rows() == 0)
 		{
-			return FALSE;
+			return TRUE;
 		}
-		return TRUE;
+		return FALSE;
 	}
 	
 	/**
 	 * Login and set Session data.
 	 *
 	 * @access	public
-	 * @param	string [$username] The username of the user to authenticate
+	 * @param	string [$email] The email of the user to authenticate
 	 * @param	string [$password] The password to authenticate
 	 * @return	boolean TRUE on match found in database. Otherwise FALSE.
 	 */
-	public function login($username, $password)
+	public function login($email, $password)
 	{
-		$this->ci->db
-			->select($this->identifier_field.' as identifier, '.$this->username_field.' as username');
-		$this->ci->db->where($this->username_field, $username);
-		$this->ci->db->where($this->password_field, md5($password));
-		$this->ci->db->limit(1);
-		$user = $this->ci->db->get($this->user_table);
+		$user = $this->ci->users_model->get_by_email_password($email, $password);
 			
-		// Check if username and password entry is found
+		// Check if email and password entry is found
 		if ($user->num_rows() == 1)
 		{
 			$user_details = $user->row();
 			
 			// Set the userdata for the current user
 			$this->ci->session->set_userdata(array(
-				'identifier' => $user_details->identifier,
-				'username' => $user_details->username,
+				'email' => $user_details->email,
 				'logged_in' => $_SERVER['REQUEST_TIME']
 			));
 			return TRUE;
@@ -113,7 +103,7 @@ class Auth {
 	 */
 	public function is_loggedin()
 	{
-		return (bool) $this->ci->session->userdata('identifier');
+		return (bool) $this->ci->session->userdata('email');
 	}
 	
 	/**
@@ -125,8 +115,7 @@ class Auth {
 	public function logout()
 	{
 		// Remove userdata
-		$this->ci->session->unset_userdata('identifier');
-		$this->ci->session->unset_userdata('username');
+		$this->ci->session->unset_userdata('email');
 		$this->ci->session->unset_userdata('logged_in');
 		// Set logged out userdata
 		$this->ci->session->set_userdata(array(
@@ -134,5 +123,66 @@ class Auth {
 		));
 		// Return true
 		return TRUE;
+	}
+	
+	/**
+	 * Get all authentication information on the user
+	 *
+	 * @access	public
+	 * @return	
+	 */
+	public function get_info()
+	{
+		$email = $this->ci->session->userdata('email');
+		$user_info = $this->ci->users_model->get( $email );
+		
+		return $user_info->result()[0];
+	}
+	
+	/**
+	 * Updates the user information.
+	 *
+	 * @access	public
+	 * @return	
+	 */
+	public function update($update_user_data)
+	{
+		$email = $this->ci->session->userdata('email');
+		$result = $this->ci->users_model->update( $email, $update_user_data );
+		
+		return $result;
+	}
+	
+	/**
+	 * Change password
+	 *
+	 * @access	public
+	 * @param	string [$password] The new password
+	 * @param	string [$email] The email of the user
+	 * @return	boolean 
+	 */
+	public function change_password($password, $email = null)
+	{
+		if ( is_null($email) )
+		{
+			// Ensure the current user is logged in
+			if ($this->is_loggedin())
+			{
+				$email = $this->ci->session->userdata('email');
+			} else {
+				return FALSE;
+			}
+		}
+		
+		$data = array(
+			$this->password_field => md5($password)
+		);
+		
+		if ($this->ci->users_model->update($email, $data))
+		{
+			return TRUE;
+		} else {
+			return FALSE;
+		}
 	}
 }

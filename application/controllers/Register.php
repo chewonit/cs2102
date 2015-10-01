@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Register extends MY_Controller {
 
 	private $data = array(
-		'page_title' => "Register",
+		'page_title' => "Registration",
 		'create_success' => FALSE,
 		'form_validation' => FALSE,
 		'submitted' => FALSE,
@@ -37,13 +37,13 @@ class Register extends MY_Controller {
 		$this->init_form_validation();
 		
 		$creat_user_data = array(
-			'first_name' => $this->input->post('inputFirstName'),
-			'last_name' => $this->input->post('inputLastName'),
-			'email' => $this->input->post('inputEmail'),
+			'first_name' => strtolower($this->input->post('inputFirstName')),
+			'last_name' => strtolower($this->input->post('inputLastName')),
+			'email' => strtolower($this->input->post('inputEmail')),
 			'password' => $this->input->post('inputPassword'),
-			'nationality' => $this->input->post('inputNationality'),
+			'nationality' => strtolower($this->input->post('inputNationality')),
 			'contact' => $this->input->post('inputContact'),
-			'gender' => $this->input->post('inputGender')
+			'gender' => strtolower($this->input->post('inputGender'))
 		);
 		
 		// The sign up form has been submitted.

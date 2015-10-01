@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div class="row">
 	
-		<div class="col-md-9">
+		<div class="col-md-12">
 		
 			<script type="text/javascript">
 				var jq = jQuery.noConflict();
@@ -47,7 +47,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								alphanumeric: true
 							},
 							inputNationality: "required",
-							inputContact: "required",
+							inputContact: {
+								required: true,
+								number: true
+							},
 							inputGender: "required"
 						},
 						messages: {
@@ -64,7 +67,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								alphanumeric: "The password must contain Alphabets and Numbers."
 							},
 							inputNationality: "Please select your nationality.",
-							inputContact: "Please enter your contact number.",
+							inputContact: {
+								required: "Please enter your contact number.",
+								number: "Please enter a valid phone number."
+							},
 							inputGender: "Please spcify your gender."
 						},
 						errorPlacement: function(error, element) {
@@ -349,7 +355,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</div>
 							<div class="form-group col-md-6">
 								<label for="inputContact">Contact Number</label>
-								<input required type="tel" class="form-control" id="inputContact" name="inputContact"placeholder="Contact Number" value="<?php echo $form_data['contact'] ?>">
+								<input required type="number" class="form-control" id="inputContact" name="inputContact"placeholder="Contact Number" value="<?php echo $form_data['contact'] ?>">
 							</div>
 						</div>
 						<div class="row">
@@ -440,16 +446,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</div>
 		
-		</div>
-		<div class="col-md-3">
-			<p>
-				Sed accumsan augue a lacus luctus condimentum. Aenean aliquam id sapien id molestie. 
-				Maecenas eu pharetra turpis. Aenean nec facilisis odio. Mauris sodales sodales suscipit. 
-				Morbi rhoncus elit et egestas interdum. Ut et magna ac nisi ultrices mattis in sit amet leo. 
-				Nunc consectetur egestas ligula, id vulputate ligula congue id. Pellentesque nec hendrerit arcu, at accumsan massa. 
-				Etiam eu varius purus. Vivamus et purus risus. Nam vulputate tempus nulla, id tempor quam pellentesque sed. 
-				Etiam mi est, tempus in dapibus sit amet, ultrices et nibh.
-			</p>
 		</div>
 	</div>
 
