@@ -18,6 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
+	<script src="<?php echo base_url() ?>/assets/js/jquery.bootstrap-growl.min.js"></script>
 	
 	<?php echo link_tag('assets/css/main.css')?>
 
@@ -65,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</ul>
 			</li>
 			<div id="logout-buttons-section">
-				<a href="<?php echo site_url("Login/logout_user/"); ?>">			
+				<a href="<?php echo site_url("login/logout_user/"); ?>">			
 					<button type="button" class="btn btn-default navbar-btn btn-danger">
 						<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log out
 					</button>

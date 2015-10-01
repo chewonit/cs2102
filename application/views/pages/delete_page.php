@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			
 			<script type="text/javascript">
-				var jq = $.noConflict();
+				var jq = jQuery.noConflict();
 				function myFunction(id) {
 					
 					var data = {inputJobId: id};

@@ -19,6 +19,9 @@ class MY_Controller extends CI_Controller {
 		$data['is_login'] = $this->auth->is_loggedin();
 		$data['site_title'] = $this -> site_title;
 		
+		$data['login_result'] = $this->session->flashdata('login_result');
+		
+		
 		if (!array_key_exists("nav_class",$data))
 		{
 			$data['nav_class'] = "";

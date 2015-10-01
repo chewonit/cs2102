@@ -8,6 +8,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </footer>
 
+<script type="text/javascript">
+	var jq = jQuery.noConflict();
+	
+	jq( document ).ready(function() {
+		<?php if( !is_null($login_result) && $login_result == FALSE) : ?>
+			jq.bootstrapGrowl("<h4>Login Failed</h4>Wrong email or password." , {type: 'danger'});
+		<?php endif ?>
+	});
+</script>
 
 <!-- Login Modal -->
 <div class="modal fade" id="loginModel" role="dialog">
@@ -21,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="modal-body">
 				
 				<?php $attributes = array('class' => 'form-horizontal', 'id' => 'loginForm'); ?>
-				<?php echo form_open('Login/login_user/', $attributes); ?>
+				<?php echo form_open('login/login_user/', $attributes); ?>
 				<div class="form-group">
 					<label for="inputLoginEmail" class="col-sm-2 control-label">Email</label>
 					<div class="col-sm-10">

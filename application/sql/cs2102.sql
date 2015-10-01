@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2015 at 08:38 AM
+-- Generation Time: Oct 01, 2015 at 03:13 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -53,17 +53,21 @@ INSERT INTO `demo` (`Id`, `Name`, `Title`, `Description`, `Location`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(32) unsigned NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `password` varchar(255) NOT NULL,
+  `first_name` text NOT NULL,
+  `last_name` text NOT NULL,
+  `nationality` varchar(32) NOT NULL,
+  `contact` int(10) unsigned NOT NULL,
+  `gender` char(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password`) VALUES
-(2, 'demo@demo.com', 'b4af804009cb036a4ccdc33431ef9ac9');
+INSERT INTO `users` (`email`, `password`, `first_name`, `last_name`, `nationality`, `contact`, `gender`) VALUES
+('demo@demo.com', 'b4af804009cb036a4ccdc33431ef9ac9', 'Demo', 'Demo', 'singaporean', 91234567, 'male');
 
 --
 -- Indexes for dumped tables
@@ -73,23 +77,15 @@ INSERT INTO `users` (`id`, `email`, `password`) VALUES
 -- Indexes for table `demo`
 --
 ALTER TABLE `demo`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`Id`),
+  ADD FULLTEXT KEY `Name` (`Name`,`Title`,`Description`,`Location`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`email`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(32) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

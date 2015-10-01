@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-md-6">
 			
 			<?php $attributes = array('class' => 'form-horizontal', 'id' => 'loginForm'); ?>
-			<?php echo form_open('Login/login_user/', $attributes); ?>
+			<?php echo form_open('login/login_user/', $attributes); ?>
 			<div class="form-group">
 				<label for="inputLoginEmail" class="col-sm-2 control-label">Email</label>
 				<div class="col-sm-10">

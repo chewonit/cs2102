@@ -21,7 +21,7 @@ class Auth {
 		
 		// Set database table names and attributes
 		$this->user_table = 'users';
-		$this->identifier_field = 'id';
+		$this->identifier_field = 'email';
 		$this->username_field = 'email';
 		$this->password_field = 'password';
 		
@@ -29,9 +29,46 @@ class Auth {
 		$this->ci->load->library('session');
 	}
 	
-	public function create_user($username, $password)
+	/**
+	 * Creates new user.
+	 *
+	 * @access	public
+	 * @param	array [$data] the data fields for the new user.
+	 * @return	boolean TRUE if the new user was successfully added.
+	 */
+	public function create_user($data)
 	{
+		$create_user_data = array(
+			'email' => $data['email'],
+			'password' => md5($data['password']),
+			'first_name' => $data['first_name'],
+			'last_name' => $data['last_name'],
+			'nationality' => $data['nationality'],
+			'contact' => $data['contact'],
+			'gender' => $data['gender']
+		);
 		
+		return $this->ci->db->insert($this->user_table, $create_user_data);
+	}
+	
+	/**
+	 * Check if the email is unique
+	 *
+	 * @access	public
+	 * @param	string [$email] The email to check upon
+	 * @return	boolean
+	 */
+	public function check_unique_email($email)
+	{
+		$query = $this->ci->db
+			->where($this->username_field, $email)
+			->get($this->user_table);
+			
+		if ($query->num_rows() > 0)
+		{
+			return FALSE;
+		}
+		return TRUE;
 	}
 	
 	/**

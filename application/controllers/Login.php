@@ -24,9 +24,12 @@ class Login extends MY_Controller {
 	public function login_user(){
 		if ( $this->auth->login($this->input->post('inputLoginEmail'), $this->input->post('inputLoginPassword')) ) 
 		{
-			redirect('?login=true');
+			$this->session->set_flashdata('login_result', TRUE);
+			redirect('dashboard');
 		}
-		redirect('?login=false');
+		
+		$this->session->set_flashdata('login_result', FALSE);
+		redirect('');
 	}
 	
 	/**
@@ -38,9 +41,9 @@ class Login extends MY_Controller {
 	public function logout_user(){
 		if ( $this->auth->logout() ) 
 		{
-			redirect('?logout=true');
+			redirect('');
 		}
-		redirect('?logout=false');
+		redirect('');
 	}
 	
 }
