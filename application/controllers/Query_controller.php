@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Query_controller extends MY_Controller {
 
-	public function view()
+	public function index()
 	{
 		$page = 'query_page';
 

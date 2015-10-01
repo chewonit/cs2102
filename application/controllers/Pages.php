@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pages extends MY_Controller {
 
-    public function view($page = 'home')
+    public function index($page = 'home')
     {
         if (!file_exists(APPPATH . '/views/pages/' . $page . '.php'))
         {

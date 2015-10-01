@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Browse extends MY_Controller {
 
-	public function view($cat1 = null, $cat2 = null, $cat3 = null)
+	public function index($cat1 = null, $cat2 = null, $cat3 = null)
 	{
 		$page = 'browse_page';
 

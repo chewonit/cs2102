@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Register extends MY_Controller {
 
-	public function view()
+	public function index()
 	{
 		if ($this->is_loggedin()) 
 		{

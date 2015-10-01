@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profile extends MY_Controller {
 
-	public function view($id = null)
+	public function index($id = null)
 	{
 		if (!is_null($id)) 
 		{

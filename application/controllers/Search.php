@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Search extends MY_Controller {
 
-	public function view()
+	public function index()
 	{
 		$page = 'search_page';
 
