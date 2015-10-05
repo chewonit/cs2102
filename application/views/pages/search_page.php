@@ -47,36 +47,46 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 		<div class="col-md-9">
 		    
-			<?php if($search_query == "") :?>
-			
-			<h4>Please enter your search in the search box.</h4>
-			
-			<?php elseif ( count($search_results->result()) == 0) : ?>
+			<?php if ( count($search_results->result()) == 0) : ?>
 
 			<h4>No results found.</h4>
 			
 			<?php else : ?>
 			
-			<div class="table-responsive">
-				<table id="jobTable" class="table table-striped">
-					<thead>
-						<th>Job ID</th>
-						<th>Company</th>
-						<th>Title</th>
-						<th>Description</th>
-						<th>Location</th>
-					</thead>
-					<?php $count = 1 ?>
-					<?php foreach($search_results->result() as $row): ?>
-					<tr id="jobTable-<?php echo $row->Id; ?>">
-						<td><?php echo $row->Id; ?></td>
-						<td><?php echo $row->Name; ?></td>
-						<td><?php echo $row->Title; ?></td>
-						<td><?php echo $row->Description; ?></td>
-						<td><?php echo $row->Location; ?></td>
-					</tr>
-					<?php endforeach; ?>
-				</table>
+			<div class="job-list">
+				<?php foreach($search_results->result() as $row): ?>
+				<section class="job-item">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-9">
+								<h4 class="job-item-header"><a href="#"><?php echo $row->Title; ?></a></h4>
+								<h5><?php echo $row->Name; ?></h5>
+							</div>
+							<div class="col-md-3 text-right">
+								<h5><?php echo $row->Location; ?></h5>
+								<h6><?php echo "15 June 2015" ?></h6>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<?php 
+									$str = $row->Description;
+									if (strlen($str) > 300) {
+										$str = substr($str, 0, 297) . '...';
+									}
+									echo $str;
+								?>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 job-item-btns">
+								<button class="btn btn-default btn-sm">Read More</button>
+								<button class="btn btn-default btn-sm btn-success">Apply</button>
+							</div>
+						</div>
+					</div>
+				</section>
+				<?php endforeach; ?>
 			</div>
 			
 			<?php endif ?>

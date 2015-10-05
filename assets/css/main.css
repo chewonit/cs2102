@@ -1,5 +1,4 @@
-/* Footer styles
--------------------------------------------------- */
+
 html {
   position: relative;
   min-height: 100%;
@@ -37,6 +36,8 @@ nav.home {
 	}
 }
 
+/* Footer styles
+-------------------------------------------------- */
 .footer {
   position: absolute;
   bottom: 0;
@@ -49,6 +50,8 @@ nav.home {
 .container .text-muted {
   margin: 20px 0;
 }
+/* End Footer styles
+-------------------------------------------------- */
 
 form .error {
     color: red;
@@ -91,3 +94,21 @@ form .error {
 #dashboard-content section:last {
 	padding-bottom: initial;
 }
+
+/* Job List styles
+-------------------------------------------------- */
+.job-list section {
+	background: #FAFAFA;
+	border: solid 1px #D5D5D5;
+	margin: 0 0 1em 0;
+    padding: 0.8em 1em;
+	width: 100%;
+}
+.job-item-header a {
+	color: inherit;
+}
+.job-item .job-item-btns {
+	margin:15px 0 5px;
+}
+/* End Job List styles
+-------------------------------------------------- */

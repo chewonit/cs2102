@@ -15,14 +15,15 @@ class Search extends MY_Controller {
 		
 		if($data['search_query'] == "") 
 		{
-			$this -> load_view($data, $page);
-			return;
+			$data['search_results'] = $this -> demo_model -> get();
 		}
-		
-		/*
-		 * Call upon model to perform search on tables.
-		 */
-		$data['search_results'] = $this -> demo_model -> search($data['search_query']);
+		else 
+		{
+			/*
+			 * Call upon model to perform search on tables.
+			 */
+			$data['search_results'] = $this -> demo_model -> search($data['search_query']);
+		}
 		
 		$this -> load_view($data, $page);
 		
