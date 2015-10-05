@@ -11,10 +11,13 @@ class Demo_model extends CI_Model {
         parent::__construct();
     }
     
-    public function get($id = NULL)
+    public function get($id = NULL, $limit=NULL)
     {
         if ( !is_null($id )) {
             $this -> db -> where('id', $id);
+        }
+		if ( !is_null($limit)) {
+            $this -> db -> limit($limit);
         }
         return $this -> db -> get($this->table_name);
     }

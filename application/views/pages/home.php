@@ -26,6 +26,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
+				<h1>Latest Jobs</h1>
+			</div>
+		</div>
+	</div>
+
+	<div class="row text-center">
+	
+		<?php foreach($latest_jobs->result() as $row): ?>
+		<div class="col-md-6">
+			<a class="job-featured" href="#">
+				<section class="job-item">
+					<h4><?php echo $row->Title; ?></h4>
+					<h5><?php echo $row->Name; ?></h5>
+					<p><?php 
+							$str = $row->Description;
+							if (strlen($str) > 140) {
+								$str = substr($str, 0, 137) . '...';
+							}
+							echo $str;
+						?>
+					</p>
+				</section>
+			</a>
+		</div>
+		<?php endforeach; ?>
+
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
 				<h1>Job Offers</h1>
 			</div>
 		</div>

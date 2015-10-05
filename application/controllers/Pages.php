@@ -12,7 +12,7 @@ class Pages extends MY_Controller {
         }
 		
 		/* Demo get from database */
-        $data['demo_list'] = $this -> demo_model -> get();
+        $data['latest_jobs'] = $this -> demo_model -> get(NULL, 4);
 
 		$data['nav_class'] = "home";
 		

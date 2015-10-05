@@ -80,7 +80,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<div class="row">
 							<div class="col-md-12 job-item-btns">
-								<button class="btn btn-default btn-sm">Read More</button>
+								<button class="btn btn-default btn-sm">More Info</button>
 								<button class="btn btn-default btn-sm btn-success">Apply</button>
 							</div>
 						</div>

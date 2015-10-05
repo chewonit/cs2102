@@ -97,11 +97,13 @@ form .error {
 
 /* Job List styles
 -------------------------------------------------- */
-.job-list section {
+section.job-item {
 	background: #FAFAFA;
 	border: solid 1px #D5D5D5;
 	margin: 0 0 1em 0;
     padding: 0.8em 1em;
+}
+.job-list section {
 	width: 100%;
 }
 .job-item-header a {
@@ -109,6 +111,22 @@ form .error {
 }
 .job-item .job-item-btns {
 	margin:15px 0 5px;
+}
+.job-featured {
+	color: inherit !important;
+	text-decoration: none !important;
+}
+.job-featured >section:hover {
+    border: solid 1px #EEEEEE;
+    background: #F1F1F1;
+}
+.equal, .equal > div[class*='col-'] {  
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex:1 1 auto;
 }
 /* End Job List styles
 -------------------------------------------------- */
