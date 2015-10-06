@@ -5,6 +5,10 @@ class Login extends MY_Controller {
 
 	public function index()
 	{
+		if ($this->is_loggedin()) {
+			redirect('dashboard');
+		}
+		
 		$page = 'login_page';
 
 		$this->check_page_files('/views/pages/' . $page . '.php');

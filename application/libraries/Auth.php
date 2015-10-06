@@ -7,6 +7,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * To handle the authentication and sessions of uses.
  */
 class Auth {
+
+	public $roles = array(
+		"admin" => "admin",
+		"jobseeker" => "jobseeker",
+		"employer" => "employer"
+	);
 	
 	private $ci;
 	private $user_table;
@@ -105,6 +111,26 @@ class Auth {
 	public function is_loggedin()
 	{
 		return (bool) $this->ci->session->userdata('email');
+	}
+	
+	/**
+	 * Check if a user is of a role
+	 *
+	 * @access	public
+	 * @return	boolean TRUE if user is of the specified role. Otherwise FALSE
+	 */
+	public function is_role($role)
+	{
+		$email = $this->ci->session->userdata('email');
+		$user = $this->ci->users_model->get_by_email_role($email, $role);
+		
+		// Check if email and role entry is found
+		if ($user->num_rows() == 1)
+		{
+			return TRUE;
+		}
+		
+		return FALSE;
 	}
 	
 	/**

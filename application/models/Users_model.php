@@ -81,4 +81,21 @@ class Users_model extends CI_Model {
         $this -> db -> where('email', $email);
         return $this -> db -> delete($this->table_name);
 	}
+	
+	/**
+	 * Retrieves only the email and role column by email and role.
+	 *
+	 * @access	public
+	 * @param	string [$email] The email row to select only
+	 * @param	string [$role] The role row to select only
+	 * @return	
+	 */
+    public function get_by_email_role($email, $role)
+    {
+		$this->db->select('email, role');
+		$this->db->where('email', $email);
+		$this->db->where('role', $role);
+		$this->db->limit(1);
+		return $this->db->get($this->table_name);
+    }
 }

@@ -51,4 +51,16 @@ class MY_Controller extends CI_Controller {
 	protected function is_loggedin() {
 		return $this->auth->is_loggedin();
 	}
+	
+	protected function is_admin() {
+		return $this->auth->is_role( $this->auth->roles['admin'] );
+	}
+	
+	protected function is_jobseeker() {
+		return $this->auth->is_role( $this->auth->roles['jobseeker'] );
+	}
+	
+	protected function is_employer() {
+		return $this->auth->is_role( $this->auth->roles['employer'] );
+	}
 }
