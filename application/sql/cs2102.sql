@@ -1,91 +1,128 @@
--- phpMyAdmin SQL Dump
--- version 4.4.14
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: Oct 01, 2015 at 03:13 PM
--- Server version: 5.6.26
--- PHP Version: 5.6.12
+-- Drop Tables
+DROP TABLE IF EXISTS Job_Application;
+DROP TABLE IF EXISTS Jobs;
+DROP TABLE IF EXISTS Job_Category;
+DROP TABLE IF EXISTS Company_Employer;
+DROP TABLE IF EXISTS Company;
+DROP TABLE IF EXISTS Resume_Profile;
+DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS Roles;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+-- Roles
+CREATE TABLE IF NOT EXISTS Roles (
+    role CHAR(9) PRIMARY KEY
+);
 
+INSERT INTO `Roles` VALUES ('admin');
+INSERT INTO `Roles` VALUES ('jobseeker');
+INSERT INTO `Roles` VALUES ('employer');
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+-- Users
+CREATE TABLE IF NOT EXISTS Users (
+    email VARCHAR(255) PRIMARY KEY,
+    password CHAR(32) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    nationality VARCHAR(32) NOT NULL,
+    contact INT UNSIGNED NOT NULL,
+    gender CHAR(6) NOT NULL,
+    role CHAR(9) NOT NULL REFERENCES Roles(role),
+    CONSTRAINT Check_Gender CHECK (gender ='female' OR gender='male')
+);
+INSERT INTO `Users` VALUES ('demo@demo.com', MD5('pass1234'), 'demo', 'demo', 'singaporean', '91234567', 'female', 'admin');
+INSERT INTO `Users` VALUES ('john@demo.com', MD5('pass1234'), 'john', 'doe', 'singaporean', '81234567', 'male', 'jobseeker');
+INSERT INTO `Users` VALUES ('elaine@demo.com', MD5('pass1234'), 'elaine', 'teo', 'singaporean', '87654321', 'female', 'employer');
 
---
--- Database: `cs2102`
---
+-- Resume_Profile
+CREATE TABLE Resume_Profile (
+    owner VARCHAR(255) PRIMARY KEY,
+    address VARCHAR(65535) NOT NULL,
+    description TEXT NOT NULL,
+    work_history TEXT,
+    edu_history TEXT,
+    FOREIGN KEY (owner) REFERENCES Users(email)
+    	ON DELETE CASCADE
+    	ON UPDATE CASCADE,
+    CONSTRAINT Owner_Not_Jobseeker CHECK (
+        owner IN (SELECT u.email FROM Users u WHERE u.role = 'jobseeker')
+    )
+);
 
--- --------------------------------------------------------
+-- Company
+CREATE TABLE Company (
+    company_reg_no VARCHAR(255) PRIMARY KEY,
+    company_admin VARCHAR(255) unique NOT NULL,
+    company_name VARCHAR(255) UNIQUE NOT NULL,
+    location VARCHAR(65535) NOT NULL,
+    description TEXT NOT NULL,
+    FOREIGN KEY (company_admin) REFERENCES Users(email)
+    	ON DELETE CASCADE
+    	ON UPDATE CASCADE,
+    CONSTRAINT Company_Admin_Not_Employer CHECK (
+        company_admin IN (SELECT u.email FROM Users u WHERE u.role = 'employer')
+    )
+);
+-- Company_Employers
+CREATE TABLE Company_Employer (
+    employer VARCHAR(255) PRIMARY KEY,
+    company_reg_no VARCHAR(255) NOT NULL,
+    accepted BOOLEAN NOT NULL DEFAULT FALSE,
+    FOREIGN KEY (employer) REFERENCES Users(email)
+    	ON DELETE CASCADE
+    	ON UPDATE CASCADE,
+    FOREIGN KEY (company_reg_no) REFERENCES Company(company_reg_no)
+    	ON DELETE CASCADE
+    	ON UPDATE CASCADE,
+    CONSTRAINT Company_Only_Employer CHECK (
+        employer IN (SELECT u.email FROM Users u WHERE u.role = 'employer')
+    )
+);
 
---
--- Table structure for table `demo`
---
+-- Job_Category
+CREATE TABLE Job_Category (
+    category_id INT AUTO_INCREMENT,
+    name VARCHAR(255),
+    parent INT,
+    PRIMARY KEY (category_id),
+    FOREIGN KEY (parent) REFERENCES Job_Category(category_id)
+    	ON DELETE CASCADE
+    	ON UPDATE CASCADE,
+    CONSTRAINT Invalid_Category_Parent CHECK (
+        parent <> category_id
+    )
+);
 
-CREATE TABLE IF NOT EXISTS `demo` (
-  `Id` varchar(50) NOT NULL,
-  `Name` varchar(256) NOT NULL,
-  `Title` varchar(256) NOT NULL,
-  `Description` mediumtext NOT NULL,
-  `Location` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- Jobs
+CREATE TABLE Jobs (
+    job_id INT UNSIGNED AUTO_INCREMENT,
+    company_reg_no VARCHAR(255),
+    date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
+    published BOOLEAN NOT NULL DEFAULT TRUE,
+    category_id INT NOT NULL,
+    title VARCHAR(65535) NOT NULL,
+    description TEXT NOT NULL,
+    experience INT UNSIGNED DEFAULT 0,
+    skills TEXT,
+    PRIMARY KEY (job_id, company_reg_no),
+    FOREIGN KEY (company_reg_no) REFERENCES Company(company_reg_no)
+    	ON DELETE CASCADE
+    	ON UPDATE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES Job_Category(category_id)
+);
 
---
--- Dumping data for table `demo`
---
-
-INSERT INTO `demo` (`Id`, `Name`, `Title`, `Description`, `Location`) VALUES
-('01186988', 'Booz Allen Hamilton', 'General Management Consulting Professional Job', 'Serve as part of Booz Allen-s Association of Southeast Asian Nations (ASEAN).business. Deliver strategy and business consulting in a targeted ASEAN region sector, including government, ICT, energy and utilities, financial services, healthcare, transportation, infrastructure, public safety, or defense. Manage and lead consulting teams on engagements. Produce client-ready deliverables. Formulate and present client recommendations. Conduct business development and identify new clients and client opportunities. Prepare presentations and proposals.', 'Singapore'),
-('01196416', 'Booz Allen Hamilton', 'Admin Operations Manager Job', 'Oversee and manage the infrastructure operations for the ASEAN regional office, based in Singapore, including supporting any expansion efforts as occurs when moving into other new locations within the region', 'Singapore'),
-('215867', 'Globecomm', 'Sales Engineer', 'This role will support Globecomm sales organization in developing technical solutions for IP networks. The Solutions Engineer performs requirements definition, design, equipment specification, pricing and documentation in collaboration with in-house engineering & program staff and potentially with customer staff. The Sales Engineer will principally support developing compelling solutions for government and commercial proposal activities. The Sales Engineer must be able to organize & author proposal sections w/text & graphics based on identified solutions. The candidate must be able to effectively interact with customers & vendors in accomplishing work objectives.', 'Singapore'),
-('9192', 'Aruba Networks', 'Systems Engineer', 'The Systems Engineer (SE) will be responsible for managing pre-sales technical / functional support to prospective clients and customers while ensuring customer satisfaction, and work with Arubas Territory Managers to qualify opportunities and convert leads into successful engagements.', 'Singapore'),
-('oJbA1fwf', 'Bit9. Inc.', 'Regional Account Manager', 'Recognized as a “Top Place to Work”, Bit9 + Carbon Black offers the most complete software solution to prevent, detect and respond to cyber-attacks. Our entire team – from sales reps, to engineers, to intelligence experts – works hard in a collaborative, all-inclusive environment where good ideas and a positive attitude are the currency of success. If you are ready to make an impact at one of the fastest-growing companies in information security, we want to talk.', 'Singapore'),
-('onwG1fwk', 'Intercontinental Exchange', 'Database Administrator', 'The Database Administrator is responsible for designing, testing, implementing, protecting, operating, and maintaining the organization’s databases supporting numerous applications across multiple technology platforms and database technologies.', 'Singapore');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE IF NOT EXISTS `users` (
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `first_name` text NOT NULL,
-  `last_name` text NOT NULL,
-  `nationality` varchar(32) NOT NULL,
-  `contact` int(10) unsigned NOT NULL,
-  `gender` char(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`email`, `password`, `first_name`, `last_name`, `nationality`, `contact`, `gender`) VALUES
-('demo@demo.com', 'b4af804009cb036a4ccdc33431ef9ac9', 'Demo', 'Demo', 'singaporean', 91234567, 'male');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `demo`
---
-ALTER TABLE `demo`
-  ADD PRIMARY KEY (`Id`),
-  ADD FULLTEXT KEY `Name` (`Name`,`Title`,`Description`,`Location`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`email`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- Job_Applications
+CREATE TABLE Job_Application (
+    applicant VARCHAR(255),
+    job_id INT UNSIGNED,
+    date_submitted DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (applicant, job_id),
+    FOREIGN KEY (applicant) REFERENCES Users(email)
+    	ON DELETE CASCADE
+    	ON UPDATE CASCADE,
+    FOREIGN KEY (job_id) REFERENCES Jobs(job_id)
+    	ON DELETE CASCADE
+    	ON UPDATE CASCADE,
+    CONSTRAINT Appliciant_Only_Jobseekers CHECK (
+        applicant IN (SELECT u.email FROM Users u WHERE u.role = 'jobseeker')
+    )
+);
