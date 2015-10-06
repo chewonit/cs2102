@@ -36,14 +36,15 @@ class Register extends MY_Controller {
 	{
 		$this->init_form_validation();
 		
-		$creat_user_data = array(
+		$create_user_data = array(
 			'first_name' => strtolower($this->input->post('inputFirstName')),
 			'last_name' => strtolower($this->input->post('inputLastName')),
 			'email' => strtolower($this->input->post('inputEmail')),
 			'password' => $this->input->post('inputPassword'),
 			'nationality' => strtolower($this->input->post('inputNationality')),
 			'contact' => $this->input->post('inputContact'),
-			'gender' => strtolower($this->input->post('inputGender'))
+			'gender' => strtolower($this->input->post('inputGender')),
+			'role' => strtolower($this->input->post('inputAccount'))
 		);
 		
 		// The sign up form has been submitted.
@@ -54,7 +55,7 @@ class Register extends MY_Controller {
 			// Form validation was successful.
 			$this->data['form_validation'] = TRUE;
 			
-			if ( $this->auth->create_user($creat_user_data) ) 
+			if ( $this->auth->create_user($create_user_data) ) 
 			{
 				$this->data['create_success'] = TRUE;
 				$this->load_view($this->data, $this->page);
@@ -62,7 +63,7 @@ class Register extends MY_Controller {
 			else 
 			{
 				// Error when trying to add user to the database.
-				$this->data['form_data'] = $creat_user_data;
+				$this->data['form_data'] = $create_user_data;
 				$this->load_view($this->$data, $this->page);
 			}
 		}
@@ -71,7 +72,7 @@ class Register extends MY_Controller {
 			// Form validation was not successful.
 			$this->data['form_validation'] = FALSE;
 			
-			$this->data['form_data'] = $creat_user_data;
+			$this->data['form_data'] = $create_user_data;
 			$this->load_view($this->data, $this->page);
 		}
 	}
@@ -90,6 +91,7 @@ class Register extends MY_Controller {
 		$this->form_validation->set_rules('inputNationality', 'Nationality', 'trim|required');
 		$this->form_validation->set_rules('inputContact', 'Contact', 'trim|required|is_natural');
 		$this->form_validation->set_rules('inputGender', 'Gender', 'trim|required');
+		$this->form_validation->set_rules('inputAccount', 'Account', 'trim|required');
 		
 		$this->form_validation->set_message('is_unique', 'The email has already been registered.');
 		$this->form_validation->set_message('password_check', 'The password must contain Alphabets and Numbers.');
