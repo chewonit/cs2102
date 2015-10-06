@@ -5,11 +5,34 @@ class Browse extends MY_Controller {
 
 	public function index($cat1 = null, $cat2 = null, $cat3 = null)
 	{
+		if ($this->is_employer()) {
+			$this->load_browse_jobseekers();
+			return;
+		}
+		
 		$page = 'browse_page';
 
 		$this -> check_page_files('/views/pages/' . $page . '.php');
 		
 		$data['page_title'] = "Browse";
+		
+		$this -> load_view($data, $page);
+		
+	}
+	
+	/**
+	 * Loads the Browse Jobseeker page for Employer users.
+	 *
+	 * @access	private
+	 * @return	
+	 */
+	private function load_browse_jobseekers() {
+		
+		$page = 'browse_page';
+
+		$this -> check_page_files('/views/pages/' . $page . '.php');
+		
+		$data['page_title'] = "Browse Jobseekers";
 		
 		$this -> load_view($data, $page);
 		
