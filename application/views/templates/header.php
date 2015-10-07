@@ -75,7 +75,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					
 					<?php if (!$is_admin) : ?>
 						<li><a href="<?php echo site_url("profile/"); ?>">Profile</a></li>
-						<li><a href="#">My Jobs</a></li>
+						<li><a href="<?php echo site_url("job_list/"); ?>">Job List</a></li>
 					<?php elseif ($is_admin) : ?>
 						<li><a href="<?php echo site_url("admin/"); ?>">Admin</a></li>
 					<?php endif ?>

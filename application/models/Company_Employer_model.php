@@ -20,13 +20,16 @@ class Company_Employer_model extends CI_Model {
 	 * @param	string [$company_reg_no] The company_reg_no row to select only
 	 * @return	
 	 */
-    public function get($employer = NULL, $company_reg_no = NULL)
+    public function get($employer = NULL, $company_reg_no = NULL, $accepted = NULL)
     {
         if ( !is_null($employer )) {
             $this -> db -> where('employer', $employer);
         }
 		if ( !is_null($company_reg_no )) {
             $this -> db -> where('company_reg_no', $company_reg_no);
+        }
+		if ( !is_null($accepted )) {
+            $this -> db -> where('accepted', $accepted);
         }
         return $this -> db -> get($this->table_name);
     }
