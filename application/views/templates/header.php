@@ -27,6 +27,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
 	<script src="http://cdn.datatables.net/responsive/1.0.0/js/dataTables.responsive.js"></script>
 	
+	<!-- DatePicker -->
+	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-datetimepicker.min.css')?>">
+	<script src="<?php echo base_url('assets/js/bootstrap-datetimepicker.min.js')?>"></script>
+	
 	<?php echo link_tag('assets/css/main.css')?>
 
 </head>

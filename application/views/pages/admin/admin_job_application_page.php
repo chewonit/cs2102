@@ -19,15 +19,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<li role="presentation"><a href="<?php echo base_url("admin/roles")?>">Roles</a></li>
 				<li role="presentation"><a href="<?php echo base_url("admin/resumes")?>">Resumes</a></li>
 				<li role="presentation"><a href="<?php echo base_url("admin/company/")?>">Company</a></li>
-				<li role="presentation" class="active"><a href="#">Company Employer</a></li>
+				<li role="presentation"><a href="<?php echo base_url("admin/company_employer/")?>">Company Employer</a></li>
 				<li role="presentation"><a href="<?php echo base_url("admin/job_category/")?>">Job Category</a></li>
 				<li role="presentation"><a href="<?php echo base_url("admin/jobs/")?>">Jobs</a></li>
-				<li role="presentation"><a href="<?php echo base_url("admin/job_application/")?>">Job Application</a></li>
+				<li role="presentation" class="active"><a href="#">Job Application</a></li>
 			</ul>
 		</div>
 		<div class="col-md-10">
 			<div class="admin-table-wrapper">
-				<h3 class="admin-table-wrapper-header">Company Employer Table</h3>
+				<h3 class="admin-table-wrapper-header">Job Application Table</h3>
 				<br />
 				<button class="btn btn-success" onclick="add_entry()"><i class="glyphicon glyphicon-plus"></i> Add Entry</button>
 				<br />
@@ -35,9 +35,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-						<th>Employer</th>
-						<th>Reg. Number</th>
-						<th>Accepted</th>
+						<th>Applicant</th>
+						<th>Job ID</th>
+						<th>Date Submitted</th>
 						<th style="width:125px;">Action</th>
 						</tr>
 					</thead>
@@ -45,9 +45,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</tbody>
 					<tfoot>
 						<tr>
-						<th>Employer</th>
-						<th>Reg. Number</th>
-						<th>Accepted</th>
+						<th>Applicant</th>
+						<th>Job ID</th>
+						<th>Date Submitted</th>
 						<th>Action</th>
 						</tr>
 					</tfoot>
@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			// Load data for the table's content from an Ajax source
 			"ajax": {
-				"url": "<?php echo site_url('admin/company_employer_list/')?>",
+				"url": "<?php echo site_url('admin/job_application_list/')?>",
 				"type": "POST"
 			},
 
@@ -92,23 +92,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		jq('.modal-title').text('Add Entry'); // Set Title to Bootstrap modal title
 	}
 
-	function edit_entry(key)
+	function edit_entry(key, key2)
 	{
 		save_method = 'update';
 		jq('form')[0].reset(); // reset form on modals
 
 		//Ajax Load data from ajax
 		jq.ajax({
-			url : "<?php echo site_url('admin/company_employer_edit')?>/",
+			url : "<?php echo site_url('admin/job_application_edit')?>/",
 			type: "POST",
-			data: { employer: key },
+			data: { applicant: key, job_id: key2 },
 			dataType: "JSON",
 			success: function(data)
 			{
-				jq('[name="originalEmployer"]').val(data.employer);
-				jq('[name="inputEmployer"]').val(data.employer);
-				jq('[name="inputRegNo"]').val(data.company_reg_no);
-				jq('[name="inputAccepted"]').val(data.accepted);
+				jq('[name="originalApplicant"]').val(data.applicant);
+				jq('[name="originalJobId"]').val(data.job_id);
+				jq('[name="inputDateSubmitted"]').val(data.date_submitted);
 
 				jq('#modal_form_update').modal('show'); // show bootstrap modal when complete loaded
 				jq('.modal-title').text('Edit Entry'); // Set title to Bootstrap modal title
@@ -131,12 +130,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var url, _form;
 		if(save_method == 'add') 
 		{
-			url = "<?php echo site_url('admin/company_employer_add/')?>";
+			url = "<?php echo site_url('admin/job_application_add/')?>";
 			_form = "#form_add";
 		}
 		else
 		{
-			url = "<?php echo site_url('admin/company_employer_update/')?>";
+			url = "<?php echo site_url('admin/job_application_update/')?>";
 			_form = "#form_update";
 		}
 		
@@ -175,15 +174,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 	}
 
-	function delete_entry(key)
+	function delete_entry(key, key2)
 	{
 		if(confirm('Are you sure delete this data?'))
 		{
 			// ajax delete data to database
 			jq.ajax({
-				url : "<?php echo site_url('admin/company_employer_delete')?>/",
+				url : "<?php echo site_url('admin/job_application_delete')?>/",
 				type: "POST",
-				data: { employer: key },
+				data: { applicant: key, job_id: key2 },
 				dataType: "JSON",
 				success: function(data)
 				{
@@ -203,29 +202,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	jq( document ).ready(function() {
 
-		jq("#form_add").validate({
-			rules: {
-				inputEmployer: "required",
-				inputRegNo: "required",
-				inputAccepted: "required"
-			},
-			messages: {
-				inputEmployer: "Please enter the employer.",
-				inputRegNo: "Please enter the company registration number.",
-				inputAccepted: "Please enter the value for accepted."
-			}
-		});
+		jq("#form_add").validate();
 		
-		jq("#form_update").validate({
-			rules: {
-				inputRegNo: "required",
-				inputAccepted: "required"
-			},
-			messages: {
-				inputRegNo: "Please enter the company registration number.",
-				inputAccepted: "Please enter the value for accepted."
-			}
-		});
+		jq("#form_update").validate();
+		
+		jq(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
 	});	
 
 	</script>
@@ -240,24 +221,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				<div class="modal-body form">
 					<form action="#" id="form_add" class="form-horizontal">
-						<input type="hidden" value="" name="originalEmployer"/> 
+						<input type="hidden" value="" name="originalApplicant"/> 
+						<input type="hidden" value="" name="originalJobId"/> 
 						<div class="form-body">
 							<div class="form-group">
-								<label class="control-label col-md-3">Employer</label>
+								<label class="control-label col-md-3">Applicant</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputEmployer" name="inputEmployer" placeholder="Employer">
+									<input required type="text" class="form-control" id="inputApplicant" name="inputApplicant" placeholder="Applicant">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3">Company Reg No.</label>
+								<label class="control-label col-md-3">Job ID</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputRegNo" name="inputRegNo" placeholder="Company Reg No.">
+									<input required type="text" class="form-control" id="inputJobId" name="inputJobId" placeholder="Date Submitted">
 								</div>
-							</div>							
+							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3">inputAccepted</label>
+								<label class="control-label col-md-3">Date Submitted</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputAccepted" name="inputAccepted" placeholder="Accepted">
+									<input type="text" class="form-control form_datetime" id="inputDateSubmitted" name="inputDateSubmitted" placeholder="Date Submitted">
 								</div>
 							</div>
 						</div>
@@ -280,18 +262,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				<div class="modal-body form">
 					<form action="#" id="form_update" class="form-horizontal">
-						<input type="hidden" value="" name="originalEmployer"/> 
+						<input type="hidden" value="" name="originalApplicant"/> 
+						<input type="hidden" value="" name="originalJobId"/> 
 						<div class="form-body">
 							<div class="form-group">
-								<label class="control-label col-md-3">Company Reg No.</label>
+								<label class="control-label col-md-3">Date Submitted</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputRegNo" name="inputRegNo" placeholder="Company Reg No.">
-								</div>
-							</div>							
-							<div class="form-group">
-								<label class="control-label col-md-3">inputAccepted</label>
-								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputAccepted" name="inputAccepted" placeholder="Accepted">
+									<input type="text" class="form-control form_datetime" id="inputDateSubmitted" name="inputDateSubmitted" placeholder="Date Submitted">
 								</div>
 							</div>
 						</div>

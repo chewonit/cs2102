@@ -81,7 +81,7 @@ CREATE TABLE Company_Employer (
 -- Job_Category
 CREATE TABLE Job_Category (
     category_id INT AUTO_INCREMENT,
-    name VARCHAR(255),
+    name VARCHAR(255) NOT NULL UNIQUE,
     parent INT,
     PRIMARY KEY (category_id),
     FOREIGN KEY (parent) REFERENCES Job_Category(category_id)

@@ -19,8 +19,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<li role="presentation"><a href="<?php echo base_url("admin/roles")?>">Roles</a></li>
 				<li role="presentation"><a href="<?php echo base_url("admin/resumes")?>">Resumes</a></li>
 				<li role="presentation"><a href="<?php echo base_url("admin/company/")?>">Company</a></li>
-				<li role="presentation" class="active"><a href="#">Company Employer</a></li>
-				<li role="presentation"><a href="<?php echo base_url("admin/job_category/")?>">Job Category</a></li>
+				<li role="presentation"><a href="<?php echo base_url("admin/company_employer/")?>">Company Employer</a></li>
+				<li role="presentation" class="active"><a href="#">Job Category</a></li>
 				<li role="presentation"><a href="<?php echo base_url("admin/jobs/")?>">Jobs</a></li>
 				<li role="presentation"><a href="<?php echo base_url("admin/job_application/")?>">Job Application</a></li>
 			</ul>
@@ -35,9 +35,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-						<th>Employer</th>
-						<th>Reg. Number</th>
-						<th>Accepted</th>
+						<th>Category ID</th>
+						<th>Category Name</th>
+						<th>Parent</th>
 						<th style="width:125px;">Action</th>
 						</tr>
 					</thead>
@@ -45,9 +45,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</tbody>
 					<tfoot>
 						<tr>
-						<th>Employer</th>
-						<th>Reg. Number</th>
-						<th>Accepted</th>
+						<th>Category ID</th>
+						<th>Category Name</th>
+						<th>Parent</th>
 						<th>Action</th>
 						</tr>
 					</tfoot>
@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			// Load data for the table's content from an Ajax source
 			"ajax": {
-				"url": "<?php echo site_url('admin/company_employer_list/')?>",
+				"url": "<?php echo site_url('admin/job_category_list/')?>",
 				"type": "POST"
 			},
 
@@ -99,16 +99,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		//Ajax Load data from ajax
 		jq.ajax({
-			url : "<?php echo site_url('admin/company_employer_edit')?>/",
+			url : "<?php echo site_url('admin/job_category_edit')?>/",
 			type: "POST",
-			data: { employer: key },
+			data: { category_id: key },
 			dataType: "JSON",
 			success: function(data)
 			{
-				jq('[name="originalEmployer"]').val(data.employer);
-				jq('[name="inputEmployer"]').val(data.employer);
-				jq('[name="inputRegNo"]').val(data.company_reg_no);
-				jq('[name="inputAccepted"]').val(data.accepted);
+				jq('[name="originalCategoryId"]').val(data.category_id);
+				jq('[name="inputCategoryId"]').val(data.category_id);
+				jq('[name="inputName"]').val(data.name);
+				jq('[name="inputParent"]').val(data.parent);
 
 				jq('#modal_form_update').modal('show'); // show bootstrap modal when complete loaded
 				jq('.modal-title').text('Edit Entry'); // Set title to Bootstrap modal title
@@ -131,12 +131,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var url, _form;
 		if(save_method == 'add') 
 		{
-			url = "<?php echo site_url('admin/company_employer_add/')?>";
+			url = "<?php echo site_url('admin/job_category_add/')?>";
 			_form = "#form_add";
 		}
 		else
 		{
-			url = "<?php echo site_url('admin/company_employer_update/')?>";
+			url = "<?php echo site_url('admin/job_category_update/')?>";
 			_form = "#form_update";
 		}
 		
@@ -164,7 +164,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						//if success close modal and reload ajax table
 						jq('.modal').modal('hide');
 						reload_table();
-						jq.bootstrapGrowl('<h5>Entry saved.</h5>' , {type: 'success'});
+						jq.bootstrapGrowl('<h5>Entry saved.</h5>Page will reload.' , {type: 'success'});
+						setTimeout(function(){
+							location.reload();
+						}, 1000);
 					}
 				},
 					error: function (jqXHR, textStatus, errorThrown)
@@ -181,16 +184,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		{
 			// ajax delete data to database
 			jq.ajax({
-				url : "<?php echo site_url('admin/company_employer_delete')?>/",
+				url : "<?php echo site_url('admin/job_category_delete')?>/",
 				type: "POST",
-				data: { employer: key },
+				data: { category_id: key },
 				dataType: "JSON",
 				success: function(data)
 				{
 					//if success reload ajax table
 					jq('.model').modal('hide');
 					reload_table();
-					jq.bootstrapGrowl('<h5>Entry deleted.</h5>' , {type: 'success'});
+					jq.bootstrapGrowl('<h5>Entry deleted.</h5>Page will reload.' , {type: 'success'});
+					setTimeout(function(){
+						location.reload();
+					}, 1000);
 				},
 				error: function (jqXHR, textStatus, errorThrown)
 				{
@@ -205,25 +211,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		jq("#form_add").validate({
 			rules: {
-				inputEmployer: "required",
-				inputRegNo: "required",
-				inputAccepted: "required"
+				inputName: "required"
 			},
 			messages: {
-				inputEmployer: "Please enter the employer.",
-				inputRegNo: "Please enter the company registration number.",
-				inputAccepted: "Please enter the value for accepted."
+				inputName: "Please enter the category name."
 			}
 		});
 		
 		jq("#form_update").validate({
 			rules: {
-				inputRegNo: "required",
-				inputAccepted: "required"
+				inputName: "required"
 			},
 			messages: {
-				inputRegNo: "Please enter the company registration number.",
-				inputAccepted: "Please enter the value for accepted."
+				inputName: "Please enter the category name."
 			}
 		});
 	});	
@@ -240,24 +240,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				<div class="modal-body form">
 					<form action="#" id="form_add" class="form-horizontal">
-						<input type="hidden" value="" name="originalEmployer"/> 
+						<input type="hidden" value="" name="originalCategoryId"/> 
 						<div class="form-body">
 							<div class="form-group">
-								<label class="control-label col-md-3">Employer</label>
+								<label class="control-label col-md-3">Category Name</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputEmployer" name="inputEmployer" placeholder="Employer">
+									<input required type="text" class="form-control" id="inputName" name="inputName" placeholder="Category Name">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3">Company Reg No.</label>
+								<label class="control-label col-md-3">Category Parent</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputRegNo" name="inputRegNo" placeholder="Company Reg No.">
-								</div>
-							</div>							
-							<div class="form-group">
-								<label class="control-label col-md-3">inputAccepted</label>
-								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputAccepted" name="inputAccepted" placeholder="Accepted">
+									<select class="form-control" id="inputParent" name="inputParent">
+										<option value="">None</option>
+										<?php foreach ($job_categories as $job_category) : ?>
+											<option value="<?php echo $job_category->category_id ?>"><?php echo $job_category->name ?></option>
+										<?php endforeach ?>
+									</select>
 								</div>
 							</div>
 						</div>
@@ -280,18 +279,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				<div class="modal-body form">
 					<form action="#" id="form_update" class="form-horizontal">
-						<input type="hidden" value="" name="originalEmployer"/> 
+						<input type="hidden" value="" name="originalCategoryId"/> 
 						<div class="form-body">
 							<div class="form-group">
-								<label class="control-label col-md-3">Company Reg No.</label>
+								<label class="control-label col-md-3">Category Name</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputRegNo" name="inputRegNo" placeholder="Company Reg No.">
+									<input required type="text" class="form-control" id="inputName" name="inputName" placeholder="Category Name">
 								</div>
-							</div>							
+							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3">inputAccepted</label>
+								<label class="control-label col-md-3">Category Parent</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputAccepted" name="inputAccepted" placeholder="Accepted">
+									<select class="form-control" id="inputParent" name="inputParent">
+										<option value="">None</option>
+										<?php foreach ($job_categories as $job_category) : ?>
+											<option value="<?php echo $job_category->category_id ?>"><?php echo $job_category->name ?></option>
+										<?php endforeach ?>
+									</select>
 								</div>
 							</div>
 						</div>

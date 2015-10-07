@@ -19,15 +19,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<li role="presentation"><a href="<?php echo base_url("admin/roles")?>">Roles</a></li>
 				<li role="presentation"><a href="<?php echo base_url("admin/resumes")?>">Resumes</a></li>
 				<li role="presentation"><a href="<?php echo base_url("admin/company/")?>">Company</a></li>
-				<li role="presentation" class="active"><a href="#">Company Employer</a></li>
+				<li role="presentation"><a href="<?php echo base_url("admin/company_employer/")?>">Company Employer</a></li>
 				<li role="presentation"><a href="<?php echo base_url("admin/job_category/")?>">Job Category</a></li>
-				<li role="presentation"><a href="<?php echo base_url("admin/jobs/")?>">Jobs</a></li>
+				<li role="presentation" class="active"><a href="#">Jobs</a></li>
 				<li role="presentation"><a href="<?php echo base_url("admin/job_application/")?>">Job Application</a></li>
 			</ul>
 		</div>
 		<div class="col-md-10">
 			<div class="admin-table-wrapper">
-				<h3 class="admin-table-wrapper-header">Company Employer Table</h3>
+				<h3 class="admin-table-wrapper-header">Jobs Table</h3>
 				<br />
 				<button class="btn btn-success" onclick="add_entry()"><i class="glyphicon glyphicon-plus"></i> Add Entry</button>
 				<br />
@@ -35,9 +35,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-						<th>Employer</th>
+						<th>Job ID</th>
 						<th>Reg. Number</th>
-						<th>Accepted</th>
+						<th>Date Created</th>
+						<th>Published</th>
+						<th>Category ID</th>
+						<th>Title</th>
+						<th>Description</th>
+						<th>Experience</th>
+						<th>Skills</th>
 						<th style="width:125px;">Action</th>
 						</tr>
 					</thead>
@@ -45,9 +51,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</tbody>
 					<tfoot>
 						<tr>
-						<th>Employer</th>
+						<th>Job ID</th>
 						<th>Reg. Number</th>
-						<th>Accepted</th>
+						<th>Date Created</th>
+						<th>Published</th>
+						<th>Category ID</th>
+						<th>Title</th>
+						<th>Description</th>
+						<th>Experience</th>
+						<th>Skills</th>
 						<th>Action</th>
 						</tr>
 					</tfoot>
@@ -69,7 +81,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			// Load data for the table's content from an Ajax source
 			"ajax": {
-				"url": "<?php echo site_url('admin/company_employer_list/')?>",
+				"url": "<?php echo site_url('admin/jobs_list/')?>",
 				"type": "POST"
 			},
 
@@ -92,23 +104,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		jq('.modal-title').text('Add Entry'); // Set Title to Bootstrap modal title
 	}
 
-	function edit_entry(key)
+	function edit_entry(key, key2)
 	{
 		save_method = 'update';
 		jq('form')[0].reset(); // reset form on modals
 
 		//Ajax Load data from ajax
 		jq.ajax({
-			url : "<?php echo site_url('admin/company_employer_edit')?>/",
+			url : "<?php echo site_url('admin/jobs_edit')?>/",
 			type: "POST",
-			data: { employer: key },
+			data: { job_id: key, reg_no: key2 },
 			dataType: "JSON",
 			success: function(data)
 			{
-				jq('[name="originalEmployer"]').val(data.employer);
-				jq('[name="inputEmployer"]').val(data.employer);
-				jq('[name="inputRegNo"]').val(data.company_reg_no);
-				jq('[name="inputAccepted"]').val(data.accepted);
+				jq('[name="originalJobId"]').val(data.job_id);
+				jq('[name="originalRegNo"]').val(data.company_reg_no);
+				jq('[name="inputPublished"]').val(data.published);
+				jq('[name="inputCategoryId"]').val(data.category_id);
+				jq('[name="inputTitle"]').val(data.title);
+				jq('[name="inputDescription"]').val(data.description);
+				jq('[name="inputExperience"]').val(data.experience);
+				jq('[name="inputSkills"]').val(data.skills);
 
 				jq('#modal_form_update').modal('show'); // show bootstrap modal when complete loaded
 				jq('.modal-title').text('Edit Entry'); // Set title to Bootstrap modal title
@@ -131,12 +147,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var url, _form;
 		if(save_method == 'add') 
 		{
-			url = "<?php echo site_url('admin/company_employer_add/')?>";
+			url = "<?php echo site_url('admin/jobs_add/')?>";
 			_form = "#form_add";
 		}
 		else
 		{
-			url = "<?php echo site_url('admin/company_employer_update/')?>";
+			url = "<?php echo site_url('admin/jobs_update/')?>";
 			_form = "#form_update";
 		}
 		
@@ -175,15 +191,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 	}
 
-	function delete_entry(key)
+	function delete_entry(key, key2)
 	{
 		if(confirm('Are you sure delete this data?'))
 		{
 			// ajax delete data to database
 			jq.ajax({
-				url : "<?php echo site_url('admin/company_employer_delete')?>/",
+				url : "<?php echo site_url('admin/jobs_delete')?>/",
 				type: "POST",
-				data: { employer: key },
+				data: { job_id: key, reg_no: key2 },
 				dataType: "JSON",
 				success: function(data)
 				{
@@ -205,25 +221,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		jq("#form_add").validate({
 			rules: {
-				inputEmployer: "required",
 				inputRegNo: "required",
-				inputAccepted: "required"
+				inputPublished: "required",
+				inputCategoryId: "required",
+				inputTitle: "required",
+				inputDescription: "required",
+				inputExperience: {
+					required: true,
+					number: true
+				}
 			},
 			messages: {
-				inputEmployer: "Please enter the employer.",
 				inputRegNo: "Please enter the company registration number.",
-				inputAccepted: "Please enter the value for accepted."
+				inputPublished: "Please select to publish this Job.",
+				inputCategoryId: "Please enter the category.",
+				inputTitle: "Please enter the title.",
+				inputDescription: "Please enter a description.",
+				inputExperience: {
+					required: "Please enter the abount of experience.",
+					number: "Please enter a number only."
+				}
 			}
 		});
 		
 		jq("#form_update").validate({
 			rules: {
-				inputRegNo: "required",
-				inputAccepted: "required"
+				inputPublished: "required",
+				inputCategoryId: "required",
+				inputTitle: "required",
+				inputDescription: "required",
+				inputExperience: {
+					required: true,
+					number: true
+				}
 			},
 			messages: {
-				inputRegNo: "Please enter the company registration number.",
-				inputAccepted: "Please enter the value for accepted."
+				inputPublished: "Please select to publish this Job.",
+				inputCategoryId: "Please enter the category.",
+				inputTitle: "Please enter the title.",
+				inputDescription: "Please enter a description.",
+				inputExperience: {
+					required: "Please enter the abount of experience.",
+					number: "Please enter a number only."
+				}
 			}
 		});
 	});	
@@ -240,24 +280,54 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				<div class="modal-body form">
 					<form action="#" id="form_add" class="form-horizontal">
-						<input type="hidden" value="" name="originalEmployer"/> 
+						<input type="hidden" value="" name="originalJobId"/> 
+						<input type="hidden" value="" name="originalRegNo"/> 
 						<div class="form-body">
-							<div class="form-group">
-								<label class="control-label col-md-3">Employer</label>
-								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputEmployer" name="inputEmployer" placeholder="Employer">
-								</div>
-							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3">Company Reg No.</label>
 								<div class="col-md-9">
 									<input required type="text" class="form-control" id="inputRegNo" name="inputRegNo" placeholder="Company Reg No.">
 								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">Published</label>
+								<div class="col-md-9">
+									<input required type="text" class="form-control" id="inputPublished" name="inputPublished" placeholder="Plublished">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">Category ID</label>
+								<div class="col-md-9">
+									<select class="form-control" id="inputCategoryId" name="inputCategoryId">
+										<option value="">None</option>
+										<?php foreach ($job_categories as $job_category) : ?>
+											<option value="<?php echo $job_category->category_id ?>"><?php echo $job_category->name ?></option>
+										<?php endforeach ?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">Title</label>
+								<div class="col-md-9">
+									<input required type="text" class="form-control" id="inputTitle" name="inputTitle" placeholder="Title">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">Description</label>
+								<div class="col-md-9">
+									<textarea class="form-control" id="inputDescription" name="inputDescription" rows="3" placeholder="Description" required></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">Experience</label>
+								<div class="col-md-9">
+									<input required type="number" class="form-control" id="inputExperience" name="inputExperience" placeholder="Experience">
+								</div>
 							</div>							
 							<div class="form-group">
-								<label class="control-label col-md-3">inputAccepted</label>
+								<label class="control-label col-md-3">Skills</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputAccepted" name="inputAccepted" placeholder="Accepted">
+									<input type="text" class="form-control" id="inputSkills" name="inputSkills" placeholder="Skills">
 								</div>
 							</div>
 						</div>
@@ -280,18 +350,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				<div class="modal-body form">
 					<form action="#" id="form_update" class="form-horizontal">
-						<input type="hidden" value="" name="originalEmployer"/> 
+						<input type="hidden" value="" name="originalJobId"/> 
+						<input type="hidden" value="" name="originalRegNo"/> 
 						<div class="form-body">
 							<div class="form-group">
-								<label class="control-label col-md-3">Company Reg No.</label>
+								<label class="control-label col-md-3">Published</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputRegNo" name="inputRegNo" placeholder="Company Reg No.">
+									<input required type="text" class="form-control" id="inputPublished" name="inputPublished" placeholder="Plublished">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">Category ID</label>
+								<div class="col-md-9">
+									<select class="form-control" id="inputCategoryId" name="inputCategoryId">
+										<option value="">None</option>
+										<?php foreach ($job_categories as $job_category) : ?>
+											<option value="<?php echo $job_category->category_id ?>"><?php echo $job_category->name ?></option>
+										<?php endforeach ?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">Title</label>
+								<div class="col-md-9">
+									<input required type="text" class="form-control" id="inputTitle" name="inputTitle" placeholder="Title">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">Description</label>
+								<div class="col-md-9">
+									<textarea class="form-control" id="inputDescription" name="inputDescription" rows="3" placeholder="Description" required></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">Experience</label>
+								<div class="col-md-9">
+									<input required type="number" class="form-control" id="inputExperience" name="inputExperience" placeholder="Experience">
 								</div>
 							</div>							
 							<div class="form-group">
-								<label class="control-label col-md-3">inputAccepted</label>
+								<label class="control-label col-md-3">Skills</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputAccepted" name="inputAccepted" placeholder="Accepted">
+									<input type="text" class="form-control" id="inputSkills" name="inputSkills" placeholder="Skills">
 								</div>
 							</div>
 						</div>

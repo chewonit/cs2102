@@ -713,6 +713,449 @@ class Admin extends MY_Controller {
 	
 	
 	
+	/*
+	 * Job Category functions
+	 */
+	
+	public function job_category()
+	{
+		if (!$this->is_loggedin() && !$this->is_admin()) 
+		{
+			redirect('dashboard/');
+		}
+		
+		$page = 'admin/admin_job_category_page';
+		
+		$data['page_title'] = $this->page_title;
+		$data['job_categories'] = $this->job_category_model->get()->result();
+
+		$this->check_page_files('/views/pages/' . $page . '.php');
+
+		$this->load_view($data, $page);
+	}
+	
+	public function job_category_list()
+	{
+		$list = $this->job_category_model->get_datatables();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $item) {
+			$no++;
+			$row = array();
+			$row[] = $item->category_id;
+			$row[] = $item->name;
+			$row[] = $item->parent;
+
+			//add action buttons to each row
+			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_entry('."'".$item->category_id."'".')"><i class="glyphicon glyphicon-pencil"></i></a>
+				  <a class="btn btn-sm btn-danger" href="javascript:void()" title="Delete" onclick="delete_entry('."'".$item->category_id."'".')"><i class="glyphicon glyphicon-trash"></i></a>';
+		
+			$data[] = $row;
+		}
+
+		$output = array(
+						"draw" => $_POST['draw'],
+						"recordsTotal" => $this->job_category_model->count_all(),
+						"recordsFiltered" => $this->job_category_model->count_filtered(),
+						"data" => $data,
+				);
+		
+		echo json_encode($output);
+	}
+	
+	public function job_category_edit()
+	{
+		$data = $this->job_category_model->get( strtolower($this->input->post('category_id')) );
+		echo json_encode($data->row());
+	}
+	
+	public function job_category_add()
+	{
+		$response_array = array();
+		
+		$this->form_validation->reset_validation();
+		$this->form_validation->set_rules('inputName', 'Name', 'trim|required');
+		
+		$inputParent = $this->input->post('inputParent');
+		$inputParent = $inputParent == '' ? NULL : $inputParent;
+		
+		$create_user_data = array(
+			'name' => strtolower($this->input->post('inputName')),
+			'parent' => $inputParent
+		);
+		
+		if ( $this->form_validation->run() ) 
+		{
+			$response_array['form_validation'] = TRUE;
+			if ( $this->job_category_model->insert($create_user_data) ) 
+			{
+				$response_array['status'] = TRUE;
+			}
+			else 
+			{
+				$response_array['status'] = FALSE;
+			}
+		}
+		else
+		{
+			$response_array['form_validation'] = FALSE;
+			$response_array['status'] = FALSE;
+			$response_array['form_validation_errors'] = validation_errors();
+		}
+		echo json_encode($response_array);
+	}
+
+	public function job_category_update()
+	{
+		$response_array = array();
+		
+		$this->form_validation->reset_validation();
+		$this->form_validation->set_rules('inputName', 'Name', 'trim|required');
+		
+		$inputParent = $this->input->post('inputParent');
+		$inputParent = $inputParent == '' ? NULL : $inputParent;
+		
+		$create_user_data = array(
+			'name' => strtolower($this->input->post('inputName')),
+			'parent' => $inputParent
+		);
+		
+		if ( $this->form_validation->run() ) 
+		{
+			$response_array['form_validation'] = TRUE;
+			if ( $this->job_category_model->update( strtolower($this->input->post('originalCategoryId')), $create_user_data ) ) 
+			{
+				$response_array['status'] = TRUE;
+			}
+			else 
+			{
+				$response_array['status'] = FALSE;
+			}
+		}
+		else
+		{
+			$response_array['form_validation'] = FALSE;
+			$response_array['status'] = FALSE;
+			$response_array['form_validation_errors'] = validation_errors();
+		}
+		echo json_encode($response_array);
+	}
+	
+	public function job_category_delete()
+	{
+		$this->job_category_model->delete( strtolower($this->input->post('category_id')) );
+		echo json_encode(array("status" => TRUE));
+	}
+	
+	
+	
+	/*
+	 * Jobs functions
+	 */
+	
+	public function jobs()
+	{
+		if (!$this->is_loggedin() && !$this->is_admin()) 
+		{
+			redirect('dashboard/');
+		}
+		
+		$page = 'admin/admin_jobs_page';
+		
+		$data['page_title'] = $this->page_title;
+		$data['job_categories'] = $this->job_category_model->get()->result();
+
+		$this->check_page_files('/views/pages/' . $page . '.php');
+
+		$this->load_view($data, $page);
+	}
+	
+	public function jobs_list()
+	{
+		$list = $this->jobs_model->get_datatables();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $item) {
+			$no++;
+			$row = array();
+			$row[] = $item->job_id;
+			$row[] = $item->company_reg_no;
+			$row[] = $item->date_created;
+			$row[] = $item->published;
+			$row[] = $item->category_id;
+			$row[] = $item->title;
+			$row[] = $item->description;
+			$row[] = $item->experience;
+			$row[] = $item->skills;
+
+			//add action buttons to each row
+			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_entry('."'".$item->job_id."'".", '".$item->company_reg_no."'".')"><i class="glyphicon glyphicon-pencil"></i></a>
+				  <a class="btn btn-sm btn-danger" href="javascript:void()" title="Delete" onclick="delete_entry('."'".$item->job_id."'".", '".$item->company_reg_no."'".')"><i class="glyphicon glyphicon-trash"></i></a>';
+		
+			$data[] = $row;
+		}
+
+		$output = array(
+						"draw" => $_POST['draw'],
+						"recordsTotal" => $this->jobs_model->count_all(),
+						"recordsFiltered" => $this->jobs_model->count_filtered(),
+						"data" => $data,
+				);
+		
+		echo json_encode($output);
+	}
+	
+	public function jobs_edit()
+	{
+		$data = $this->jobs_model->get( 
+			strtolower($this->input->post('job_id')), 
+			strtolower($this->input->post('reg_no')) );
+		echo json_encode($data->row());
+	}
+	
+	public function jobs_add()
+	{
+		$response_array = array();
+		
+		$this->form_validation->reset_validation();
+		$this->form_validation->set_rules('inputRegNo', 'Company Reg No.', 'trim|required');
+		$this->form_validation->set_rules('inputPublished', 'Published', 'trim|required');
+		$this->form_validation->set_rules('inputCategoryId', 'Category', 'trim|required');
+		$this->form_validation->set_rules('inputTitle', 'Title', 'trim|required');
+		$this->form_validation->set_rules('inputDescription', 'Description', 'trim|required');
+		$this->form_validation->set_rules('inputExperience', 'Experience', 'trim|required');
+		
+		$inputSkills = $this->input->post('inputSkills');
+		$inputSkills = $inputSkills == '' ? NULL : $inputSkills;
+		
+		$create_user_data = array(
+			'company_reg_no' => strtolower($this->input->post('inputRegNo')),
+			'published' => strtolower($this->input->post('inputPublished')),
+			'category_id' => strtolower($this->input->post('inputCategoryId')),
+			'title' => strtolower($this->input->post('inputTitle')),
+			'description' => strtolower($this->input->post('inputDescription')),
+			'experience' => strtolower($this->input->post('inputExperience')),
+			'skills' => $inputSkills
+		);
+		
+		if ( $this->form_validation->run() ) 
+		{
+			$response_array['form_validation'] = TRUE;
+			if ( $this->jobs_model->insert($create_user_data) ) 
+			{
+				$response_array['status'] = TRUE;
+			}
+			else 
+			{
+				$response_array['status'] = FALSE;
+			}
+		}
+		else
+		{
+			$response_array['form_validation'] = FALSE;
+			$response_array['status'] = FALSE;
+			$response_array['form_validation_errors'] = validation_errors();
+		}
+		echo json_encode($response_array);
+	}
+
+	public function jobs_update()
+	{
+		$response_array = array();
+		
+		$this->form_validation->reset_validation();
+		$this->form_validation->set_rules('inputPublished', 'Published', 'trim|required');
+		$this->form_validation->set_rules('inputCategoryId', 'Category', 'trim|required');
+		$this->form_validation->set_rules('inputTitle', 'Title', 'trim|required');
+		$this->form_validation->set_rules('inputDescription', 'Description', 'trim|required');
+		$this->form_validation->set_rules('inputExperience', 'Experience', 'trim|required');
+		
+		$inputSkills = $this->input->post('inputSkills');
+		$inputSkills = $inputSkills == '' ? NULL : $inputSkills;
+		
+		$create_user_data = array(
+			'published' => strtolower($this->input->post('inputPublished')),
+			'category_id' => strtolower($this->input->post('inputCategoryId')),
+			'title' => strtolower($this->input->post('inputTitle')),
+			'description' => strtolower($this->input->post('inputDescription')),
+			'experience' => strtolower($this->input->post('inputExperience')),
+			'skills' => $inputSkills
+		);
+		
+		if ( $this->form_validation->run() ) 
+		{
+			$response_array['form_validation'] = TRUE;
+			if ( $this->jobs_model->update( 
+				strtolower($this->input->post('originalJobId')), 
+				strtolower($this->input->post('originalRegNo')), $create_user_data ) )
+			{
+				$response_array['status'] = TRUE;
+			}
+			else 
+			{
+				$response_array['status'] = FALSE;
+			}
+		}
+		else
+		{
+			$response_array['form_validation'] = FALSE;
+			$response_array['status'] = FALSE;
+			$response_array['form_validation_errors'] = validation_errors();
+		}
+		echo json_encode($response_array);
+	}
+	
+	public function jobs_delete()
+	{
+		$this->jobs_model->delete( 
+			strtolower($this->input->post('job_id')), 
+			strtolower($this->input->post('reg_no')) );
+		echo json_encode(array("status" => TRUE));
+	}
+	
+	
+	
+	/*
+	 * Job Application functions
+	 */
+	
+	public function job_application()
+	{
+		if (!$this->is_loggedin() && !$this->is_admin()) 
+		{
+			redirect('dashboard/');
+		}
+		
+		$page = 'admin/admin_job_application_page';
+		
+		$data['page_title'] = $this->page_title;
+		$data['job_categories'] = $this->job_category_model->get()->result();
+
+		$this->check_page_files('/views/pages/' . $page . '.php');
+
+		$this->load_view($data, $page);
+	}
+	
+	public function job_application_list()
+	{
+		$list = $this->job_application_model->get_datatables();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $item) {
+			$no++;
+			$row = array();
+			$row[] = $item->applicant;
+			$row[] = $item->job_id;
+			$row[] = $item->date_submitted;
+
+			//add action buttons to each row
+			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_entry('."'".$item->applicant."'".", '".$item->job_id."'".')"><i class="glyphicon glyphicon-pencil"></i></a>
+				  <a class="btn btn-sm btn-danger" href="javascript:void()" title="Delete" onclick="delete_entry('."'".$item->applicant."'".", '".$item->job_id."'".')"><i class="glyphicon glyphicon-trash"></i></a>';
+		
+			$data[] = $row;
+		}
+
+		$output = array(
+						"draw" => $_POST['draw'],
+						"recordsTotal" => $this->job_application_model->count_all(),
+						"recordsFiltered" => $this->job_application_model->count_filtered(),
+						"data" => $data,
+				);
+		
+		echo json_encode($output);
+	}
+	
+	public function job_application_edit()
+	{
+		$data = $this->job_application_model->get( 
+			strtolower($this->input->post('applicant')), 
+			strtolower($this->input->post('job_id')) );
+		echo json_encode($data->row());
+	}
+	
+	public function job_application_add()
+	{
+		$response_array = array();
+		
+		$this->form_validation->reset_validation();
+		$this->form_validation->set_rules('inputApplicant', 'Applicant', 'trim|required');
+		$this->form_validation->set_rules('inputJobId', 'Job ID', 'trim|required');
+		
+		$inputDateSubmitted = $this->input->post('inputDateSubmitted');
+		$inputDateSubmitted = $inputDateSubmitted == '' ? date("Y-m-d H:i:s") : date("Y-m-d H:i:s", strtotime($inputDateSubmitted));
+		
+		$create_user_data = array(
+			'applicant' => strtolower($this->input->post('inputApplicant')),
+			'job_Id' => strtolower($this->input->post('inputJobId')),
+			'date_submitted' => $inputDateSubmitted
+		);
+		
+		if ( $this->form_validation->run() ) 
+		{
+			$response_array['form_validation'] = TRUE;
+			if ( $this->job_application_model->insert($create_user_data) ) 
+			{
+				$response_array['status'] = TRUE;
+			}
+			else 
+			{
+				$response_array['status'] = FALSE;
+			}
+		}
+		else
+		{
+			$response_array['form_validation'] = FALSE;
+			$response_array['status'] = FALSE;
+			$response_array['form_validation_errors'] = validation_errors();
+		}
+		echo json_encode($response_array);
+	}
+
+	public function job_application_update()
+	{
+		$response_array = array();
+		
+		// $this->form_validation->reset_validation();
+		
+		$inputDateSubmitted = $this->input->post('inputDateSubmitted');
+		$inputDateSubmitted = $inputDateSubmitted == '' ? NULL : date("Y-m-d H:i:s", strtotime($inputDateSubmitted));
+		
+		$create_user_data = array(
+			'date_submitted' => $inputDateSubmitted
+		);
+		
+		// if ( $this->form_validation->run() ) 
+		// {
+			$response_array['form_validation'] = TRUE;
+			if ( $this->job_application_model->update( 
+				strtolower($this->input->post('originalApplicant')), 
+				strtolower($this->input->post('originalJobId')), $create_user_data ) )
+			{
+				$response_array['status'] = TRUE;
+			}
+			else 
+			{
+				$response_array['status'] = FALSE;
+			}
+		/*
+		}
+		else
+		{
+			$response_array['form_validation'] = FALSE;
+			$response_array['status'] = FALSE;
+			$response_array['form_validation_errors'] = validation_errors();
+		}
+		*/
+		echo json_encode($response_array);
+	}
+	
+	public function job_application_delete()
+	{
+		$this->job_application_model->delete( 
+			strtolower($this->input->post('applicant')), 
+			strtolower($this->input->post('job_id')) );
+		echo json_encode(array("status" => TRUE));
+	}
 	
 	
 	/*
