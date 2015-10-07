@@ -18,10 +18,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 			<script type="text/javascript">
 				var jq = jQuery.noConflict();
-				jq('#register-tabs a').click(function (e) {
-					e.preventDefault()
-					jq(this).tab('show')
-				});
 
 				jQuery.validator.addMethod("alphanumeric", function(value, element) {
 					return this.optional(element) || /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9$&+,:;=?@#|'<>.-^*()%!]+)$/.test(value);

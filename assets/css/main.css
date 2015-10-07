@@ -130,3 +130,8 @@ section.job-item {
 }
 /* End Job List styles
 -------------------------------------------------- */
+
+
+.admin-table-wrapper-header {
+	margin-top: 0;
+}

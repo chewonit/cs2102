@@ -16,7 +16,11 @@ class MY_Controller extends CI_Controller {
 	 */
 	protected function load_view($data, $page, $postfix = "") {
 	
-		$data['is_login'] = $this->auth->is_loggedin();
+		$data['is_login'] = $this->is_loggedin();
+		$data['is_admin'] = $this->is_admin();
+		$data['is_jobseeker'] = $this->is_jobseeker();
+		$data['is_employer'] = $this->is_employer();
+		
 		$data['site_title'] = $this -> site_title;
 		
 		$data['login_result'] = $this->session->flashdata('login_result');

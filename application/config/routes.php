@@ -70,4 +70,5 @@ $route['search'] = 'search';
 $route['dashboard'] = 'dashboard';
 $route['profile'] = 'profile';
 $route['profile/(:any)'] = 'profile/$1';
+$route['admin'] = 'admin';
 $route['translate_uri_dashes'] = FALSE;

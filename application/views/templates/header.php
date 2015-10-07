@@ -20,6 +20,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
 	<script src="<?php echo base_url() ?>/assets/js/jquery.bootstrap-growl.min.js"></script>
 	
+	<!-- DataTables -->
+    <link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+    <link href="http://cdn.datatables.net/responsive/1.0.0/css/dataTables.responsive.css" rel="stylesheet">
+	<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
+	<script src="http://cdn.datatables.net/responsive/1.0.0/js/dataTables.responsive.js"></script>
+	
 	<?php echo link_tag('assets/css/main.css')?>
 
 </head>
@@ -61,8 +68,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a href="<?php echo site_url("dashboard/"); ?>">Dashboard</a></li>
-					<li><a href="<?php echo site_url("profile/"); ?>">Profile</a></li>
-					<li><a href="#">My Jobs</a></li>
+					
+					<?php if (!$is_admin) : ?>
+						<li><a href="<?php echo site_url("profile/"); ?>">Profile</a></li>
+						<li><a href="#">My Jobs</a></li>
+					<?php elseif ($is_admin) : ?>
+						<li><a href="<?php echo site_url("admin/"); ?>">Admin</a></li>
+					<?php endif ?>
+					
 				</ul>
 			</li>
 			<div id="logout-buttons-section">
