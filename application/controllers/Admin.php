@@ -7,6 +7,14 @@ class Admin extends MY_Controller {
 
 	public function index()
 	{
+		$this->users();
+	}
+	
+	/*
+	 * Users functions
+	 */
+	 
+	public function users() {
 		if (!$this->is_loggedin() && !$this->is_admin()) 
 		{
 			redirect('dashboard/');
@@ -164,6 +172,11 @@ class Admin extends MY_Controller {
 		$this->form_validation->set_rules('inputAccount', 'Account', 'trim|required');
 	}
 	
+	
+	/*
+	 * Roles functions
+	 */
+	
 	public function roles()
 	{
 		if (!$this->is_loggedin() && !$this->is_admin()) 
@@ -286,6 +299,9 @@ class Admin extends MY_Controller {
 	}
 	
 	
+	/*
+	 * Resume Profile functions
+	 */
 	
 	public function resumes()
 	{
@@ -419,6 +435,284 @@ class Admin extends MY_Controller {
 		$this->resume_profile_model->delete( strtolower($this->input->post('owner')) );
 		echo json_encode(array("status" => TRUE));
 	}
+	
+	
+	/*
+	 * Company functions
+	 */
+	
+	public function company()
+	{
+		if (!$this->is_loggedin() && !$this->is_admin()) 
+		{
+			redirect('dashboard/');
+		}
+		
+		$page = 'admin/admin_company_page';
+		
+		$data['page_title'] = $this->page_title;
+
+		$this->check_page_files('/views/pages/' . $page . '.php');
+
+		$this->load_view($data, $page);
+	}
+	
+	public function company_list()
+	{
+		$list = $this->company_model->get_datatables();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $item) {
+			$no++;
+			$row = array();
+			$row[] = $item->company_reg_no;
+			$row[] = $item->company_admin;
+			$row[] = $item->company_name;
+			$row[] = $item->location;
+			$row[] = $item->description;
+
+			//add action buttons to each row
+			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_entry('."'".$item->company_reg_no."'".')"><i class="glyphicon glyphicon-pencil"></i></a>
+				  <a class="btn btn-sm btn-danger" href="javascript:void()" title="Delete" onclick="delete_entry('."'".$item->company_reg_no."'".')"><i class="glyphicon glyphicon-trash"></i></a>';
+		
+			$data[] = $row;
+		}
+
+		$output = array(
+						"draw" => $_POST['draw'],
+						"recordsTotal" => $this->company_model->count_all(),
+						"recordsFiltered" => $this->company_model->count_filtered(),
+						"data" => $data,
+				);
+		
+		echo json_encode($output);
+	}
+	
+	public function company_edit()
+	{
+		$data = $this->company_model->get( strtolower($this->input->post('reg_no')) );
+		echo json_encode($data->row());
+	}
+	
+	public function company_add()
+	{
+		$response_array = array();
+		
+		$this->form_validation->reset_validation();
+		$this->form_validation->set_rules('inputRegNo', 'Company Reg No', 'trim|required');
+		$this->form_validation->set_rules('inputAdmin', 'Company Admin', 'trim|required');
+		$this->form_validation->set_rules('inputName', 'Company Name', 'trim|required');
+		$this->form_validation->set_rules('inputLocation', 'Location', 'trim|required');
+		$this->form_validation->set_rules('inputDescription', 'Description', 'trim|required');
+		
+		$create_user_data = array(
+			'company_reg_no' => strtolower($this->input->post('inputRegNo')),
+			'company_admin' => strtolower($this->input->post('inputAdmin')),
+			'company_name' => strtolower($this->input->post('inputName')),
+			'location' => strtolower($this->input->post('inputLocation')),
+			'description' => strtolower($this->input->post('inputDescription'))
+		);
+		
+		if ( $this->form_validation->run() ) 
+		{
+			$response_array['form_validation'] = TRUE;
+			if ( $this->company_model->insert($create_user_data) ) 
+			{
+				$response_array['status'] = TRUE;
+			}
+			else 
+			{
+				$response_array['status'] = FALSE;
+			}
+		}
+		else
+		{
+			$response_array['form_validation'] = FALSE;
+			$response_array['status'] = FALSE;
+			$response_array['form_validation_errors'] = validation_errors();
+		}
+		echo json_encode($response_array);
+	}
+
+	public function company_update()
+	{
+		$response_array = array();
+		
+		$this->form_validation->reset_validation();
+		$this->form_validation->set_rules('inputAdmin', 'Company Admin', 'trim|required');
+		$this->form_validation->set_rules('inputName', 'Company Name', 'trim|required');
+		$this->form_validation->set_rules('inputLocation', 'Location', 'trim|required');
+		$this->form_validation->set_rules('inputDescription', 'Description', 'trim|required');
+		
+		$create_user_data = array(
+			'company_admin' => strtolower($this->input->post('inputAdmin')),
+			'company_name' => strtolower($this->input->post('inputName')),
+			'location' => strtolower($this->input->post('inputLocation')),
+			'description' => strtolower($this->input->post('inputDescription'))
+		);
+		
+		if ( $this->form_validation->run() ) 
+		{
+			$response_array['form_validation'] = TRUE;
+			if ( $this->company_model->update( strtolower($this->input->post('originalRegNo')), $create_user_data ) ) 
+			{
+				$response_array['status'] = TRUE;
+			}
+			else 
+			{
+				$response_array['status'] = FALSE;
+			}
+		}
+		else
+		{
+			$response_array['form_validation'] = FALSE;
+			$response_array['status'] = FALSE;
+			$response_array['form_validation_errors'] = validation_errors();
+		}
+		echo json_encode($response_array);
+	}
+	
+	public function company_delete()
+	{
+		$this->company_model->delete( strtolower($this->input->post('reg_no')) );
+		echo json_encode(array("status" => TRUE));
+	}
+	
+	
+	
+	/*
+	 * Company Employer functions
+	 */
+	
+	public function company_employer()
+	{
+		if (!$this->is_loggedin() && !$this->is_admin()) 
+		{
+			redirect('dashboard/');
+		}
+		
+		$page = 'admin/admin_company_employer_page';
+		
+		$data['page_title'] = $this->page_title;
+
+		$this->check_page_files('/views/pages/' . $page . '.php');
+
+		$this->load_view($data, $page);
+	}
+	
+	public function company_employer_list()
+	{
+		$list = $this->company_employer_model->get_datatables();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $item) {
+			$no++;
+			$row = array();
+			$row[] = $item->employer;
+			$row[] = $item->company_reg_no;
+			$row[] = $item->accepted;
+
+			//add action buttons to each row
+			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_entry('."'".$item->employer."'".')"><i class="glyphicon glyphicon-pencil"></i></a>
+				  <a class="btn btn-sm btn-danger" href="javascript:void()" title="Delete" onclick="delete_entry('."'".$item->employer."'".')"><i class="glyphicon glyphicon-trash"></i></a>';
+		
+			$data[] = $row;
+		}
+
+		$output = array(
+						"draw" => $_POST['draw'],
+						"recordsTotal" => $this->company_employer_model->count_all(),
+						"recordsFiltered" => $this->company_employer_model->count_filtered(),
+						"data" => $data,
+				);
+		
+		echo json_encode($output);
+	}
+	
+	public function company_employer_edit()
+	{
+		$data = $this->company_employer_model->get( strtolower($this->input->post('employer')) );
+		echo json_encode($data->row());
+	}
+	
+	public function company_employer_add()
+	{
+		$response_array = array();
+		
+		$this->form_validation->reset_validation();
+		$this->form_validation->set_rules('inputEmployer', 'Employer', 'trim|required');
+		$this->form_validation->set_rules('inputRegNo', 'Company Reg No', 'trim|required');
+		$this->form_validation->set_rules('inputAccepted', 'Accepted', 'trim|required');
+		
+		$create_user_data = array(
+			'employer' => strtolower($this->input->post('inputEmployer')),
+			'company_reg_no' => strtolower($this->input->post('inputRegNo')),
+			'accepted' => strtolower($this->input->post('inputAccepted'))
+		);
+		
+		if ( $this->form_validation->run() ) 
+		{
+			$response_array['form_validation'] = TRUE;
+			if ( $this->company_employer_model->insert($create_user_data) ) 
+			{
+				$response_array['status'] = TRUE;
+			}
+			else 
+			{
+				$response_array['status'] = FALSE;
+			}
+		}
+		else
+		{
+			$response_array['form_validation'] = FALSE;
+			$response_array['status'] = FALSE;
+			$response_array['form_validation_errors'] = validation_errors();
+		}
+		echo json_encode($response_array);
+	}
+
+	public function company_employer_update()
+	{
+		$response_array = array();
+		
+		$this->form_validation->reset_validation();
+		$this->form_validation->set_rules('inputRegNo', 'Company Reg No', 'trim|required');
+		$this->form_validation->set_rules('inputAccepted', 'Accepted', 'trim|required');
+		
+		$create_user_data = array(
+			'company_reg_no' => strtolower($this->input->post('inputRegNo')),
+			'accepted' => strtolower($this->input->post('inputAccepted'))
+		);
+		
+		if ( $this->form_validation->run() ) 
+		{
+			$response_array['form_validation'] = TRUE;
+			if ( $this->company_employer_model->update( strtolower($this->input->post('originalEmployer')), $create_user_data ) ) 
+			{
+				$response_array['status'] = TRUE;
+			}
+			else 
+			{
+				$response_array['status'] = FALSE;
+			}
+		}
+		else
+		{
+			$response_array['form_validation'] = FALSE;
+			$response_array['status'] = FALSE;
+			$response_array['form_validation_errors'] = validation_errors();
+		}
+		echo json_encode($response_array);
+	}
+	
+	public function company_employer_delete()
+	{
+		$this->company_employer_model->delete( strtolower($this->input->post('employer')) );
+		echo json_encode(array("status" => TRUE));
+	}
+	
+	
+	
 	
 	
 	/*
