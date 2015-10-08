@@ -30,7 +30,7 @@ class Browse extends MY_Controller {
 	 */
 	private function load_browse_jobseekers() {
 		
-		$page = 'browse_page';
+		$page = 'browse_jobseekers_page';
 
 		$this -> check_page_files('/views/pages/' . $page . '.php');
 		
