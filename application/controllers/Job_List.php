@@ -16,7 +16,7 @@ class Job_List extends MY_Controller {
 			
 				/*
 				 * Check if employer has joined a company.
-				 * Otherwise redirect to register company page.
+				 * Otherwise redirect to join company page.
 				 */
 				$accepted = 1;
 				$email = $this->auth->get_info()->email;
@@ -29,10 +29,7 @@ class Job_List extends MY_Controller {
 				}
 				else
 				{
-					//
-					// To change to redirect to join company page
-					//
-					redirect("login/");
+					redirect("company/join");
 				}
 			}
 			else

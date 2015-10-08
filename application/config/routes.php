@@ -72,4 +72,5 @@ $route['profile'] = 'profile';
 $route['profile/(:any)'] = 'profile/$1';
 $route['admin'] = 'admin';
 $route['job_list'] = 'job_list';
+$route['company'] = 'company';
 $route['translate_uri_dashes'] = FALSE;

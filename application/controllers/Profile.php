@@ -35,13 +35,21 @@ class Profile extends MY_Controller {
 			
 				/*
 				 * Check if employer has joined a company.
-				 * Otherwise redirect to register company page.
+				 * Otherwise redirect to join company page.
 				 */
+				$accepted = 1;
+				$email = $this->auth->get_info()->email;
+				$result = $this->company_employer_model->get( $email, NULL, $accepted )->result();
 				
-				// if ( employer has company )
-			
-				$this->load_company_private();
-				return;
+				if ( count($result) == 1 ) 
+				{
+					$this->load_company_private();
+					return;
+				}
+				else
+				{
+					redirect("company/join");
+				}
 			}
 			else
 			{
