@@ -292,7 +292,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="form-group">
 								<label class="control-label col-md-3">Published</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputPublished" name="inputPublished" placeholder="Plublished">
+									<select required name="inputPublished" class="form-control">
+										<option value="">Status</option>
+										<option value="1">True</option>
+										<option value="0">False</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -356,7 +360,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="form-group">
 								<label class="control-label col-md-3">Published</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputPublished" name="inputPublished" placeholder="Plublished">
+									<select required name="inputPublished" class="form-control">
+										<option value="">Status</option>
+										<option value="1">True</option>
+										<option value="0">False</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">

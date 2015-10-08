@@ -255,9 +255,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 							</div>							
 							<div class="form-group">
-								<label class="control-label col-md-3">inputAccepted</label>
+								<label class="control-label col-md-3">Status</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputAccepted" name="inputAccepted" placeholder="Accepted">
+									<select required name="inputAccepted" class="form-control">
+										<option value="">Status</option>
+										<option value="1">Accepted</option>
+										<option value="0">Pending</option>
+									</select>
 								</div>
 							</div>
 						</div>
@@ -291,7 +295,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="form-group">
 								<label class="control-label col-md-3">inputAccepted</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputAccepted" name="inputAccepted" placeholder="Accepted">
+									<select required name="inputAccepted" class="form-control">
+										<option value="">Status</option>
+										<option value="1">Accepted</option>
+										<option value="0">Pending</option>
+									</select>
 								</div>
 							</div>
 						</div>

@@ -233,7 +233,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="form-group">
 								<label class="control-label col-md-3">Job ID</label>
 								<div class="col-md-9">
-									<input required type="text" class="form-control" id="inputJobId" name="inputJobId" placeholder="Date Submitted">
+									<input required type="text" class="form-control" id="inputJobId" name="inputJobId" placeholder="Job ID">
 								</div>
 							</div>
 							<div class="form-group">
