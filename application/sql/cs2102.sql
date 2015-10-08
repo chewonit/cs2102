@@ -126,3 +126,9 @@ CREATE TABLE Job_Application (
         applicant IN (SELECT u.email FROM Users u WHERE u.role = 'jobseeker')
     )
 );
+
+-- Company_Employer_Detailed View
+CREATE OR REPLACE VIEW company_employer_detailed AS
+SELECT c.*, u.first_name, u.last_name, u.contact, u.gender
+FROM company_employer c, users u
+WHERE c.employer = u.email;

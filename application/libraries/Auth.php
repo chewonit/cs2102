@@ -15,8 +15,6 @@ class Auth {
 	);
 	
 	private $ci;
-	private $user_table;
-	private $email_field;
 	private $password_field;
 	
 	function __construct()
@@ -25,8 +23,6 @@ class Auth {
 		$this->ci =& get_instance();
 		
 		// Set database table names and attributes
-		$this->user_table = 'users';
-		$this->email_field = 'email';
 		$this->password_field = 'password';
 		
 		$this->ci->load->database();

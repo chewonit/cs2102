@@ -17,7 +17,7 @@ class Company extends MY_Controller {
 	
 		if ( count($result) == 1 ) 
 		{
-			$this->load_company_admin();
+			$this->load_company_admin($email, $result[0]);
 			return;
 		}
 		else
@@ -57,7 +57,7 @@ class Company extends MY_Controller {
 	}
 	
 	/**
-	 * LLoads the Company Join view for employers
+	 * Loads the Company Join view for employers
 	 *
 	 * @access	public
 	 * @return	
@@ -86,6 +86,58 @@ class Company extends MY_Controller {
 		}
 	}
 	
+	/**
+	 * Accepts the employer to join the company.
+	 *
+	 * @access	public
+	 * @return	
+	 */
+	public function company_accept_employer() {
+		
+		$employer = $this->input->post('employer');
+		
+		$data = array(
+			'accepted' => 1
+		);
+		
+		$output = array(
+			'status' => false
+		);
+		
+		if ( $this->company_employer_model->update($employer, $data) ) 
+		{
+			$output["status"] = true;
+		}
+		
+		echo json_encode($output);
+	}
+	
+	/**
+	 * Accepts the employer to join the company.
+	 *
+	 * @access	public
+	 * @return	
+	 */
+	public function company_reject_employer() {
+		
+		$employer = $this->input->post('employer');
+		
+		$data = array(
+			'accepted' => 0
+		);
+		
+		$output = array(
+			'status' => false
+		);
+		
+		if ( $this->company_employer_model->update($employer, $data) ) 
+		{
+			$output["status"] = true;
+		}
+		
+		echo json_encode($output);
+	}
+		
 	
 	/**
 	 * Loads the Jobseeker private profile view.
@@ -93,14 +145,22 @@ class Company extends MY_Controller {
 	 * @access	private
 	 * @return	
 	 */
-	private function load_company_admin() {
+	private function load_company_admin($email, $company) {
 		
 		$page = 'company_admin_page';
 
 		$this->check_page_files('/views/pages/' . $page . '.php');
 
 		$data['page_title'] = "Company Admin";
+		
+		$company_reg_no = $company->company_reg_no;
+		
+		$employer_list = $this->company_employer_detailed_model->get_except($company_reg_no, false, $email)->result();
+		$employer_list_accepted = $this->company_employer_detailed_model->get_except($company_reg_no, true, $email)->result();
 
+		$data['employer_list'] = $employer_list;
+		$data['employer_list_accepted'] = $employer_list_accepted;
+		
 		$this->load_view($data, $page);
 	}
 	

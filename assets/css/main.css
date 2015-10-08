@@ -132,6 +132,30 @@ section.job-item {
 -------------------------------------------------- */
 
 
+/* Admin styles
+-------------------------------------------------- */
 .admin-table-wrapper-header {
 	margin-top: 0;
 }
+/* End Admin styles
+-------------------------------------------------- */
+
+
+/* Company Admin styles
+-------------------------------------------------- */
+section.company-employer-item {
+	background: #FAFAFA;
+	border: solid 1px #D5D5D5;
+	margin: 0 0 1em 0;
+    padding: 1em 1em;
+}
+section.company-employer-item h5 , section.company-employer-item  h6{
+	margin-top: 0;
+}
+@media screen and (min-width: 769px) {
+    .section.company-employer-item  .right-col {
+		
+	}
+}
+/* End Company Admin styles
+-------------------------------------------------- */
