@@ -16,6 +16,8 @@ class Browse extends MY_Controller {
 		
 		$data['page_title'] = "Browse";
 		
+		$data['job_list'] = $this -> jobs_model -> get();
+		
 		$this -> load_view($data, $page);
 		
 	}
