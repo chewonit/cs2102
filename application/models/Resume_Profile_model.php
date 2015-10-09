@@ -31,7 +31,7 @@ class Resume_Profile_model extends CI_Model {
         return $this -> db -> insert($this->table_name, $data);
     }
 	
-	public function update($owner, $data)
+	public function update($owner,$data)
     {
         $this -> db -> where('owner', $owner);
         return $this -> db -> update($this->table_name, $data);

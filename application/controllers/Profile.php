@@ -8,7 +8,7 @@ class Profile extends MY_Controller {
 		if (!is_null($id)) 
 		{
 			/*
-			 * Check if id is joobseeker ID or company.
+			 * Check if id is jobseeker ID or company.
 			 */
 			
 			// if ( id is jobseeker )
@@ -82,8 +82,16 @@ class Profile extends MY_Controller {
 		$this->check_page_files('/views/pages/' . $page . '.php');
 
 		$data['page_title'] = "Profile";
-
+		
+		
+		$data['resume_profile'] = $this -> resume_profile_model -> get();
+		$data['resume_profile2'] = $this -> users_model -> get();
+		$data['first_name'] = $this->db->query('SELECT u.first_name FROM users u,resume_profile p WHERE u.email = p.owner');
+		$data['last_name'] = $this->db->query('SELECT u.last_name FROM users u,resume_profile p WHERE u.email = p.owner');
+		$this->update();
 		$this->load_view($data, $page);
+		
+	
 	}
 	
 	/**
@@ -135,5 +143,20 @@ class Profile extends MY_Controller {
 		$data['page_title'] = "Company Profile";
 
 		$this->load_view($data, $page);
+	}
+	
+	public function update(){
+		//$data['owner'] = $this->db->query('SELECT owner FROM resume_profile'); //shld be incorrect
+		$data['owner'] = $this -> resume_profile_model -> get('owner');
+		
+		$data = array(
+		'address'=> $this->input->post('inputProfileAddress'),
+		'description' => $this->input->post('inputProfileAbout'),
+		'edu_history' => $this->input->post('inputProfileEducation'),
+		'work_history' => $this->input->post('inputProfileWork')
+	);
+	$this -> resume_profile_model -> update('owner',$data); //dunno how to make this work** esp the owner part
+	//redirect('/profile/');
+		
 	}
 }
