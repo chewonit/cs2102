@@ -11,8 +11,8 @@ class Pages extends MY_Controller {
             show_404();
         }
 		
-		/* Demo get from database */
-        $data['latest_jobs'] = $this -> demo_model -> get(NULL, 4);
+		$this->load->model("home_model");
+        $data['latest_jobs'] = $this -> home_model -> get_limit(4);
 
 		$data['nav_class'] = "home";
 		

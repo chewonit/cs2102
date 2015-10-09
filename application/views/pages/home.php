@@ -35,12 +35,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 		<?php foreach($latest_jobs->result() as $row): ?>
 		<div class="col-md-6">
-			<a class="job-featured" href="#">
+			<a class="job-featured" href="<?php echo base_url('job/'.$row->job_id) ?>">
 				<section class="job-item">
-					<h4><?php echo $row->Title; ?></h4>
-					<h5><?php echo $row->Name; ?></h5>
+					<h4><?php echo $row->title; ?></h4>
+					<h5><?php echo $row->company_name; ?></h5>
 					<p><?php 
-							$str = $row->Description;
+							$str = $row->description;
 							if (strlen($str) > 140) {
 								$str = substr($str, 0, 137) . '...';
 							}
