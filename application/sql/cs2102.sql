@@ -110,6 +110,8 @@ CREATE TABLE Jobs (
     FOREIGN KEY (category_id) REFERENCES Job_Category(category_id)
 );
 
+ALTER TABLE Jobs ADD FULLTEXT(title, description, skills);
+
 -- Job_Applications
 CREATE TABLE Job_Application (
     applicant VARCHAR(255),
