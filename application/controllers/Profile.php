@@ -17,10 +17,17 @@ class Profile extends MY_Controller {
 			$this->load_jobseeker_public();
 			return;
 			
-			// } else {
+			// } 
+			// else if ( id is company )
+			// {
 			
 			//	$this->load_company_public();
 			//	return;
+			// }
+			// 
+			// else 
+			// {
+			// 		error page;
 			// }
 			
 		}
