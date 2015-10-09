@@ -91,6 +91,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="row">
 							<div class="col-md-9">
 								<h4 class="job-item-header"><a href="#"><?php echo $row->title; ?></a></h4>
+								<h5>
+								<font size="2.2">Company Name: 
+								<?php echo $row->company_name; ?></h5>
+								<h5>
+									<font size="2.2">Experience: 
+									<?php echo $row->experience; ?>
+									<font size="2.2">Years 
+									</h5>
+								<h5>
+									<font size="2.2">skills: 
+										<?php echo $row->skills; ?></h5>
+								
 								
 							</div>
 							<div class="col-md-3 text-right">
@@ -100,9 +112,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<h5>
 									<font size="2.2">Company Register number: 
 									<?php echo $row->company_reg_no; ?></h5>
-									<h5>
-									<font size="2.2">Company Name: 
-									<?php echo $row->company_name; ?></h5>
+									
 									<h5>
 										<font size="2.2">Company Location: 
 										<?php echo $row->location; ?></h5>
@@ -115,14 +125,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<h5>
 									<font size="2.2">Category Id: 
 									<?php echo $row->category_id; ?></h5>
-								<h5>
-									<font size="2.2">Experience: 
-									<?php echo $row->experience; ?>
-									<font size="2.2">Years 
-									</h5>
-								<h5>
-									<font size="2.2">skills: 
-										<?php echo $row->skills; ?></h5>
 								
 					
 							</div>

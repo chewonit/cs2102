@@ -1,9 +1,12 @@
+
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Jobs_model extends CI_Model {
     
 	private $table_name = "jobs";
+	private $table_name2 = "company";
+	private $tables = array('jobs','company');
 	private $column = array('job_id', 'company_reg_no', 'date_created', 'published', 'category_id', 'title', 'description', 'experience', 'skills');
 	private $search_fields = "title, description, skills";
     
@@ -29,7 +32,7 @@ class Jobs_model extends CI_Model {
 		if ( !is_null($company_reg_no )) {
 			$this -> db -> where('company_reg_no', $company_reg_no);
 		}
-		return $this -> db -> get($this->table_name);
+		return $this -> db -> get($this->tables);
 	}
 	public function search($data,$cat,$exp)
 	{
@@ -191,3 +194,4 @@ class Jobs_model extends CI_Model {
 		return $this->db->count_all_results();
 	}
 }
+
