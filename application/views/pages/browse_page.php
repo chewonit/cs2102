@@ -17,7 +17,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php $loc='' ?>
 	<?php $skill='' ?>
 	<?php $name='' ?>
-	
 	<div class="row">
 	
 		<div class="col-md-3">
@@ -25,16 +24,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<?php //echo form_open('', $attributes)?>
 				<div class="form-group">
 					<form action="" method="post">
-					<select name="variable" class="form-control" onchange="this.form.submit();" > 
-						<option value="">Jobs By Category</option>
-						<option value="1">Finance & Account</option>
-						<option value="2">Human Resources</option>
-						<option value="3">Purchase & Supply Chain</option>
-						<option value="4">Administrations/ Secretarial</option>
-						<option value="5">Legal</option>
-						<option value="6">Customer Service/ BPO/ KPO</option>
-						<option value="7">Sales</option>
-						<option value="8">Marketing</option>		
+					<select name="variable" class="form-control" onchange="this.form.submit();" >
+						<option value="">Jobs By Category</option>					
+						<?php foreach($category_list->result() as $category) : ?>
+						<option value="<?php echo $category->category_id ?>">
+						<?php echo $category->name ?>
+						</option>
+						<?php endforeach ?>	
 					</select>
 					</form>
 					<?php if (isset($_POST['variable'])) {$cat=$_POST['variable'];}  ?>
@@ -56,21 +52,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				
 				<div class="form-group">
 					<form action= "" method="post">
-					<input type="text" class="search-box form-control" name="variable4" placeholder="Jobs By Company Name" onchange="this.form.submit();">
+					<select name='variable4' class="form-control" onchange="this.form.submit();" >
+						<option value="">Jobs By Company</option>
+						<?php foreach($company_list->result() as $company) : ?>
+						<option value="<?php echo $company->company_reg_no ?>">
+						<?php echo $company->company_name ?>
+						</option>
+						<?php endforeach ?>
+					</select>
 					<?php if (isset($_POST['variable4'])) {$name=$_POST['variable4'];}  ?>
 					</form>
 				</div>
 				
 				<div class="form-group">
 					<form action="" method="post">
-					<input type="text" class="search-box form-control" name="variable2" placeholder="Jobs By Location" onchange="this.form.submit();">
+					<select name='variable2' class="form-control" onchange="this.form.submit();" >
+						<option value="">Jobs By Location</option>
+						<?php foreach($location_list->result() as $location) : ?>
+						<option value="<?php echo $location->location ?>">
+						<?php echo $location->location ?>
+						</option>
+						<?php endforeach ?>
+					</select>
 					<?php if (isset($_POST['variable2'])) {$loc=$_POST['variable2'];}  ?>
 					</form>
 				</div>
 				
 				<div class="form-group">
 					<form action= "" method="post">
-					<input type="text" class="search-box form-control" name="variable3" placeholder="Jobs By Skills" onchange="this.form.submit();">
+					<select name='variable3' class="form-control" onchange="this.form.submit();" >
+						<option value="">Jobs By Skills</option>
+						<?php foreach($skills_list->result() as $skills) : ?>
+						<option value="<?php echo $skills->skills ?>">
+						<?php echo $skills->skills ?>
+						</option>
+						<?php endforeach ?>
+					</select>
 					<?php if (isset($_POST['variable3'])) {$skill=$_POST['variable3'];}  ?>
 					</form>
 				</div>
@@ -79,8 +96,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	
 		<div class="col-md-9">
-		    
-			<h3>Please select a category to browse under.</h3>
 			
 			<?php if ($cat==0 && $exp==0 && strlen($loc)==0 && strlen($skill)==0 && strlen($name)==0 ) : ?>
 			<h4> Displaying ALL Jobs. </h4>
@@ -88,7 +103,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			FROM jobs j , company c 
 			WHERE c.company_reg_no=j.company_reg_no
 			ORDER BY j.date_created DESC'); ?>
-			
+									
 			<?php foreach($query->result() as $row): ?>
 				<section class="job-item">
 					<div class="container-fluid">
@@ -140,12 +155,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="row">
 							<div class="col-md-12 job-item-btns">
 								<button class="btn btn-default btn-sm">More Info</button>
-								<button class="btn btn-default btn-sm btn-success">Apply</button>
+								<?php if($is_login) : ?>
+								<button class="btn btn-default btn-sm btn-success">Apply</button> 
+								<?php endif ?>
 							</div>
 						</div>
 					</div>
 				</section>
 				<?php endforeach; ?>
+				
 			
 			<?php elseif ($cat!=0) : ?>
 			
@@ -161,6 +179,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			GROUP BY j.date_created DESC" ;?>
 			
 			<?php $query = $this->db->query($sql, array($cat)); ?>
+			
+			<?php if ( count($query->result()) == 0) : ?>
+
+			<h4>No results found.</h4>
+			
+			<?php else : ?>
 
 				<?php foreach($query->result() as $row): ?>			
 				<section class="job-item">
@@ -213,13 +237,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="row">
 							<div class="col-md-12 job-item-btns">
 								<button class="btn btn-default btn-sm">More Info</button>
-								<button class="btn btn-default btn-sm btn-success">Apply</button>
+								<?php if($is_login) : ?>
+								<button class="btn btn-default btn-sm btn-success">Apply</button> 
+								<?php endif ?>
 							</div>
 						</div>
 					</div>
 				</section>
 				<?php endforeach; ?>
-				
+				<?php endif ?>
 					
 			</div>
 				
@@ -263,7 +289,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			ORDER BY j.date_created DESC'); ?>
 			
 			<?php endif ?>	
+			
+			<?php if ( count($query->result()) == 0) : ?>
+
+			<h4>No results found.</h4>
+			
+			<?php else : ?>
+			
 				<?php foreach($query->result() as $row): ?>
+				
 				<section class="job-item">
 					<div class="container-fluid">
 						<div class="row">
@@ -314,14 +348,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="row">
 							<div class="col-md-12 job-item-btns">
 								<button class="btn btn-default btn-sm">More Info</button>
-								<button class="btn btn-default btn-sm btn-success">Apply</button>
+								<?php if($is_login) : ?>
+								<button class="btn btn-default btn-sm btn-success">Apply</button> 
+								<?php endif ?>
 							</div>
 						</div>
 					</div>
 				</section>
 				<?php endforeach; ?>
-				
-					
+				<?php endif ?>
 			</div>
 			
 			<?php elseif (strlen($loc)!=0) : ?>
@@ -335,6 +370,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			ORDER BY j.date_created DESC" ;?>
 			
 			<?php $query = $this->db->query($sql); ?>
+			
+			<?php if ( count($query->result()) == 0) : ?>
+
+			<h4>No results found.</h4>
+			
+			<?php else : ?>
 
 				<?php foreach($query->result() as $row): ?>			
 				<section class="job-item">
@@ -387,13 +428,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="row">
 							<div class="col-md-12 job-item-btns">
 								<button class="btn btn-default btn-sm">More Info</button>
-								<button class="btn btn-default btn-sm btn-success">Apply</button>
+								<?php if($is_login) : ?>
+								<button class="btn btn-default btn-sm btn-success">Apply</button> 
+								<?php endif ?>
 							</div>
 						</div>
 					</div>
 				</section>
 				<?php endforeach; ?>
-				
+				<?php endif ?>
 					
 			</div>
 			
@@ -409,6 +452,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<?php $query = $this->db->query($sql); ?>
 
+			<?php if ( count($query->result()) == 0) : ?>
+
+			<h4>No results found.</h4>
+			
+			<?php else : ?>
+			
 				<?php foreach($query->result() as $row): ?>			
 				<section class="job-item">
 					<div class="container-fluid">
@@ -460,28 +509,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="row">
 							<div class="col-md-12 job-item-btns">
 								<button class="btn btn-default btn-sm">More Info</button>
-								<button class="btn btn-default btn-sm btn-success">Apply</button>
+								<?php if($is_login) : ?>
+								<button class="btn btn-default btn-sm btn-success">Apply</button> 
+								<?php endif ?>
 							</div>
 						</div>
 					</div>
 				</section>
 				<?php endforeach; ?>
-				
+				<?php endif ?>
 					
 			</div>
 			
 			<?php elseif (strlen($name)!=0) : ?>
 			
 			<div class="job-list">
-				<h4> Displaying jobs from <?php echo $name ;?>.</h4>
+			<?php $sql = "SELECT c.company_name FROM company c WHERE c.company_reg_no=?" ; ?>
+			<?php $query = $this->db->query($sql, array($name)); ?>
+			<?php foreach($query->result() as $data) ;?>
+				<h4> Displaying jobs from <?php echo $data->company_name ;?>.</h4>
 			
 			<?php $sql = "SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created, c.company_name, c.location
 			FROM jobs j , company c
-			WHERE c.company_reg_no=j.company_reg_no AND c.company_name LIKE '%$name%'
+			WHERE c.company_reg_no=j.company_reg_no AND c.company_reg_no=?
 			ORDER BY j.date_created DESC" ;?>
 			
-			<?php $query = $this->db->query($sql); ?>
+			<?php $query = $this->db->query($sql, array($name)); ?>
 
+			<?php if ( count($query->result()) == 0) : ?>
+
+			<h4>No results found.</h4>
+			
+			<?php else : ?>
+			
 				<?php foreach($query->result() as $row): ?>			
 				<section class="job-item">
 					<div class="container-fluid">
@@ -533,13 +593,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="row">
 							<div class="col-md-12 job-item-btns">
 								<button class="btn btn-default btn-sm">More Info</button>
-								<button class="btn btn-default btn-sm btn-success">Apply</button>
+								<?php if($is_login) : ?>
+								<button class="btn btn-default btn-sm btn-success">Apply</button> 
+								<?php endif ?>
 							</div>
 						</div>
 					</div>
 				</section>
 				<?php endforeach; ?>
-				
+				<?php endif ?>
 					
 			</div>
 			

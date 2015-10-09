@@ -17,6 +17,10 @@ class Browse extends MY_Controller {
 		$data['page_title'] = "Browse";
 		
 		$data['job_list'] = $this -> jobs_model -> get();
+		$data['company_list'] = $this -> company_model -> get();
+		$data['category_list'] = $this -> job_category_model -> get();
+		$data['location_list'] = $this->db->query('SELECT DISTINCT location FROM company');
+		$data['skills_list'] = $this->db->query('SELECT DISTINCT skills FROM jobs');
 		
 		$this -> load_view($data, $page);
 		
