@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<input type="text" class="search-box form-control" id="inputSearch" name="inputSearch" placeholder="Search for Jobs" value="<?php echo $search_query ?>">
 				</div>
 				<div class="form-group">
-						<select id = 'variable' name="variable" class="form-control" > 
+							<select id = 'variable' name="variable" class="form-control"> 
 						<option value="">Jobs By Category</option>
 						<option value="1">Finance & Account</option>
 						<option value="2">Human Resources</option>
@@ -35,6 +35,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php if (isset($_POST['variable'])) {$cat=$_POST['variable'];}  
 					//echo $cat;
 					?>
+					<script>
+					var val = "<?php echo $cat ?>";
+					
+					function setSelectedIndex(s, i)
+					{
+					s.options[i].selected = true;
+					return;
+					}
+					setSelectedIndex(document.getElementById("variable"),val);
+					</script>
 					
 				</div>
 				<div class="form-group">
@@ -50,7 +60,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php if (isset($_POST['variable1'])) {$exp=$_POST['variable1'];}  
 					//echo $exp;
 					?>
+					<script>
+					var valexp = "<?php echo $exp ?>";
 					
+					function setSelectedIndex(s, i)
+					{
+					s.options[i].selected = true;
+					return;
+					}
+					setSelectedIndex(document.getElementById("variable1"),valexp);
+					</script>
 				</div>
 				<button type="submit" class="btn btn-default">Search</button>
 			<?php echo form_close() ?>
@@ -81,6 +100,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<h5>
 									<font size="2.2">Company Register number: 
 									<?php echo $row->company_reg_no; ?></h5>
+									<h5>
+									<font size="2.2">Company Name: 
+									<?php echo $row->company_name; ?></h5>
+									<h5>
+										<font size="2.2">Company Location: 
+										<?php echo $row->location; ?></h5>
 								<h5>
 									<font size="2.2">Date Created: 
 									<?php echo $row->date_created; ?></h5>
