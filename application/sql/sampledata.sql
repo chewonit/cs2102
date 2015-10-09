@@ -1,21 +1,21 @@
 /*---sample jobseekers---*/
 INSERT INTO `Users` VALUES 
-('john01@demo.com', MD5('pass1234'), 'john1', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john02@demo.com', MD5('pass1234'), 'john2', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john03@demo.com', MD5('pass1234'), 'john1', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john04@demo.com', MD5('pass1234'), 'john2', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john05@demo.com', MD5('pass1234'), 'john1', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john06@demo.com', MD5('pass1234'), 'john2', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john07@demo.com', MD5('pass1234'), 'john1', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john08@demo.com', MD5('pass1234'), 'john2', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john09@demo.com', MD5('pass1234'), 'john1', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john10@demo.com', MD5('pass1234'), 'john2', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john11@demo.com', MD5('pass1234'), 'john1', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john12@demo.com', MD5('pass1234'), 'john2', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john13@demo.com', MD5('pass1234'), 'john1', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john14@demo.com', MD5('pass1234'), 'john2', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john15@demo.com', MD5('pass1234'), 'john1', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john16@demo.com', MD5('pass1234'), 'john2', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker');
+('john01@demo.com', MD5('pass1234'), 'john01', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
+('john02@demo.com', MD5('pass1234'), 'john02', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
+('john03@demo.com', MD5('pass1234'), 'john03', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
+('john04@demo.com', MD5('pass1234'), 'john04', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
+('john05@demo.com', MD5('pass1234'), 'john05', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
+('john06@demo.com', MD5('pass1234'), 'john06', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
+('john07@demo.com', MD5('pass1234'), 'john07', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
+('john08@demo.com', MD5('pass1234'), 'john08', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
+('john09@demo.com', MD5('pass1234'), 'john09', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
+('john10@demo.com', MD5('pass1234'), 'john10', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
+('john11@demo.com', MD5('pass1234'), 'john11', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
+('john12@demo.com', MD5('pass1234'), 'john12', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
+('john13@demo.com', MD5('pass1234'), 'john13', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
+('john14@demo.com', MD5('pass1234'), 'john14', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
+('john15@demo.com', MD5('pass1234'), 'john15', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
+('john16@demo.com', MD5('pass1234'), 'john16', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker');
 
 /*---sample employers---*/
 INSERT INTO `Users` VALUES 
