@@ -110,4 +110,52 @@ class Job extends MY_Controller {
 		$this->load_view($data, $page);
 	}
 	
+	/**
+	 * Loads the job create view.
+	 *
+	 * @access	public
+	 * @return	
+	 */
+	public function create() {
+		
+		if ($this->is_loggedin()) 
+		{
+			if ($this->is_employer()) {
+			
+				/*
+				 * Check if employer is in a company.
+				 */
+				$accepted = 1;
+				$email = $this->auth->get_info()->email;
+				$result = $this->company_employer_model->get( $email,NULL, $accepted )->result();
+				
+				if ( count($result) == 1 ) 
+				{
+					$page = 'job_create_page';
+
+					$this->check_page_files('/views/pages/' . $page . '.php');
+
+					$data['page_title'] = "Create Job";
+
+					$this->load_view($data, $page);
+					return;
+				}
+				else
+				{
+					redirect("profile");
+					return;
+				}
+			}
+			else
+			{
+				redirect("login");
+				return;
+			}
+		}
+		else
+		{
+			redirect("login");
+			return;
+		}
+	}
 }
