@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<?php $attributes = array('class' => 'form', 'id' => 'searchForm'); ?>
 			<?php echo form_open('search/', $attributes); ?>
 				<div class="form-group">
-					<input type="text" class="search-box form-control" id="inputSearch" name="inputSearch" placeholder="Search" value="<?php echo $search_query ?>">
+					<input type="text" class="search-box form-control" id="inputSearch" name="inputSearch"  placeholder="Search" value="<?php echo $search_query ?>">
 				</div>
 				<div class="form-group">
 					<select class="form-control">

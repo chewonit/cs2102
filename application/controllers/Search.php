@@ -17,22 +17,27 @@ class Search extends MY_Controller {
 		$data['page_title'] = "Search";
 
 		$data['search_query'] = $this->input->post('inputSearch');
+		$data['search_cat'] = $this->input->post('variable');
+		$data['search_exp'] = $this->input->post('variable1');
+		
 		
 		if($data['search_query'] == "") 
 		{
-			$data['search_results'] = $this -> demo_model -> get();
+			$data['search_results'] = $this -> jobs_model -> get();
 		}
 		else 
 		{
 			/*
 			 * Call upon model to perform search on tables.
 			 */
-			$data['search_results'] = $this -> demo_model -> search($data['search_query']);
+			$data['search_results'] = 
+				$this -> jobs_model -> search($data['search_query'],$data['search_cat'],$data['search_exp']);
 		}
 		
 		$this -> load_view($data, $page);
 		
 	}
+	
 
 	/**
 	 * Loads the Search Jobseeker page for Employer users.
@@ -52,16 +57,15 @@ class Search extends MY_Controller {
 		
 		if($data['search_query'] == "") 
 		{
-			$data['search_results'] = $this -> demo_model -> get();
+			$data['search_results'] = $this -> jobs_model -> get();
 		}
 		else 
 		{
-			/*
-			 * Call upon model to perform search on tables.
-			 */
-			$data['search_results'] = $this -> demo_model -> search($data['search_query']);
+		
+			$data['search_results'] = $this -> jobs_model -> search($data['search_query']);
 		}
 		
 		$this -> load_view($data, $page);
 	}
 }
+?>
