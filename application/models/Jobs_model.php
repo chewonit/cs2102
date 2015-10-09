@@ -5,6 +5,7 @@ class Jobs_model extends CI_Model {
     
 	private $table_name = "jobs";
 	private $column = array('job_id', 'company_reg_no', 'date_created', 'published', 'category_id', 'title', 'description', 'experience', 'skills');
+	private $search_fields = "title, description, skills";
     
 	public function __construct()
 	{
@@ -35,68 +36,90 @@ class Jobs_model extends CI_Model {
 		/**
 		$this -> db -> where('category_id',$cat);		
 		$this -> db -> where('experience',$exp);
-		$this -> db -> where('title', $data);
-		$this -> db -> or_where('description', $data); 
-		$this -> db -> or_where('published', $data); 
-		$this -> db -> or_where('skills', $data); 
-		$this -> db -> or_where('experience', $data); 
-		$this -> db -> or_where('company_reg_no', $data);	
+		$this->db->where("MATCH (title,description,title) AGAINST ('$data')", NULL, FALSE);
+		return $this -> db -> get($this->table_name);
+		
 		**/
 		if ($cat == 0){
 			if ($exp == 0){
+				//return $this -> db -> query("
+				//	SELECT * FROM jobs WHERE MATCH(title, description, skills) AGAINST ('$data' IN BOOLEAN MODE)");
 				return $this -> db -> query("
-					SELECT * FROM jobs WHERE title='$data' OR description = '$data'");
+					SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created, c.company_name, c.location ,j.published
+				FROM jobs j , company c 
+				WHERE c.company_reg_no = j.company_reg_no AND (j.title='$data' OR j.description = '$data')");
 			}
 			else if ($exp == 1){
 				return $this -> db -> query("
-					SELECT * FROM jobs WHERE experience <2 AND (title='$data' OR description = '$data')");
+					SELECT j.job_id, j.company_reg_no, j.category_id, j.published, j.title, j.description, j.experience, j.skills, j.date_created, c.company_name, c.location 
+				FROM jobs j , company c 
+				WHERE c.company_reg_no=j.company_reg_no AND j.experience <2 AND (j.title='$data' OR j.description = '$data')");
 			}
 			else if ($exp == 2){
 				return $this -> db -> query("
-					SELECT * FROM jobs WHERE experience >1 AND experience <4 AND (title='$data' OR description = '$data')");
+					SELECT j.job_id, j.company_reg_no, j.category_id, j.published, j.title, j.description, j.experience, j.skills, j.date_created, c.company_name, c.location 
+				FROM jobs j , company c 
+				WHERE c.company_reg_no=j.company_reg_no AND j.experience>0 AND  j.experience <4 AND (j.title='$data' OR j.description = '$data')");
 			}
 			else if ($exp == 3){
 				return $this -> db -> query("
-					SELECT * FROM jobs WHERE experience >3 AND experience <7 AND (title='$data' OR description = '$data')");
+					SELECT j.job_id, j.company_reg_no, j.category_id, j.published, j.title, j.description, j.experience, j.skills, j.date_created, c.company_name, c.location 
+				FROM jobs j , company c 
+				WHERE c.company_reg_no=j.company_reg_no AND experience >3 AND experience <7 AND (j.title='$data' OR description = '$data')");
 			}
 			else if ($exp == 4){
 				return $this -> db -> query("
-					SELECT * FROM jobs WHERE experience >6 AND experience <10 AND (title='$data' OR description = '$data')");
+					SELECT j.job_id, j.company_reg_no, j.category_id, j.published, j.title, j.description, j.experience, j.skills, j.date_created, c.company_name, c.location 
+				FROM jobs j , company c 
+				WHERE c.company_reg_no=j.company_reg_no ANDexperience >6 AND experience <10 AND (j.title='$data' OR j.description = '$data')");
 			}
 			else if ($exp == 5){
 				return $this -> db -> query("
-					SELECT * FROM jobs WHERE experience >9 AND (title='$data' OR description = '$data')");
+					SELECT j.job_id, j.company_reg_no, j.category_id, j.published, j.title, j.description, j.experience, j.skills, j.date_created, c.company_name, c.location 
+				FROM jobs j , company c 
+				WHERE c.company_reg_no=j.company_reg_no AND experience >9 AND (j.title='$data' OR j.description = '$data')");
 			}
 		}
 		else{
 			if ($exp == 0){
 				return $this -> db -> query("
-					SELECT * FROM jobs WHERE category_id = '$cat' AND (title='$data' OR description = '$data')");
+					SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created,j.published, c.company_name, c.location 
+				FROM jobs j , company c 
+				WHERE c.company_reg_no=j.company_reg_no AND j.category_id = '$cat' AND j.category_id = '$cat' AND (title='$data' OR j.description = '$data')");
 			}
 			else if ($exp == 1){
 				return $this -> db -> query("
-					SELECT * FROM jobs WHERE category_id = '$cat' AND experience <2 AND (title='$data' OR description = '$data')");
+					SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created,j.published, c.company_name, c.location 
+				FROM jobs j , company c 
+				WHERE c.company_reg_no=j.company_reg_no AND j.category_id = '$cat' AND j.experience <2 AND (j.title='$data' OR j.description = '$data')");
 			}
 			else if ($exp == 2){
 				return $this -> db -> query("
-					SELECT * FROM jobs WHERE category_id = '$cat' AND experience >1 AND experience <4 AND (title='$data' OR description = '$data')");
+					SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created,j.published, c.company_name, c.location 
+				FROM jobs j , company c 
+				WHERE c.company_reg_no=j.company_reg_no AND j.category_id = '$cat' AND j.experience >1 AND j.experience <4 AND (j.title='$data' OR j.description = '$data')");
 			}
 			else if ($exp == 3){
 				return $this -> db -> query("
-					SELECT * FROM jobs WHERE category_id = '$cat' AND experience >3 AND experience <7 AND (title='$data' OR description = '$data')");
+					SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created,j.published, c.company_name, c.location 
+				FROM jobs j , company c 
+				WHERE c.company_reg_no=j.company_reg_no AND j.category_id = '$cat' AND j.experience >3 AND j.experience <7 AND (j.title='$data' OR j.description = '$data')");
 			}
 			else if ($exp == 4){
 				return $this -> db -> query("
-					SELECT * FROM jobs WHERE category_id = '$cat' AND experience >6 AND experience <10 AND (title='$data' OR description = '$data')");
+					SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created,j.published, c.company_name, c.location 
+				FROM jobs j , company c 
+				WHERE c.company_reg_no=j.company_reg_no AND j.category_id = '$cat' AND j.experience >6 AND j.experience <10 AND (j.title='$data' OR j.description = '$data')");
 			}
 			else if ($exp == 5){
 				return $this -> db -> query("
-					SELECT * FROM jobs WHERE category_id = '$cat' AND experience >9 AND (title='$data' OR description = '$data')");
+					SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created,j.published, c.company_name, c.location 
+				FROM jobs j , company c 
+				WHERE c.company_reg_no=j.company_reg_no AND j.category_id = '$cat' AND j.experience >9 AND (j.title='$data' OR j.description = '$data')");
 			}
 		}
 		
 	}
-
 	public function insert($data)
 	{
 		return $this -> db -> insert($this->table_name, $data);

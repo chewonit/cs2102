@@ -58,6 +58,7 @@ class Search extends MY_Controller {
 		if($data['search_query'] == "") 
 		{
 			$data['search_results'] = $this -> jobs_model -> get();
+			
 		}
 		else 
 		{
