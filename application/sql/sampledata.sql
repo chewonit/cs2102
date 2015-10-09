@@ -57,31 +57,33 @@ title: 'assistant','executive', 'manager', 'director'
 experience: 0, 2, 5, 8
 skills: 'technical', 'operation management', 'middle management', 'senior management'
 */
+
 /*---sample jobs---*/
 INSERT INTO `jobs`(`job_id`, `company_reg_no`, `category_id`, `title`, `description`,`experience`, `skills`) VALUES 
-('j010','c01',1,'assistant','Finance & Account',0,'technical'),
-('j011','c01',1,'executive','Finance & Account',2,'operation management'),
-('j020','c02',2,'manager','Human Resources',5,'middle management'),
-('j021','c02',2,'director','Human Resources',8,'senior management'),
-('j030','c03',3,'assistant','Purchase & Supply Chain',0,'technical'),
-('j031','c03',3,'executive','Purchase & Supply Chain',2,'operation management'),
-('j040','c04',4,'manager','Adminstrations/ Secretarial',5,'middle management'),
-('j041','c04',4,'director','Adminstrations/ Secretarial',8,'senior management'),
-('j050','c05',5,'assistant','Legal',0,'technical'),
-('j051','c05',5,'executive','Legal',2,'operation management'),
-('j060','c06',6,'manager','Customer Service/ BPO/ KPO',5,'middle management'),
-('j061','c06',6,'director','Customer Service/ BPO/ KPO',8,'senior management'),
-('j070','c07',7,'assistant','Sales',0,'technical'),
-('j071','c07',7,'executive','Sales',2,'operation management'),
-('j080','c08',8,'manager','Marketing',5,'middle management'),
-('j081','c08',8,'director','Marketing',8,'senior management');
+(0,'c01',1,'assistant','Finance & Account',0,'technical'),
+(1,'c01',1,'executive','Finance & Account',2,'operation management'),
+(2,'c02',2,'manager','Human Resources',5,'middle management'),
+(3,'c02',2,'director','Human Resources',8,'senior management'),
+(4,'c03',3,'assistant','Purchase & Supply Chain',0,'technical'),
+(5,'c03',3,'executive','Purchase & Supply Chain',2,'operation management'),
+(6,'c04',4,'manager','Adminstrations/ Secretarial',5,'middle management'),
+(7,'c04',4,'director','Adminstrations/ Secretarial',8,'senior management'),
+(8,'c05',5,'assistant','Legal',0,'technical'),
+(9,'c05',5,'executive','Legal',2,'operation management'),
+(10,'c06',6,'manager','Customer Service/ BPO/ KPO',5,'middle management'),
+(11,'c06',6,'director','Customer Service/ BPO/ KPO',8,'senior management'),
+(12,'c07',7,'assistant','Sales',0,'technical'),
+(13,'c07',7,'executive','Sales',2,'operation management'),
+(14,'c08',8,'manager','Marketing',5,'middle management'),
+(15,'c08',8,'director','Marketing',8,'senior management');
+
 
 /*---possible combinations---
 description: map to category 1 - 8
 work_history: map to experience (1,3,6,9) and title
 edu_history: 'diploma', 'degree'
 */
- ---sample resumes---
+ /*---sample resumes---*/
 INSERT INTO `resume_profile`(`owner`, `address`, `description`, `work_history`, `edu_history`) VALUES 
 ('john01@demo.com','Singapore','Finance & Account','1 year as assistant','diploma'),
 ('john02@demo.com','Singapore','Finance & Account','3 year as executive','degree'),
