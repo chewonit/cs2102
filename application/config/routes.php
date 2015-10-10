@@ -69,6 +69,7 @@ $route['browse/(:any)/(:any)/(:any)'] = 'browse/index/$1/$2/$3';
 $route['search'] = 'search';
 $route['dashboard'] = 'dashboard';
 $route['profile'] = 'profile';
+$route['profile/update'] = 'profile/update';
 $route['profile/(:any)'] = 'profile/index/$1';
 $route['admin'] = 'admin';
 $route['job_list'] = 'job_list';

@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 		
-
 <div class="container">
 
 	<div class="row">
@@ -30,7 +29,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<section>
 			<?php $attributes = array('class' => 'form-horizontal'); ?>
-			<?php echo form_open('dashboard/', $attributes); ?>
+			<?php echo form_open('profile/update/', $attributes); ?>
+			
 			<div class="form-group">
 				<label for="inputLoginEmail" class="col-sm-2 control-label">Email</label>
 				<div class="col-sm-10">
@@ -56,12 +56,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					
 				</div>
 			</div>
-			<?php echo form_close(); ?>
-			</section>
-			
-			<section>
-			<?php $attributes = array('class' => 'form-horizontal', 'id' => 'changePasswordForm'); ?>
-			<?php echo form_open('profile/', $attributes); ?>
 			<div class="form-group">
 				<label for="inputProfileAddress" class="col-sm-2 control-label">Address</label>
 				<div class="col-sm-10">
@@ -100,7 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">Update</button>
+					<button type="submit" class="btn btn-default" >Update</button>
 				</div>
 			</div>
 			<?php echo form_close(); ?>

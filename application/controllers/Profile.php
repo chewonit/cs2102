@@ -75,6 +75,23 @@ class Profile extends MY_Controller {
 	 * @access	private
 	 * @return	
 	 */
+	
+	public function update(){
+		//$data['owner'] = $this->db->query('SELECT owner FROM resume_profile');
+	//	$data['owner'] = $this -> resume_profile_model -> get('owner');
+		$email = $this->auth->get_info()->email;
+		
+		$data = array(
+		'address'=> $this->input->post('inputProfileAddress'),
+		'description' => $this->input->post('inputProfileAbout'),
+		'edu_history' => $this->input->post('inputProfileEducation'),
+		'work_history' => $this->input->post('inputProfileWork')
+	);
+	$this -> resume_profile_model -> update($email,$data); 
+	$this -> index();
+		
+	}
+	
 	private function load_jobseeker_private() {
 		
 		$page = 'profile_j_edit_page';
@@ -83,14 +100,14 @@ class Profile extends MY_Controller {
 
 		$data['page_title'] = "Profile";
 		
-		
+		$email = $this->auth->get_info()->email;
 		$data['resume_profile'] = $this -> resume_profile_model -> get();
 		$data['resume_profile2'] = $this -> users_model -> get();
-		$data['first_name'] = $this->db->query('SELECT u.first_name FROM users u,resume_profile p WHERE u.email = p.owner');
-		$data['last_name'] = $this->db->query('SELECT u.last_name FROM users u,resume_profile p WHERE u.email = p.owner');
-		$this->update();
-		$this->load_view($data, $page);
+		$data['first_name'] = $this->db->query("SELECT u.first_name FROM users u,resume_profile p WHERE u.email = p.owner AND p.owner = '$email'");
+		$data['last_name'] = $this->db->query("SELECT u.last_name FROM users u,resume_profile p WHERE u.email = p.owner AND p.owner = '$email'");
+		//$this->update();
 		
+		$this->load_view($data, $page);
 	
 	}
 	
@@ -145,18 +162,5 @@ class Profile extends MY_Controller {
 		$this->load_view($data, $page);
 	}
 	
-	public function update(){
-		//$data['owner'] = $this->db->query('SELECT owner FROM resume_profile'); //shld be incorrect
-		$data['owner'] = $this -> resume_profile_model -> get('owner');
-		
-		$data = array(
-		'address'=> $this->input->post('inputProfileAddress'),
-		'description' => $this->input->post('inputProfileAbout'),
-		'edu_history' => $this->input->post('inputProfileEducation'),
-		'work_history' => $this->input->post('inputProfileWork')
-	);
-	$this -> resume_profile_model -> update('owner',$data); //dunno how to make this work** esp the owner part
-	//redirect('/profile/');
-		
-	}
+
 }
