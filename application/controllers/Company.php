@@ -195,7 +195,38 @@ class Company extends MY_Controller {
 
 		$data['page_title'] = "Join Company";
 
+		$data['company_list'] = $this->db->query("SELECT * FROM company");
+		
+		$data['user_info'] = $this->get_user_info();
+		
+		$this->input->post('inputCompany');
+		
+		$data_entry = array(
+		'employer' => $this->input->post('inputEmail'),
+		'company_reg_no' => $this->input->post('inputCompany'),
+		'accepted' => 0
+		);
+		
+		if ($this->input->post('inputCompany'))
+		{
+			// add employer to the company
+			$this->company_employer_model->insert($data_entry);
+			redirect('/company/profile');
+		}
+			
 		$this->load_view($data, $page);
+	}
+	
+	private function get_user_info() {
+		$user_info = $this->auth->get_info();
+		return array (
+			'email' => $user_info->email,
+			'first_name' => ucwords($user_info->first_name),
+			'last_name' => ucwords($user_info->last_name),
+			'nationality' => ucwords($user_info->nationality),
+			'gender' => ucwords($user_info->gender),
+			'contact' => $user_info->contact,
+		);
 	}
 	
 	/**

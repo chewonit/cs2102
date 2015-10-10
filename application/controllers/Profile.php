@@ -27,7 +27,7 @@ class Profile extends MY_Controller {
 			// 
 			// else 
 			// {
-			// 		error page;
+			// 		redirect("dashboard/");
 			// }
 			
 		}
