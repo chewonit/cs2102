@@ -5,7 +5,8 @@ class Resume_Profile_model extends CI_Model {
     
     private $table_name = "resume_profile";
     private $column = array('owner', 'address', 'description', 'work_history', 'edu_history');
-    
+    private $search_fields = "owner, address, description, work_history, edu_history";
+	
     public function __construct()
     {
         parent::__construct();
@@ -93,5 +94,15 @@ class Resume_Profile_model extends CI_Model {
 	{
 		$this->db->from($this->table_name);
 		return $this->db->count_all_results();
+	}
+	
+	public function search($keywords) {
+		$this->db->where("MATCH (".$this->search_fields.") AGAINST ('$keywords')", NULL, FALSE);
+		return $this -> db -> get($this->table_name);
+	}
+	
+	//not used.
+	public function browse($keyword) {
+		return $this->db->query("SELECT DISTINCT ('$keyword') FROM resume_profile");
 	}
 }

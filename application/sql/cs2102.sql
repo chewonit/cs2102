@@ -47,7 +47,7 @@ CREATE TABLE Resume_Profile (
         owner IN (SELECT u.email FROM Users u WHERE u.role = 'jobseeker')
     )
 );
-
+ALTER TABLE Resume_Profile ADD FULLTEXT (owner, address, description, work_history, edu_history);
 -- Company
 CREATE TABLE Company (
     company_reg_no VARCHAR(255) PRIMARY KEY,

@@ -35,7 +35,6 @@ class Search extends MY_Controller {
 		}
 		
 		$this -> load_view($data, $page);
-		
 	}
 	
 
@@ -55,15 +54,10 @@ class Search extends MY_Controller {
 
 		$data['search_query'] = $this->input->post('inputSearch');
 		
-		if($data['search_query'] == "") 
-		{
-			$data['search_results'] = $this -> jobs_model -> get();
-			
-		}
-		else 
-		{
-		
-			$data['search_results'] = $this -> jobs_model -> search($data['search_query']);
+		if($data['search_query'] == ""){
+			$data['search_results'] = $this -> resume_profile_model -> get();
+		}else{
+			$data['search_results'] = $this -> resume_profile_model -> search($data['search_query']);
 		}
 		
 		$this -> load_view($data, $page);
