@@ -31,8 +31,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						
 						<input type="hidden" name="inputEmail" value="<?php echo $user_info['email'] ?>">
 						
-						<button type="submit" class="btn btn-default">Submit</button>
+						
 				</div>
+				
+				<button type="submit" class="btn btn-default">Submit</button>
 				
 				<?php //if($join_success) : ?>
 				<!--<div class="alert alert-success alert-dismissible" role="alert">
