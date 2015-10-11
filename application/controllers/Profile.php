@@ -2,6 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profile extends MY_Controller {
+	
+	//private $data3 = array(
+	//	'profile_updated' => FALSE,
+	//);
 
 	public function index($id = null)
 	{
@@ -14,8 +18,8 @@ class Profile extends MY_Controller {
 			// if ( id is jobseeker )
 			// {
 			
-			$this->load_jobseeker_public();
-			return;
+			//$this->load_jobseeker_public();
+			//return;
 			
 			// } 
 			// else if ( id is company )
@@ -78,7 +82,7 @@ class Profile extends MY_Controller {
 	
 	public function update(){
 		//$data['owner'] = $this->db->query('SELECT owner FROM resume_profile');
-	//	$data['owner'] = $this -> resume_profile_model -> get('owner');
+		//$data['owner'] = $this -> resume_profile_model -> get('owner');
 		$email = $this->auth->get_info()->email;
 		
 		$data = array(
@@ -86,10 +90,40 @@ class Profile extends MY_Controller {
 		'description' => $this->input->post('inputProfileAbout'),
 		'edu_history' => $this->input->post('inputProfileEducation'),
 		'work_history' => $this->input->post('inputProfileWork')
-	);
-	$this -> resume_profile_model -> update($email,$data); 
-	$this -> index();
+		);
+		$this -> resume_profile_model -> update($email,$data); 
+		$this -> index();	
+	}
+	
+	public function updateCompanyProfile(){
+		//$email = $this->auth->get_info()->email;
+		$company_reg_no = $this->input->post('inputRegNo');
 		
+		$data2 = array(
+		'company_reg_no'=> $this->input->post('inputRegNo'),
+		'company_admin'=> $this->input->post('inputEmail'),
+		'company_name'=> $this->input->post('inputCompanyName'),
+		'location'=> $this->input->post('inputLocation'),
+		'description' => $this->input->post('inputDescription'),
+		);
+		$this -> company_model -> update($company_reg_no,$data2); 
+		
+		// The company profile has been submitted.
+		//$this->data3['profile_updated'] = TRUE;
+		
+		$this -> index();	
+	}
+	
+	private function get_user_info() {
+		$user_info = $this->auth->get_info();
+		return array (
+			'email' => $user_info->email,
+			'first_name' => ucwords($user_info->first_name),
+			'last_name' => ucwords($user_info->last_name),
+			'nationality' => ucwords($user_info->nationality),
+			'gender' => ucwords($user_info->gender),
+			'contact' => $user_info->contact,
+		);
 	}
 	
 	private function load_jobseeker_private() {
@@ -124,7 +158,14 @@ class Profile extends MY_Controller {
 		$this->check_page_files('/views/pages/' . $page . '.php');
 
 		$data['page_title'] = "Company Profile";
-
+		
+		$email = $this->auth->get_info()->email;
+		$data['user_info'] = $this->get_user_info();
+		$data['company_reg_no'] = $this->db->query("SELECT c.company_reg_no FROM company_employer c WHERE c.employer = '$email'");
+		$data['company_name'] = $this->db->query("SELECT c.company_name FROM company c, company_employer e WHERE e.employer = '$email' AND e.company_reg_no = c.company_reg_no");
+		$data['location'] = $this->db->query("SELECT c.location FROM company c, company_employer e WHERE e.employer = '$email' AND e.company_reg_no = c.company_reg_no");
+		$data['description'] = $this->db->query("SELECT c.description FROM company c, company_employer e WHERE e.employer = '$email' AND e.company_reg_no = c.company_reg_no");	
+		
 		$this->load_view($data, $page);
 	}
 	

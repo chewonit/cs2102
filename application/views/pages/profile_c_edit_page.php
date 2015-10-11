@@ -13,59 +13,64 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 	<div class="row">
-	
+		
 		<div id="dashboard-content" class="col-md-6">
 			
 			<section>
 			<?php $attributes = array('class' => 'form-horizontal'); ?>
-			<?php echo form_open('dashboard/', $attributes); ?>
+			<?php echo form_open('profile/updateCompanyProfile/', $attributes); ?>
 			<div class="form-group">
-				<label for="inputLoginEmail" class="col-sm-2 control-label">Email</label>
+				<label for="inputRegNo" class="col-sm-2 control-label">Registration No.</label>
 				<div class="col-sm-10">
-					<input type="email" class="form-control" id="inputLoginEmail" name="inputLoginEmail" placeholder="Email" readonly>
+					<?php foreach($company_reg_no->result() as $row) : ?>
+					<input type="text" class="form-control" id="inputRegNo" name="inputRegNo" placeholder="<?php echo $row->company_reg_no; ?>" readonly>
+					<?php endforeach ?>	
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputFirstName" class="col-sm-2 control-label">First Name</label>
+				<label for="inputCompanyName" class="col-sm-2 control-label">Company Name</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="inputFirstName" name="inputFirstName" placeholder="First Name" readonly>
+					<?php foreach($company_name->result() as $row2) : ?>
+					<input type="text" class="form-control" id="inputCompanyName" name="inputCompanyName" placeholder="<?php echo $row2->company_name; ?>" readonly>
+					<?php endforeach ?>	
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputLastName" class="col-sm-2 control-label">Last Name</label>
+				<label for="inputLocation" class="col-sm-2 control-label">Location</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="inputLastName" name="inputLastName" placeholder="Last Name" readonly>
-				</div>
-			</div>
-			<?php echo form_close(); ?>
-			</section>
-			
-			<section>
-			<?php $attributes = array('class' => 'form-horizontal', 'id' => 'chagePasswordForm'); ?>
-			<?php echo form_open('profile/', $attributes); ?>
-			<div class="form-group">
-				<label for="inputProfileAbout" class="col-sm-2 control-label">About</label>
-				<div class="col-sm-10">
-					<textarea class="form-control" id="inputProfileAbout" name="inputProfileAbout" rows="3" placeholder="About Yourself" required></textarea>
+					<?php foreach($location->result() as $row3) : ?>
+					<input type="text" class="form-control" id="inputLocation" name="inputLocation" rows="3" placeholder="Location" value="<?php echo $row3->location; ?>" required>
+					<?php endforeach ?>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputProfileEducation" class="col-sm-2 control-label">Education</label>
+				<label for="inputDescription" class="col-sm-2 control-label">Description</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" id="inputProfileEducation" name="inputProfileEducation" rows="3" placeholder="Education History" required></textarea>
+					<?php foreach($description->result() as $row4) : ?>
+					<input type="text" class="form-control" id="inputDescription" name="inputDescription" rows="3" placeholder="Description" value="<?php echo $row4->description; ?>" required>
+					<?php endforeach ?>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="inputProfileWork" class="col-sm-2 control-label">Work</label>
-				<div class="col-sm-10">
-					<textarea class="form-control" id="inputProfileWork" name="inputProfileWork" rows="3" placeholder="Job History" required></textarea>
-				</div>
-			</div>
+			<input type="hidden" name="inputEmail" value="<?php echo $user_info['email'] ?>">
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-default">Update</button>
 				</div>
 			</div>
+			
+				<?php //if ($profile_updated) : ?>
+					<!--<div class="alert alert-success alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4>Updated Successfully.</h4>
+					</div>
+				<?php //else : ?>
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4>Update Failed.</h4>
+						<?php //echo validation_errors(); ?>
+					</div>-->
+				<?php //endif ?>
+			
 			<?php echo form_close(); ?>
 			</section>
 		
