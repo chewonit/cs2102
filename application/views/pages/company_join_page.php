@@ -29,12 +29,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<?php endforeach ?>	
 						</select>
 						
-						<input type="hidden" name="inputEmail" value="<?php echo $user_info['email'] ?>">
-						
-						
+						<input type="hidden" name="inputEmail" value="<?php echo $user_info['email'] ?>">		
 				</div>
 				
+
 				<button type="submit" class="btn btn-default">Submit</button>
+				
+				<input type=button class="btn btn-default" onClick="parent.location='/cs2102/company/create/'" value='Create Company'>
 				
 				<?php //if($join_success) : ?>
 				<!--<div class="alert alert-success alert-dismissible" role="alert">

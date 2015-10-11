@@ -177,8 +177,58 @@ class Company extends MY_Controller {
 		$this->check_page_files('/views/pages/' . $page . '.php');
 
 		$data['page_title'] = "Create Company";
+		
+		$data['user_info'] = $this->get_user_info();
+	
+		$data1 = array(
+		'company_reg_no' => $this->input->post('inputRegNo'), 
+		'company_admin' => $this->input->post('inputEmail'), 
+		'company_name' => $this->input->post('inputCompanyName'), 
+		'location' => $this->input->post('inputLocation'),
+		'description' => $this->input->post('inputDescription')
+		);
+		
+		$data2 = array(
+		'employer' => $this->input->post('inputEmail'),
+		'company_reg_no' => $this->input->post('inputRegNo'),
+		'accepted' => 1
+		);
+		
+		// Check if company exists
+		/*$this->init_form_validation();
+		
+		if ($this->form_validation->run()) 
+		{
+			$this->company_model->insert($data1);
+			$this->company_employer_model->insert($data2);
+		}*/
+		
+		$company_reg_no = $this->input->post('inputRegNo');
+		$data['companyExist'] = $this->db->query("SELECT * FROM company c WHERE c.company_reg_no = '$company_reg_no'");
 
+		if (empty($data['companyExist']))
+		{
+			$this->company_model->insert($data1);
+			$this->company_employer_model->insert($data2);
+		}
+		
 		$this->load_view($data, $page);
+	}
+	
+	private function init_form_validation() {
+		$this->form_validation->set_rules('inputRegNo', 'Registration Number', 'trim|required|is_unique[company.company_reg_no]');
+		$this->form_validation->set_message('is_unique', 'The company has already been registered.');
+	}
+	
+	public function check_unique_regNo()
+	{
+		if ( $this->auth->check_unique_regNo($this->input->post('inputRegNo')) ) {
+			echo "true";
+		}
+		else
+		{
+			echo "false";
+		}
 	}
 	
 	/**
