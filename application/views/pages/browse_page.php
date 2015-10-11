@@ -172,8 +172,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</section>
 				<?php endforeach; ?>
+			<?php endif ?>
 		</div>
-		<?php endif ?>
 		
 	</div>
 </div>
