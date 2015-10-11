@@ -68,7 +68,7 @@ class Jobs_model extends CI_Model {
 				return $this -> db -> query("
 					SELECT j.job_id, j.company_reg_no, j.category_id, j.published, j.title, j.description, j.experience, j.skills, j.date_created, c.company_name, c.location 
 				FROM jobs j , company c 
-				WHERE c.company_reg_no=j.company_reg_no AND experience >3 AND experience <7 AND (j.title='$data' OR description = '$data')");
+				WHERE c.company_reg_no=j.company_reg_no AND experience >3 AND experience <7 AND (j.title='$data' OR j.description = '$data')");
 			}
 			else if ($exp == 4){
 				return $this -> db -> query("
