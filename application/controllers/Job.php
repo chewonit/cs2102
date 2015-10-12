@@ -5,15 +5,22 @@ class Job extends MY_Controller {
 
 	public function index($id = null)
 	{
+		
+		
 		if (is_null($id)) 
 		{
-			redirect("profile/");
+			//redirect("profile/");
 		}
 		
 		/*
 		 * Check if id is vaoid Job ID.
 		 */
 		$job = $this->jobs_model->get( $id )->result();
+		
+		$string = $_SERVER['REQUEST_URI'];
+		$code = explode ("/", $string );
+		$job = $code[3];
+		
 		
 		if ( count($job) != 1 ) 
 		{
@@ -104,8 +111,15 @@ class Job extends MY_Controller {
 		$page = 'job_read_page';
 
 		$this->check_page_files('/views/pages/' . $page . '.php');
-
+		
 		$data['page_title'] = "Job";
+		
+		$string = $_SERVER['REQUEST_URI'];
+		$code = explode ("/", $string );
+		$job = $code[3];
+		
+		$this->load->model('jobs_model');
+		$data['jobs_list'] = $this -> jobs_model -> read($job);
 
 		$this->load_view($data, $page);
 	}

@@ -90,7 +90,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-9">
-								<h4 class="job-item-header"><a href="#"><?php echo $row->title; ?></a></h4>
+								<h4 class="job-item-header"><a href="job/<?php echo $row->job_id?>"><?php echo $row->title; ?></a></h4>
 								<h5>
 								<font size="2.2">Company Name: 
 								<?php echo $row->company_name; ?></h5>
@@ -142,8 +142,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<div class="row">
 							<div class="col-md-12 job-item-btns">
-								<button class="btn btn-default btn-sm">More Info</button>
-								<button class="btn btn-default btn-sm btn-success">Apply</button>
+								<button class="btn btn-default btn-sm" onclick="document.location.href='job/<?php echo $row->job_id?>'">More Info</button>
+								<?php if($is_login) : ?>
+								<button type="submit" class="btn btn-default btn-sm btn-success">Apply</button> 
+								<?php endif ?>
 							</div>
 						</div>
 					</div>

@@ -113,16 +113,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<?php else : ?>						
 									
 			<?php foreach($browse_query->result() as $row): ?>
-				<section class="job-item">
-					<div class="container-fluid">
+				<section id="jobID" class="job-item"  >
+					<div class="container-fluid" >
 						<div class="row">
 							<div class="col-md-9">
-								<h4 class="job-item-header"><a href="#"><?php echo $row->title; ?></a></h4>
+								<h4 class="job-item-header"><a href="job/<?php echo $row->job_id?>"><?php echo $row->title; ?></a></h4>
 								<h5><?php echo $row->company_name; ?></h5>
 							</div>
 							<div class="col-md-3 text-right">
 								<h5><?php echo $row->location; ?></h5>
 								<h6><?php echo $row->date_created ?></h6>
+								<h6>Job ID: <?php echo $row->job_id ?></h6>
 							</div>
 						</div>
 						<div class="row">
@@ -162,13 +163,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<div class="row">
 							<div class="col-md-12 job-item-btns">
-								<button class="btn btn-default btn-sm">More Info</button>
+								
+								<button class="btn btn-default btn-sm" onclick="document.location.href='job/<?php echo $row->job_id?>'">More Info</button>
 								
 								<?php if($is_login) : ?>
 								<button type="submit" class="btn btn-default btn-sm btn-success">Apply</button> 
 								<?php endif ?>
 							</div>
 						</div>
+						</tr>
 					</div>
 				</section>
 				<?php endforeach; ?>

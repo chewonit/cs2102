@@ -34,6 +34,13 @@ class Jobs_model extends CI_Model {
 		}
 		return $this -> db -> get($this->tables);
 	}
+	
+	public function read($jobid) {
+		return $this ->db->query("SELECT * 
+		FROM jobs j, company c, job_category jc
+		WHERE job_id=$jobid AND c.company_reg_no=j.company_reg_no AND j.category_id=jc.category_id");
+		
+	}
 	public function search($data,$cat,$exp)
 	{
 		/**
