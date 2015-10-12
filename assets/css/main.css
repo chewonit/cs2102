@@ -143,11 +143,20 @@ section.job-item {
 
 /* Company Admin styles
 -------------------------------------------------- */
+.company-employer-link-wrapper {
+	color: inherit !important;
+	text-decoration: none !important;
+}
+.company-employer-link-wrapper>section:hover {
+    border: solid 1px #EEEEEE;
+    background: #F1F1F1;
+}
 section.company-employer-item {
 	background: #FAFAFA;
 	border: solid 1px #D5D5D5;
 	margin: 0 0 1em 0;
     padding: 1em 1em;
+	text-decoration: none;
 }
 section.company-employer-item h5 , section.company-employer-item  h6{
 	margin-top: 0;
