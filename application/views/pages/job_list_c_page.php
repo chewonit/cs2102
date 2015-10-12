@@ -16,6 +16,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 		<div class="col-md-12"> 
 			<h3><?php echo ucfirst($company_name) ;?></h3>
+			<a href="<?php echo base_url('job/create/'); ?>">
+				<button class="btn btn-default btn-primary">Create Job</button>
+			</a>
+			<br /><br />
 		
 			<?php foreach($job_list as $row): ?>
 			
@@ -38,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="row">
 							<div class="col-md-12">
 								<?php 
-									$str = ucwords($row->description);
+									$str = $row->job_description;
 									if (strlen($str) > 300) {
 										$str = substr($str, 0, 297) . '...';
 									}

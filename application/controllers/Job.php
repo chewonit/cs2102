@@ -153,6 +153,8 @@ class Job extends MY_Controller {
 					$this->check_page_files('/views/pages/' . $page . '.php');
 
 					$data['page_title'] = "Create Job";
+					$data['job_details'] = $result[0];
+					$data['job_categories'] = $this->job_category_model->get()->result();
 
 					$this->load_view($data, $page);
 					return;
@@ -173,6 +175,60 @@ class Job extends MY_Controller {
 		{
 			redirect("login");
 			return;
+		}
+	}
+	
+	/**
+	 * Creates a job entry
+	 *
+	 * @access	public
+	 * @return	
+	 */
+	public function create_job() {
+		
+		$this->form_validation->set_rules('inputTitle', 'Title', 'trim|required');
+		$this->form_validation->set_rules('inputDescription', 'Description', 'trim|required');
+		$this->form_validation->set_rules('hiddenRegNo', 'Company Reg. No', 'trim|required');
+		$this->form_validation->set_rules('inputPublished', 'Published', 'trim|required');
+		$this->form_validation->set_rules('inputExperience', 'Experience', 'trim|required');
+		$this->form_validation->set_rules('inputCategory', 'Category', 'trim|required');
+		
+		$create_user_data = array(
+			'company_reg_no' => $this->input->post('hiddenRegNo'),
+			'title' => $this->input->post('inputTitle'),
+			'description' => $this->input->post('inputDescription'),
+			'published' => $this->input->post('inputPublished'),
+			'experience' => $this->input->post('inputExperience'),
+			'skills' => strtolower($this->input->post('inputSkills')),
+			'category_id' => $this->input->post('inputCategory')
+		);
+		
+		if ( $this->form_validation->run() ) 
+		{
+			if ( $this->jobs_model->insert( $create_user_data ) )
+			{
+				redirect("job_list/");
+			}
+			else 
+			{
+				$page = 'job_error_page';
+
+				$this->check_page_files('/views/pages/' . $page . '.php');
+
+				$data['page_title'] = "Could not create job entry";
+
+				$this->load_view($data, $page);
+			}
+		}
+		else
+		{
+			$page = 'job_error_page';
+
+			$this->check_page_files('/views/pages/' . $page . '.php');
+
+			$data['page_title'] = "Could not create job entry";
+
+			$this->load_view($data, $page);
 		}
 	}
 	
@@ -201,14 +257,8 @@ class Job extends MY_Controller {
 			'category_id' => $this->input->post('inputCategory')
 		);
 		
-		// The sign up form has been submitted.
-		$this->update_data['submitted'] = TRUE;
-		
 		if ( $this->form_validation->run() ) 
 		{
-			// Form validation was successful.
-			$this->data['form_validation'] = TRUE;
-			
 			if ( $this->jobs_model->update( $this->input->post('hiddenJobId'),
 											$this->input->post('hiddenRegNo'),
 											$create_user_data) ) 
@@ -217,9 +267,6 @@ class Job extends MY_Controller {
 			}
 			else 
 			{
-				
-				echo validation_errors();
-				return;
 				$page = 'job_error_page';
 
 				$this->check_page_files('/views/pages/' . $page . '.php');
@@ -231,7 +278,6 @@ class Job extends MY_Controller {
 		}
 		else
 		{
-			echo "sadsadsa";
 			$page = 'job_error_page';
 
 			$this->check_page_files('/views/pages/' . $page . '.php');

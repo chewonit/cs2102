@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="form-group">
 					<label for="inputTitle" class="col-sm-2 control-label">Title</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="inputTitle" name="inputTitle" placeholder="Location" value="<?php echo ucwords($job_details->title); ?>" required>
+						<input type="text" class="form-control" id="inputTitle" name="inputTitle" placeholder="Title" value="<?php echo ucwords($job_details->title); ?>" required>
 					</div>
 				</div>
 				<div class="form-group">
@@ -73,13 +73,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="form-group">
 				<label for="inputExperience" class="col-sm-2 control-label">Experience (years)</label>
 				<div class="col-sm-10">
-					<input type="number" class="form-control" id="inputExperience" name="inputExperience" placeholder="Location" value="<?php echo $job_details->experience; ?>" required>
+					<input type="number" class="form-control" id="inputExperience" name="inputExperience" placeholder="Experience" value="<?php echo $job_details->experience; ?>" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputSkills" class="col-sm-2 control-label">Skills</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="inputSkills" name="inputSkills" placeholder="Location" value="<?php echo ucwords($job_details->skills); ?>">
+					<input type="text" class="form-control" id="inputSkills" name="inputSkills" placeholder="Skills" value="<?php echo ucwords($job_details->skills); ?>">
 				</div>
 			</div>
 			<div class="form-group">
