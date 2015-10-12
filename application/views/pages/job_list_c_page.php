@@ -39,11 +39,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</h4>
 								<h5><?php echo ucwords($row->company_name); ?></h5>
 							</div>
-							<div class="col-md-3 text-right">
+							<div class="col-md-3 text-right-md">
 								<h5><?php echo ucwords($row->location); ?></h5>
 								<h6><?php echo $row->date_created ?></h6>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h5>Experience: <?php echo $row->experience; ?> years</h5>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h5>Skills: <?php echo $row->skills; ?></h5>
+							</div>
+						</div>
+						
 						<div class="row">
 							<div class="col-md-12">
 								<?php 
@@ -53,24 +64,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									}
 									echo $str;
 								?>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-							<font size="2.2">Experience: 
-								<?php echo $row->experience; ?> years</font>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-							<font size="2.2">Skills:
-								<?php 
-									$str = $row->skills;
-									if (strlen($str) > 300) {
-										$str = substr($str, 0, 297) . '...';
-									}
-									echo $str;
-								?></font>
 							</div>
 						</div>
 						<div class="row">

@@ -92,19 +92,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="form-group">
 				<label class="col-sm-1 control-label">Description</label>
 				<div class="col-sm-11">
-					<h5><?php echo ucwords($user_profile->description) ?></h5>
+					<h5><?php echo $user_profile->description ?></h5>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-1 control-label">Work History</label>
 				<div class="col-sm-11">
-					<h5><?php echo ucwords($user_profile->work_history) ?></h5>
+					<h5><?php echo $user_profile->work_history ?></h5>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-1 control-label">Edu History</label>
 				<div class="col-sm-11">
-					<h5><?php echo ucwords($user_profile->edu_history) ?></h5>
+					<h5><?php echo $user_profile->edu_history ?></h5>
 				</div>
 			</div>
 			<?php echo form_close(); ?>

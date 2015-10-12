@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="form-group">
 				<label class="col-sm-1 control-label">Description</label>
 				<div class="col-sm-10">
-					<h5><?php echo ucwords($company_profile->description) ?></h5>
+					<h5><?php echo $company_profile->description ?></h5>
 				</div>
 			</div>
 			
