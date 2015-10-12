@@ -59,8 +59,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="row">
 					<div class="col-md-12 job-item-btns">
 																
-						<?php if($is_jobseeker) : ?>
+						<?php if($show_apply) : ?>
+						<?php echo form_open('job/apply_job/'); ?>
+						<input type="hidden" name="hiddenJobId" value="<?php echo $row->job_id; ?>">
+						<input type="hidden" name="hiddenApplicant" value="<?php echo $user_email; ?>">
 						<button type="submit" class="btn btn-default btn-sm btn-success">Apply</button> 
+						<?php echo form_close(); ?>
 						<?php endif ?>
 					</div>
 				</div>

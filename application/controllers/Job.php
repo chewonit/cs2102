@@ -46,19 +46,19 @@ class Job extends MY_Controller {
 				}
 				else
 				{
-					$this->load_job_read();
+					$this->load_job_read($job[0]);
 					return;
 				}
 			}
 			else
 			{
-				$this->load_job_read();
+				$this->load_job_read($job[0]);
 				return;
 			}
 		}
 		else
 		{
-			$this->load_job_read();
+			$this->load_job_read($job[0]);
 			return;
 		}
 	}
@@ -109,7 +109,7 @@ class Job extends MY_Controller {
 	 * @access	private
 	 * @return	
 	 */
-	private function load_job_read() {
+	private function load_job_read($job) {
 		
 		$page = 'job_read_page';
 
@@ -117,12 +117,26 @@ class Job extends MY_Controller {
 		
 		$data['page_title'] = "Job";
 		
-		$string = $_SERVER['REQUEST_URI'];
-		$code = explode ("/", $string );
-		$job = $code[3];
-		
 		$this->load->model('jobs_model');
-		$data['jobs_list'] = $this -> jobs_model -> read($job);
+		$data['jobs_list'] = $this -> jobs_model -> read($job->job_id);
+		
+		$email = $this->auth->get_info()->email;
+		$data['user_email'] = $email;
+		
+		$data['show_apply'] = false;
+		if( $this->is_loggedin() && $this->is_jobseeker() ) 
+		{
+			$data['show_apply'] = true;
+			
+			$result = $this->job_application_model->get($email, $job->job_id)->result();
+			if ( count($result) == 1 ) 
+			{
+				/*
+				 * Jobseeker has already applied for this job
+				 */
+				$data['show_apply'] = false;
+			}
+		}
 
 		$this->load_view($data, $page);
 	}
@@ -324,6 +338,26 @@ class Job extends MY_Controller {
 		
 		if ( $this->job_application_model->delete( $this->input->post('hiddenApplicant2'),
 										$this->input->post('hiddenJobId2') ) ) 
+		{
+			
+		}
+		redirect("job_list/");
+	}
+	
+	/**
+	 * Add job application entry
+	 *
+	 * @access	public
+	 * @return	
+	 */
+	public function apply_job() {
+		
+		$create_application_data = array(
+			'applicant' => $this->input->post('hiddenApplicant'),
+			'job_id' => $this->input->post('hiddenJobId')
+		);
+		
+		if ( $this->job_application_model->insert( $create_application_data) )
 		{
 			
 		}
