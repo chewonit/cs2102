@@ -63,13 +63,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</div>
 			</div>
+			</div>
 			
 			<?php echo form_close(); ?>
 			</section>
-		
-		</div>
-		
-		<div class="col-md-6">
 		
 		</div>
 	</div>

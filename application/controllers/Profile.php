@@ -32,7 +32,7 @@ class Profile extends MY_Controller {
 			
 			if ( count( $result ) == 1 ) 
 			{
-				$this->load_company_public();
+				$this->load_company_public($result[0]);
 				return;
 			}
 			
@@ -194,13 +194,14 @@ class Profile extends MY_Controller {
 	 * @access	private
 	 * @return	
 	 */
-	private function load_company_public() {
+	private function load_company_public($company) {
 		
 		$page = 'profile_c_read_page';
 
 		$this->check_page_files('/views/pages/' . $page . '.php');
 
-		$data['page_title'] = "Company Profile";
+		$data['page_title'] = "Profile of " . ucwords($company->company_name) . " Company";
+		$data['company_profile'] = $company;
 
 		$this->load_view($data, $page);
 	}
