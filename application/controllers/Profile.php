@@ -61,7 +61,7 @@ class Profile extends MY_Controller {
 				
 				if ( count($result) == 1 ) 
 				{
-					$this->load_company_private();
+					$this->load_company_private($result[0]);
 					return;
 				}
 				else
@@ -103,34 +103,17 @@ class Profile extends MY_Controller {
 	}
 	
 	public function updateCompanyProfile(){
-		//$email = $this->auth->get_info()->email;
-		$company_reg_no = $this->input->post('inputRegNo');
-		
-		$data2 = array(
-		'company_reg_no'=> $this->input->post('inputRegNo'),
-		'company_admin'=> $this->input->post('inputEmail'),
-		'company_name'=> $this->input->post('inputCompanyName'),
-		'location'=> $this->input->post('inputLocation'),
-		'description' => $this->input->post('inputDescription'),
-		);
-		$this -> company_model -> update($company_reg_no,$data2); 
-		
-		// The company profile has been submitted.
-		//$this->data3['profile_updated'] = TRUE;
-		
-		$this -> index();	
-	}
 	
-	private function get_user_info() {
-		$user_info = $this->auth->get_info();
-		return array (
-			'email' => $user_info->email,
-			'first_name' => ucwords($user_info->first_name),
-			'last_name' => ucwords($user_info->last_name),
-			'nationality' => ucwords($user_info->nationality),
-			'gender' => ucwords($user_info->gender),
-			'contact' => $user_info->contact,
+		$company_reg_no = $this->input->post('hiddenRegNo');
+		
+		$data = array(
+			'company_name'=> $this->input->post('hiddenCompanyName'),
+			'location'=> $this->input->post('inputLocation'),
+			'description' => $this->input->post('inputDescription'),
 		);
+		$this -> company_model -> update($company_reg_no, $data); 
+		
+		redirect('profile/');
 	}
 	
 	private function load_jobseeker_private() {
@@ -158,7 +141,7 @@ class Profile extends MY_Controller {
 	 * @access	private
 	 * @return	
 	 */
-	private function load_company_private() {
+	private function load_company_private($company_employer) {
 		
 		$page = 'profile_c_edit_page';
 
@@ -167,11 +150,9 @@ class Profile extends MY_Controller {
 		$data['page_title'] = "Company Profile";
 		
 		$email = $this->auth->get_info()->email;
-		$data['user_info'] = $this->get_user_info();
-		$data['company_reg_no'] = $this->db->query("SELECT c.company_reg_no FROM company_employer c WHERE c.employer = '$email'");
-		$data['company_name'] = $this->db->query("SELECT c.company_name FROM company c, company_employer e WHERE e.employer = '$email' AND e.company_reg_no = c.company_reg_no");
-		$data['location'] = $this->db->query("SELECT c.location FROM company c, company_employer e WHERE e.employer = '$email' AND e.company_reg_no = c.company_reg_no");
-		$data['description'] = $this->db->query("SELECT c.description FROM company c, company_employer e WHERE e.employer = '$email' AND e.company_reg_no = c.company_reg_no");	
+		
+		$company_reg_no = $company_employer->company_reg_no;
+		$data['company_profile'] = $this->company_model->get($company_reg_no)->result()[0];
 		
 		$this->load_view($data, $page);
 	}
