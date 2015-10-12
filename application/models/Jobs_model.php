@@ -149,6 +149,16 @@ class Jobs_model extends CI_Model {
 		return $this -> db -> delete($this->table_name);
 	}
 	
+	public function get_job_list($company_reg_no) 
+	{
+		$this->db->select('*');
+		$this->db->from('jobs AS j'); 
+		$this->db->join('company c', 'c.company_reg_no = j.company_reg_no');
+		$this->db->where('j.company_reg_no',$company_reg_no);
+		$this->db->order_by('j.title','asc');
+		return $this->db->get(); 
+	}
+	
 	function get_datatables()
 	{
 		$this->_get_datatables_query();

@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <div class="container">
-<?php $email = $_SESSION['email']; ?>
 
 	<div class="row">
 		<div class="col-md-12">
@@ -18,32 +17,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-md-12"> 
 			<h3><?php echo ucfirst($company_name) ;?></h3>
 		
-			<?php $sql = "SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created, 
-					c.company_name, c.location, 
-					u.email, e.employer
-					FROM jobs j , company c , users u, company_employer e
-					WHERE e.employer= ? AND c.company_reg_no=j.company_reg_no AND e.company_reg_no=c.company_reg_no 
-					GROUP BY j.date_created DESC" ; ?>
-					
-			<?php $query = $this->db->query($sql, array($email)) ; ?>
-					
-			<?php foreach($query->result() as $row): ?>
+			<?php foreach($job_list as $row): ?>
+			
 				<section class="job-item">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-9">
-								<h4 class="job-item-header"><a href="#"><?php echo $row->title; ?></a></h4>
-								<h5><?php echo $row->company_name; ?></h5>
+								<h4 class="job-item-header">
+									<a href="<?php echo base_url('job/'.$row->job_id.'/') ?>">
+										<?php echo ucwords($row->title); ?>
+									</a>
+								</h4>
+								<h5><?php echo ucwords($row->company_name); ?></h5>
 							</div>
 							<div class="col-md-3 text-right">
-								<h5><?php echo $row->location; ?></h5>
+								<h5><?php echo ucwords($row->location); ?></h5>
 								<h6><?php echo $row->date_created ?></h6>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-12">
 								<?php 
-									$str = $row->description;
+									$str = ucwords($row->description);
 									if (strlen($str) > 300) {
 										$str = substr($str, 0, 297) . '...';
 									}
@@ -54,13 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="row">
 							<div class="col-md-12">
 							<font size="2.2">Experience: 
-								<?php 
-									$str = $row->experience;
-									if (strlen($str) > 300) {
-										$str = substr($str, 0, 297) . '...';
-									}
-									echo $str;
-								?> years</font>
+								<?php echo $row->experience; ?> years</font>
 							</div>
 						</div>
 						<div class="row">
@@ -77,7 +66,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<div class="row">
 							<div class="col-md-12 job-item-btns">
-								<button class="btn btn-default btn-sm">More Info</button>
+								<a href="<?php echo base_url('job/'.$row->job_id.'/') ?>">
+									<button class="btn btn-default btn-sm">More Info</button>
+								</a>
 							</div>
 						</div>
 					</div>

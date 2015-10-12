@@ -76,6 +76,8 @@ class Job_List extends MY_Controller {
 		
 		$data['company_name'] = $this->company_model->get( $result->company_reg_no )->result()[0]->company_name;
 		
+		$data['job_list'] = $this->jobs_model->get_job_list( $result->company_reg_no )->result();
+		
 		$this->load_view($data, $page);
 	}
 	

@@ -13,18 +13,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 	<div class="row">
-	<?php if ( count($resume_profile->result()) == 0) : ?>
-
-	<h4>No profile found.</h4>
 	
+	<?php if ( count($resume_profile->result()) == 0) : ?>
+	<div class="col-md-12">
+		<h4>No profile found.</h4>
+	</div>
 	<?php else : ?>
 	
 	<div class="job-list">
 		<?php foreach($resume_profile->result() as $row): ?>
-		<?php endforeach; ?>
-	</div>
 	
-	<?php endif ?>
 		<div id="dashboard-content" class="col-md-6">
 			
 			<section>
@@ -99,7 +97,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			<?php echo form_close(); ?>
 			</section>
+		</div>
+		<?php endforeach; ?>
 		
+	<?php endif ?>
 	</div>
 
 </div>

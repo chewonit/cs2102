@@ -17,10 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div class="row">
 	
-		<div id="dashboard-content" class="col-md-6">
-		
-		</div>
-		<div class="col-md-6">
+		<div class="col-md-12">
 		<?php $sql = "SELECT first_name, last_name FROM users u WHERE u.email= ?" ; ?>
 		<?php $query = $this->db->query($sql, array($email)) ; ?>
 		

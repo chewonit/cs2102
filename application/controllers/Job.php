@@ -9,18 +9,13 @@ class Job extends MY_Controller {
 		
 		if (is_null($id)) 
 		{
-			//redirect("profile/");
+			redirect("profile/");
 		}
 		
 		/*
 		 * Check if id is vaoid Job ID.
 		 */
 		$job = $this->jobs_model->get( $id )->result();
-		
-		$string = $_SERVER['REQUEST_URI'];
-		$code = explode ("/", $string );
-		$job = $code[3];
-		
 		
 		if ( count($job) != 1 ) 
 		{
