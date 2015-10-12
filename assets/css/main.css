@@ -168,3 +168,9 @@ section.company-employer-item h5 , section.company-employer-item  h6{
 }
 /* End Company Admin styles
 -------------------------------------------------- */
+
+
+.profile-public-field {
+	padding-top: 9px;
+	margin: 0;
+}

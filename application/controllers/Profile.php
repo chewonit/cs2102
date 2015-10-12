@@ -11,39 +11,46 @@ class Profile extends MY_Controller {
 	{
 		if (!is_null($id)) 
 		{
+			$id = rawurldecode($id);
+			
 			/*
-			 * Check if id is jobseeker ID or company.
+			 * Check if id is jobseeker ID.
 			 */
+			$role = 'jobseeker';
+			$result = $this->users_model->get_by_email_role($id, $role)->result();
 			
-			// if ( id is jobseeker )
-			// {
+			if ( count( $result ) == 1 )
+			{
+				$this->load_jobseeker_public($result[0]);
+				return;
+			} 
 			
-			//$this->load_jobseeker_public();
-			//return;
+			/*
+			 * Check if id is company ID.
+			 */
+			$result = $this->company_model->get($id)->result();
 			
-			// } 
-			// else if ( id is company )
-			// {
+			if ( count( $result ) == 1 ) 
+			{
+				$this->load_company_public();
+				return;
+			}
 			
-			//	$this->load_company_public();
-			//	return;
-			// }
-			// 
-			// else 
-			// {
-			// 		redirect("dashboard/");
-			// }
-			
+			/*
+			 * Invalid Profile ID
+			 */
+			redirect("dashboard/");
 		}
+		
 		if ($this->is_loggedin()) 
 		{
-			if ($this->is_jobseeker()) {
-		
+			if ($this->is_jobseeker()) 
+			{
 				$this->load_jobseeker_private();
 				return;
 			}
-			else if ($this->is_employer()) {
-			
+			else if ($this->is_employer()) 
+			{
 				/*
 				 * Check if employer has joined a company.
 				 * Otherwise redirect to join company page.
@@ -175,13 +182,18 @@ class Profile extends MY_Controller {
 	 * @access	private
 	 * @return	
 	 */
-	private function load_jobseeker_public() {
+	private function load_jobseeker_public($user) {
 		
 		$page = 'profile_j_read_page';
 
 		$this->check_page_files('/views/pages/' . $page . '.php');
+		
+		$profile = $this->resume_profile_model->get( $user->email )->result();
+		$profile = count($profile) == 1 ? $profile : NULL;
 
-		$data['page_title'] = "Profile";
+		$data['page_title'] = "Profile of " . $user->email;
+		$data['user_data'] = $user;
+		$data['user_profile'] = $profile[0];
 
 		$this->load_view($data, $page);
 	}

@@ -93,7 +93,6 @@ class Users_model extends CI_Model {
 	 */
     public function get_by_email_role($email, $role)
     {
-		$this->db->select('email, role');
 		$this->db->where('email', $email);
 		$this->db->where('role', $role);
 		$this->db->limit(1);
