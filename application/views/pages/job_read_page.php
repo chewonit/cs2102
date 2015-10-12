@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="container-fluid" >
 				<div class="row">
 					<div class="col-md-9">
-						<h4 class="job-item-header"><a href="#"><?php echo $row->title; ?></a></h4>
+						<h4 class="job-item-header"><?php echo $row->title; ?></h4>
 						<h5><?php echo $row->company_name; ?></h5>
 						<h5><?php echo $row->name; ?></h5>
 					</div>
@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="row">
 					<div class="col-md-12 job-item-btns">
 																
-						<?php if($is_login) : ?>
+						<?php if($is_jobseeker) : ?>
 						<button type="submit" class="btn btn-default btn-sm btn-success">Apply</button> 
 						<?php endif ?>
 					</div>

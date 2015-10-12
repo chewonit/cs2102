@@ -56,7 +56,10 @@ class Job_List extends MY_Controller {
 		$this->check_page_files('/views/pages/' . $page . '.php');
 
 		$data['page_title'] = "Job List";
-
+		
+		$email = $this->auth->get_info()->email;
+		$data['job_list'] = $this->jobs_model->get_job_list_applicant( $email )->result();
+		
 		$this->load_view($data, $page);
 	}
 	
@@ -76,7 +79,7 @@ class Job_List extends MY_Controller {
 		
 		$data['company_name'] = $this->company_model->get( $result->company_reg_no )->result()[0]->company_name;
 		
-		$data['job_list'] = $this->jobs_model->get_job_list( $result->company_reg_no )->result();
+		$data['job_list'] = $this->jobs_model->get_job_list_company( $result->company_reg_no )->result();
 		
 		$this->load_view($data, $page);
 	}

@@ -314,4 +314,19 @@ class Job extends MY_Controller {
 		
 	}
 	
+	/**
+	 * Delete job application entry
+	 *
+	 * @access	public
+	 * @return	
+	 */
+	public function delete_application() {
+		
+		if ( $this->job_application_model->delete( $this->input->post('hiddenApplicant2'),
+										$this->input->post('hiddenJobId2') ) ) 
+		{
+			
+		}
+		redirect("job_list/");
+	}
 }

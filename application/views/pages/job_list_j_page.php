@@ -14,35 +14,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</div>
-
-	<div class="row">
 	
+	<?php if( count($job_list) == 0 ) : ?>
+	<div class="row">
 		<div class="col-md-12">
-		<?php $sql = "SELECT first_name, last_name FROM users u WHERE u.email= ?" ; ?>
-		<?php $query = $this->db->query($sql, array($email)) ; ?>
-		
-		<?php foreach($query->result() as $data) ;?>
-			<h3>Displaying ALL Jobs Applied by: <?php echo $data->last_name ;?>, <?php echo $data->first_name;?></h3>
+			<h4>No applications.</h4>
 		</div>
 	</div>
+	<?php endif ?>
 	
-	
-	
-	<?php $sql = "SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created, 
-	        c.company_name, c.location, 
-			u.email, ja.applicant, ja.job_id
-			FROM jobs j , company c , users u, job_application ja
-			WHERE ja.applicant= ? AND c.company_reg_no=j.company_reg_no AND ja.job_id=j.job_id
-			GROUP BY j.date_created DESC" ; ?>
+	<div class="row">
+		<div class="col-md-12">
 			
-	<?php $query = $this->db->query($sql, array($email)) ; ?>
-			
-			<?php foreach($query->result() as $row): ?>
+			<?php foreach($job_list as $row): ?>
 				<section class="job-item">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-9">
-								<h4 class="job-item-header"><a href="#"><?php echo $row->title; ?></a></h4>
+								<h4 class="job-item-header">
+									<a href="<?php echo base_url("job/$row->job_id/") ?>">
+										<?php echo $row->title; ?>
+									</a>
+								</h4>
 								<h5><?php echo $row->company_name; ?></h5>
 							</div>
 							<div class="col-md-3 text-right">
@@ -53,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="row">
 							<div class="col-md-12">
 								<?php 
-									$str = $row->description;
+									$str = $row->job_description;
 									if (strlen($str) > 300) {
 										$str = substr($str, 0, 297) . '...';
 									}
@@ -87,12 +80,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<div class="row">
 							<div class="col-md-12 job-item-btns">
-								<button class="btn btn-default btn-sm">More Info</button>
-								<button class="btn btn-default btn-sm btn-success">Edit</button>
+								<a href="<?php echo base_url("job/$row->job_id/") ?>">
+									<button class="btn btn-default btn-sm">More Info</button>
+								</a>
+								<button type="button" class="btn btn-default btn-danger" 
+								onClick="delete_application('<?php echo $row->job_id; ?>', '<?php echo $row->applicant; ?>')">Delete Application</button>
 							</div>
 						</div>
 					</div>
 				</section>
-				<?php endforeach; ?>
+			<?php endforeach; ?>
 	
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		function delete_application(job_id, applicant) {
+		
+			jq('<form action="<?php echo base_url("job/delete_application/") ?>" method="POST">' + 
+			'<input type="hidden" name="hiddenJobId2" value="' + job_id + '">' +
+			'<input type="hidden" name="hiddenApplicant2" value="' + applicant + '">' +
+			'</form>').submit();
+		}
+	</script>
+
 </div>

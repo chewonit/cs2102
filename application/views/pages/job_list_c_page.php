@@ -11,6 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</div>
+	
 
 	<div class="row">
 	
@@ -20,7 +21,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<button class="btn btn-default btn-primary">Create Job</button>
 			</a>
 			<br /><br />
-		
+
+			<?php if( count($job_list) == 0 ) : ?>
+				<h4>No jobs.</h4>
+			<?php endif ?>
+
 			<?php foreach($job_list as $row): ?>
 			
 				<section class="job-item">
