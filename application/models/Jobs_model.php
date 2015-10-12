@@ -32,7 +32,7 @@ class Jobs_model extends CI_Model {
 		if ( !is_null($company_reg_no )) {
 			$this -> db -> where('company_reg_no', $company_reg_no);
 		}
-		return $this -> db -> get($this->tables);
+		return $this -> db -> get($this->table_name);
 	}
 	
 	public function read($jobid) {

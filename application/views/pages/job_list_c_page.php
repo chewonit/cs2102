@@ -15,28 +15,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div class="row">
 	
-		<div id="dashboard-content" class="col-md-6">
-		</div>
-		<div class="col-md-6"> 
-		<?php $sql = "SELECT c.company_name FROM company c, company_employer ce WHERE ce.employer= ? AND ce.company_reg_no=c.company_reg_no" ; ?>
-		<?php $query = $this->db->query($sql, array($email)) ; ?>
+		<div class="col-md-12"> 
+			<h3><?php echo ucfirst($company_name) ;?></h3>
 		
-		<?php foreach($query->result() as $data) ;?>
-			<h3>Displaying ALL Jobs Created by: 
-			<BR><?php echo $data->company_name ;?></h3>
-		</div>
-	</div>
-	
-	
-	<?php $sql = "SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created, 
-	        c.company_name, c.location, 
-			u.email, e.employer
-			FROM jobs j , company c , users u, company_employer e
-			WHERE e.employer= ? AND c.company_reg_no=j.company_reg_no AND e.company_reg_no=c.company_reg_no 
-			GROUP BY j.date_created DESC" ; ?>
-			
-	<?php $query = $this->db->query($sql, array($email)) ; ?>
-			
+			<?php $sql = "SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created, 
+					c.company_name, c.location, 
+					u.email, e.employer
+					FROM jobs j , company c , users u, company_employer e
+					WHERE e.employer= ? AND c.company_reg_no=j.company_reg_no AND e.company_reg_no=c.company_reg_no 
+					GROUP BY j.date_created DESC" ; ?>
+					
+			<?php $query = $this->db->query($sql, array($email)) ; ?>
+					
 			<?php foreach($query->result() as $row): ?>
 				<section class="job-item">
 					<div class="container-fluid">
@@ -92,6 +82,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 					</div>
 				</section>
-				<?php endforeach; ?>
+			<?php endforeach; ?>
+		
+		</div>
+		
+	</div>
 
 </div>

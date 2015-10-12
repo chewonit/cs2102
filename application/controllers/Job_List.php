@@ -24,7 +24,7 @@ class Job_List extends MY_Controller {
 				
 				if ( count($result) == 1 ) 
 				{
-					$this->load_company_job_list( $result );
+					$this->load_company_job_list( $result[0] );
 					return;
 				}
 				else
@@ -73,7 +73,9 @@ class Job_List extends MY_Controller {
 		$this->check_page_files('/views/pages/' . $page . '.php');
 
 		$data['page_title'] = "Company Job List";
-
+		
+		$data['company_name'] = $this->company_model->get( $result->company_reg_no )->result()[0]->company_name;
+		
 		$this->load_view($data, $page);
 	}
 	
