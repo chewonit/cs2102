@@ -77,5 +77,6 @@ $route['job_list'] = 'job_list';
 $route['company'] = 'company';
 $route['job'] = 'job';
 $route['job/create'] = 'job/create';
+$route['job/update'] = 'job/update';
 $route['job/(:any)'] = 'job/index/$1';
 $route['translate_uri_dashes'] = FALSE;

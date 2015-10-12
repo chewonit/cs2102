@@ -14,22 +14,91 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div class="row">
 	
+		<?php $attributes = array('class' => 'form-horizontal'); ?>
+		<?php echo form_open('job/update/', $attributes); ?>
+	
 		<div id="dashboard-content" class="col-md-6">
-			Edit Job fields
+			
+			<section>
+				<div class="form-group">
+					<label for="inputTitle" class="col-sm-2 control-label">Title</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="inputTitle" name="inputTitle" placeholder="Location" value="<?php echo ucwords($job_details->title); ?>" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputDescription" class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" id="inputDescription" name="inputDescription" rows="8" placeholder="Description" required><?php echo $job_details->description; ?></textarea>
+					</div>
+				</div>
+				<input type="hidden" name="hiddenJobId" value="<?php echo $job_details->job_id; ?>">
+				<input type="hidden" name="hiddenRegNo" value="<?php echo $job_details->company_reg_no; ?>">
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-default">Update</button>
+					</div>
+				</div>
+			
+			</section>
+			
 		</div>
 		<div class="col-md-6">
+		
+			<div class="form-group">
+				<label for="inputPublished" class="col-sm-2 control-label">Publish Job</label>
+				<div class="col-sm-10">
+					<select class="form-control" id="inputPublished" name="inputPublished" required>
+						<option value="">Select One</option>
+						<option value="true">True</option>
+						<option value="false">False</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputCategory" class="col-sm-2 control-label">Category</label>
+				<div class="col-sm-10">
+					<select name="inputCategory" id="inputCategory" class="form-control" required>
+						<option value="">Category</option>
+						
+						<?php foreach($job_categories as $row) : ?>
+							<option value="<?php echo $row->category_id; ?>">
+								<?php echo $row->name; ?>
+							</option>
+						<?php endforeach ?>
+						
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputExperience" class="col-sm-2 control-label">Experience (years)</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" id="inputExperience" name="inputExperience" placeholder="Location" value="<?php echo $job_details->experience; ?>" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="inputSkills" name="inputSkills" placeholder="Location" value="<?php echo ucwords($job_details->skills); ?>">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Job ID</label>
+				<div class="col-sm-10">
+					<h5 class="profile-public-field"><?php echo $job_details->job_id; ?></h5>
+				</div>
+			</div>
+			
 		</div>
+		
+		<?php echo form_close(); ?>
 	</div>
 	
 	<div class="row">
 		<div class="col-md-12">
-			<br />
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-md-12">
-			<h2>Job Applications (Beta)</h2><br />
+			<div class="page-header">
+				<h2>Job Applicants</h2>
+			</div>
 		</div>
 	</div>
 	
@@ -71,4 +140,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	<?php endif ?>
 
+	<script type="text/javascript">
+		var jq = jQuery.noConflict();
+		jq( document ).ready(function() {
+			jq('[name="inputPublished"]').val("<?php echo $job_details->published ? 'true' : 'false'; ?>");
+			jq('[name="inputCategory"]').val("<?php echo $job_details->category_id; ?>");
+		});
+	</script>
+	
 </div>
