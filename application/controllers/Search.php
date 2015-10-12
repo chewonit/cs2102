@@ -16,22 +16,60 @@ class Search extends MY_Controller {
 		
 		$data['page_title'] = "Search";
 
+		$search_string = $this->input->post('inputSearch');
+		
 		$data['search_query'] = $this->input->post('inputSearch');
 		$data['search_cat'] = $this->input->post('variable');
 		$data['search_exp'] = $this->input->post('variable1');
 		
+		$conditions = array();
 		
-		if($data['search_query'] == "") 
+		$category_id = $this->input->post('variable');
+		if ($category_id) {
+			$conditions['category_id'] = $category_id;
+		}
+		
+		$experience = $this->input->post('variable1');
+		if ($experience) 
 		{
-			$data['search_results'] = $this -> jobs_model -> get();
+			switch($experience) 
+			{
+				case 1:
+					$conditions['experience <'] = 1;
+					break;
+				case 2:
+					$conditions['experience >='] = 1;
+					$conditions['experience <'] = 4;
+					break;
+				case 3:
+					$conditions['experience >='] = 4;
+					$conditions['experience <'] = 7;
+					break;
+				case 4:
+					$conditions['experience >='] = 7;
+					$conditions['experience <'] = 10;
+					break;
+				case 5:
+					$conditions['experience >'] = 10;
+					break;
+			}
+		}
+		
+		if( $search_string == "") 
+		{
+			$data['search_results'] = $this -> search_model -> get($conditions);
 		}
 		else 
 		{
 			/*
 			 * Call upon model to perform search on tables.
 			 */
-			$data['search_results'] = 
-				$this -> jobs_model -> search($data['search_query'],$data['search_cat'],$data['search_exp']);
+			// $data['search_results'] = 
+			//	$this -> jobs_model -> search($data['search_query'],$data['search_cat'],$data['search_exp']);
+			
+			
+			
+			$data['search_results'] = $this -> search_model -> get( $conditions, $search_string );
 		}
 		
 		$this -> load_view($data, $page);
