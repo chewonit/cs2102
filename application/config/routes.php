@@ -76,6 +76,7 @@ $route['admin'] = 'admin';
 $route['job_list'] = 'job_list';
 $route['company'] = 'company';
 $route['job'] = 'job';
+$route['job/delete'] = 'job/delete';
 $route['job/create'] = 'job/create';
 $route['job/create_job'] = 'job/create_job';
 $route['job/update'] = 'job/update';

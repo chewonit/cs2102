@@ -37,6 +37,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-default">Update</button>
+						<button type="button" class="btn btn-default btn-danger" 
+						onClick="delete_job('<?php echo $job_details->job_id; ?>', '<?php echo $job_details->company_reg_no; ?>')">Delete Job</button>
 					</div>
 				</div>
 			
@@ -92,6 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 		
 		<?php echo form_close(); ?>
+		
 	</div>
 	
 	<div class="row">
@@ -146,6 +149,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			jq('[name="inputPublished"]').val("<?php echo $job_details->published ? 'true' : 'false'; ?>");
 			jq('[name="inputCategory"]').val("<?php echo $job_details->category_id; ?>");
 		});
+		
+		function delete_job(job_id, company_reg_no) {
+		
+			jq('<form action="<?php echo base_url("job/delete/") ?>" method="POST">' + 
+			'<input type="hidden" name="hiddenJobId2" value="' + job_id + '">' +
+			'<input type="hidden" name="hiddenRegNo2" value="' + company_reg_no + '">' +
+			'</form>').submit();
+		}
 	</script>
 	
 </div>

@@ -287,4 +287,31 @@ class Job extends MY_Controller {
 			$this->load_view($data, $page);
 		}
 	}
+	
+	/**
+	 * Delete job entry
+	 *
+	 * @access	public
+	 * @return	
+	 */
+	public function delete() {
+		
+		if ( $this->jobs_model->delete( $this->input->post('hiddenJobId2'),
+										$this->input->post('hiddenRegNo2') ) ) 
+		{
+			redirect("job_list/");
+		}
+		else 
+		{
+			$page = 'job_error_page';
+
+			$this->check_page_files('/views/pages/' . $page . '.php');
+
+			$data['page_title'] = "Could not delete job entry";
+
+			$this->load_view($data, $page);
+		}
+		
+	}
+	
 }
