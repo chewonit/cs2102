@@ -55,7 +55,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		</div>
 		<div class="col-md-6">
+			
+			<?php if($is_company_admin) : ?>
+	
+			<div class="row">
+				<div class="col-md-12">
+					<h4>Go to Company Admin Page</h4>
+					<a href="<?php echo base_url('company/') ?>" >
+						<button class="btn btn-default btn-primary">Company Admin</button>
+					</a>
+				</div>
+			</div>
+
+			<?php endif ?>
+			
 		</div>
 	</div>
+	
+	
 
 </div>

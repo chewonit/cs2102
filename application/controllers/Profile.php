@@ -149,10 +149,19 @@ class Profile extends MY_Controller {
 
 		$data['page_title'] = "Company Profile";
 		
-		$email = $this->auth->get_info()->email;
-		
 		$company_reg_no = $company_employer->company_reg_no;
 		$data['company_profile'] = $this->company_model->get($company_reg_no)->result()[0];
+		
+		/*
+		 * Check if is Company admin
+		 */
+		$data['is_company_admin'] = false;
+		$email = $this->auth->get_info()->email;
+		$result = $this->company_model->get( NULL, $email )->result();
+		if ( count($result) == 1 ) 
+		{
+			$data['is_company_admin'] = true;
+		}
 		
 		$this->load_view($data, $page);
 	}
