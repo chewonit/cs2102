@@ -47,6 +47,14 @@ class Company_model extends CI_Model {
         return $this -> db -> delete($this->table_name);
 	}
 	
+	public function get_applied_companies($employer)
+    {
+		$this->db->from('company AS c'); 
+		$this->db->join('company_employer e', 'e.company_reg_no = c.company_reg_no');
+		$this->db->where('e.employer', $employer);
+		return $this->db->get(); 
+	}
+	
 	function get_datatables()
 	{
 		$this->_get_datatables_query();

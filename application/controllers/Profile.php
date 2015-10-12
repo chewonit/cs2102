@@ -181,7 +181,7 @@ class Profile extends MY_Controller {
 		$profile = $this->resume_profile_model->get( $user->email )->result();
 		$profile = count($profile) == 1 ? $profile : NULL;
 
-		$data['page_title'] = "Profile of " . $user->email;
+		$data['page_title'] = "Jobseeker Profile of " . $user->email;
 		$data['user_data'] = $user;
 		$data['user_profile'] = $profile[0];
 
@@ -200,7 +200,7 @@ class Profile extends MY_Controller {
 
 		$this->check_page_files('/views/pages/' . $page . '.php');
 
-		$data['page_title'] = "Profile of " . ucwords($company->company_name) . " Company";
+		$data['page_title'] = "Company Profile of " . ucwords($company->company_name);
 		$data['company_profile'] = $company;
 
 		$this->load_view($data, $page);

@@ -41,9 +41,8 @@ class Company extends MY_Controller {
 		 * Check if employer has joined a company.
 		 * Otherwise redirect to profile page.
 		 */
-		$accepted = 1;
 		$email = $this->auth->get_info()->email;
-		$result = $this->company_employer_model->get( $email, NULL, $accepted )->result();
+		$result = $this->company_employer_model->get( $email )->result();
 	
 		if ( count($result) == 0 ) 
 		{
@@ -215,6 +214,44 @@ class Company extends MY_Controller {
 		$this->load_view($data, $page);
 	}
 	
+	public function create_company() 
+	{
+		$this->form_validation->set_rules('inputRegNo', 'Company Registration Number', 'trim|required|is_unique[company.company_reg_no]');
+		$this->form_validation->set_rules('inputCompanyName', 'Company Name', 'trim|required|is_unique[company.company_name]');
+		$this->form_validation->set_rules('inputLocation', 'Location', 'trim|required');
+		$this->form_validation->set_rules('inputDescription', 'Description', 'trim|required');
+		
+		$data_entry = array(
+			'company_reg_no' => $this->input->post('inputRegNo'),
+			'company_name' => $this->input->post('inputCompanyName'),
+			'company_admin' => $this->input->post('inputEmail'),
+			'location' => $this->input->post('inputLocation'),
+			'description' => $this->input->post('inputDescription'),
+		);
+		
+		if ( $this->form_validation->run() ) 
+		{
+			if ( $this->company_model->insert($data_entry) )
+			{
+				$data_entry = array(
+					'company_reg_no' => $this->input->post('inputRegNo'),
+					'employer' => $this->input->post('inputEmail'),
+					'accepted' => 1
+				);
+				$this->company_employer_model->insert( $data_entry );
+				redirect('/profile/');
+			}
+			else 
+			{
+				redirect('/profile/');
+			}
+		}
+		else
+		{
+			redirect('/profile/');
+		}
+	}
+	
 	private function init_form_validation() {
 		$this->form_validation->set_rules('inputRegNo', 'Registration Number', 'trim|required|is_unique[company.company_reg_no]');
 		$this->form_validation->set_message('is_unique', 'The company has already been registered.');
@@ -245,26 +282,63 @@ class Company extends MY_Controller {
 
 		$data['page_title'] = "Join Company";
 
-		$data['company_list'] = $this->db->query("SELECT * FROM company");
+		$data['company_list'] = $this->company_model->get();
 		
-		$data['user_info'] = $this->get_user_info();
+		$email = $this->auth->get_info()->email;
+		$data['user_email'] = $email;
 		
-		$this->input->post('inputCompany');
+		$data['company_applied_list'] = $this->company_model->get_applied_companies($email)->result();
+		
+		$this->load_view($data, $page);
+	}
+	
+	public function join_company() 
+	{
+		$this->form_validation->set_rules('inputCompany', 'Description', 'trim|required');
+		$this->form_validation->set_rules('inputEmail', 'Description', 'trim|required|is_unique[company_employer.employer]');
 		
 		$data_entry = array(
-		'employer' => $this->input->post('inputEmail'),
-		'company_reg_no' => $this->input->post('inputCompany'),
-		'accepted' => 0
+			'employer' => $this->input->post('inputEmail'),
+			'company_reg_no' => $this->input->post('inputCompany'),
+			'accepted' => 0
 		);
 		
-		if ($this->input->post('inputCompany'))
+		if ( $this->form_validation->run() ) 
 		{
-			// add employer to the company
-			$this->company_employer_model->insert($data_entry);
-			redirect('/company/profile');
+			if ( $this->company_employer_model->insert($data_entry) )
+			{
+				redirect('/profile/');
+			}
+			else 
+			{
+				redirect('/profile/');
+			}
 		}
-			
-		$this->load_view($data, $page);
+		else
+		{
+			redirect('/profile/');
+		}
+	}
+	
+	public function cancel_join_company() 
+	{
+		$this->form_validation->set_rules('inputEmail', 'Description', 'trim|required');
+		
+		if ( $this->form_validation->run() ) 
+		{
+			if ( $this->company_employer_model->delete( $this->input->post('inputEmail') ) )
+			{
+				redirect('/profile/');
+			}
+			else 
+			{
+				redirect('/profile/');
+			}
+		}
+		else
+		{
+			redirect('/profile/');
+		}
 	}
 	
 	private function get_user_info() {

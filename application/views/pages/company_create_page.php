@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		<section>
 			<?php $attributes = array('class' => 'form-horizontal', 'id' => 'createForm'); ?>
-			<?php echo form_open('company/create/', $attributes); ?>
+			<?php echo form_open('company/create_company/', $attributes); ?>
 			<div class="form-group">
 				<label for="inputRegNo" class="col-sm-2 control-label">Registration No.</label>
 				<div class="col-sm-10">

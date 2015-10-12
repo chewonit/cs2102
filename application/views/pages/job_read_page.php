@@ -24,8 +24,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	</div>
 	
-	
-	<div class="col-md-15">
+	<div ="row">
+	<div class="col-md-12">
 				
 	<?php foreach($jobs_list->result() as $row): ?>
 		<section id="jobID" class="job-item"  >
@@ -72,6 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</section>
 		<?php endforeach; ?>
+	</div>
 	</div>
 
 </div>
