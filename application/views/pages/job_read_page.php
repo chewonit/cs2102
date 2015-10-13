@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="col-md-9">
 						<h4 class="job-item-header"><?php echo $row->title; ?></h4>
 						<h5>
-							<a class="link-nostyle" href="<?php echo base_url('profile/' . rawurlencode($row->company_name) .'/' ); ?>">
+							<a class="link-nostyle" href="<?php echo base_url('profile/' . rawurlencode($row->company_reg_no) .'/' ); ?>">
 								<?php echo ucwords($row->company_name); ?>
 							</a>
 						</h5>

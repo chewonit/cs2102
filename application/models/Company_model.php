@@ -30,6 +30,19 @@ class Company_model extends CI_Model {
         return $this -> db -> get($this->table_name);
     }
 	
+	public function get_distinct($col = null, $order = null)
+    {
+		if ( !is_null($col)) {
+            $this -> db -> select($col);
+        }
+		if ( !is_null($order)) {
+			$this -> db -> order_by($order, 'asc');
+        }
+        $this -> db -> distinct();
+        return $this -> db -> get($this->table_name);
+
+    }
+	
 	public function insert($data)
     {
         return $this -> db -> insert($this->table_name, $data);

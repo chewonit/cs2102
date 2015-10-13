@@ -19,17 +19,17 @@ class Search extends MY_Controller {
 		$search_string = $this->input->post('inputSearch');
 		
 		$data['search_query'] = $this->input->post('inputSearch');
-		$data['search_cat'] = $this->input->post('variable');
-		$data['search_exp'] = $this->input->post('variable1');
+		$data['search_cat'] = $this->input->post('inputCategory');
+		$data['search_exp'] = $this->input->post('inputExp');
 		
 		$conditions = array();
 		
-		$category_id = $this->input->post('variable');
+		$category_id = $this->input->post('inputCategory');
 		if ($category_id) {
-			$conditions['category_id'] = $category_id;
+			$conditions['j.category_id'] = $category_id;
 		}
 		
-		$experience = $this->input->post('variable1');
+		$experience = $this->input->post('inputExp');
 		if ($experience) 
 		{
 			switch($experience) 
@@ -64,11 +64,6 @@ class Search extends MY_Controller {
 			/*
 			 * Call upon model to perform search on tables.
 			 */
-			// $data['search_results'] = 
-			//	$this -> jobs_model -> search($data['search_query'],$data['search_cat'],$data['search_exp']);
-			
-			
-			
 			$data['search_results'] = $this -> search_model -> get( $conditions, $search_string );
 		}
 		

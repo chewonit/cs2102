@@ -16,21 +16,74 @@ class Browse extends MY_Controller {
 		
 		$data['page_title'] = "Browse";
 		
-		$data['job_list'] = $this -> jobs_model -> get();
-		$data['company_list'] = $this -> company_model -> get();
-		$data['category_list'] = $this -> job_category_model -> get();
-		$data['location_list'] = $this->db->query('SELECT DISTINCT location FROM company');
-		$data['skills_list'] = $this->db->query('SELECT DISTINCT skills FROM jobs');
 		$this->load->model('browse_model');
 		
-		$data['browse_cat'] = $this->input->post('variable');
-		$data['browse_exp'] = $this->input->post('variable1');
-		$data['browse_name'] = $this->input->post('variable2');
-		$data['browse_loc'] = $this->input->post('variable3');
-		$data['browse_skill'] = $this->input->post('variable4');
+		$data['job_list'] = $this -> jobs_model -> get();
+		$data['company_list'] = $this -> company_model -> get_distinct(null, "company_name");
+		$data['category_list'] = $this -> job_category_model -> get();
+		$data['location_list'] = $this -> company_model -> get_distinct('location', 'location');
+		$data['skills_list'] = $this->db->query('SELECT DISTINCT skills FROM jobs');
 		
-		$data['browse_query'] = 
-				$this -> browse_model -> browse($data['browse_cat'],$data['browse_exp'],$data['browse_name'],$data['browse_loc'],$data['browse_skill']);
+		
+		$data['browse_cat'] = $this->input->post('inputCategory');
+		$data['browse_exp'] = $this->input->post('inputExp');
+		$data['browse_name'] = $this->input->post('inputCompany');
+		$data['browse_loc'] = $this->input->post('inputLocation');
+		$data['browse_skill'] = $this->input->post('inputSkills');
+		
+		$conditions = array();
+		
+		$experience = $this->input->post('inputExp');
+		if ($experience) 
+		{
+			switch($experience) 
+			{
+				case 1:
+					$conditions['experience <'] = 1;
+					break;
+				case 2:
+					$conditions['experience >='] = 1;
+					$conditions['experience <'] = 4;
+					break;
+				case 3:
+					$conditions['experience >='] = 4;
+					$conditions['experience <'] = 7;
+					break;
+				case 4:
+					$conditions['experience >='] = 7;
+					$conditions['experience <'] = 10;
+					break;
+				case 5:
+					$conditions['experience >'] = 10;
+					break;
+			}
+		}
+		
+		$category_id = $this->input->post('inputCategory');
+		if ($category_id != "") 
+		{
+			$conditions['j.category_id'] = $category_id;
+		}
+		
+		$company = $this->input->post('inputCompany');
+		if ($company != "") 
+		{
+			$conditions['c.company_reg_no'] = $company;
+		}
+		
+		$location = $this->input->post('inputLocation');
+		if ($location != "") 
+		{
+			$conditions['c.location'] = $location;
+		}
+		
+		$skills = $this->input->post('inputSkills');
+		if ($skills != "") 
+		{
+			$conditions['j.skills'] = $skills;
+		}
+		
+		$data['browse_query'] = $this -> browse_model -> browse($conditions);
 		
 		$this -> load_view($data, $page);
 		

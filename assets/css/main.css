@@ -103,6 +103,16 @@ section.job-item {
 	margin: 0 0 1em 0;
     padding: 0.8em 1em;
 }
+section.job-item  h5, section.job-item   h6 {
+	margin-top: 0;
+}
+section.job-item  h5 a, section.job-item   h6 a {
+	color: inherit !important;
+	text-decoration: none !important;
+}
+.job-item  h5 a:hover, section.job-item   h6 a:hover {
+	text-decoration: underline !important;
+}
 .job-list section {
 	width: 100%;
 }

@@ -10,18 +10,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</div>
-	<?php $cat=0; ?>
-	<?php $exp=0; ?>
-	<div class="row">
 	
+	<div class="row">
 		<div class="col-md-3">
+			
 			<?php $attributes = array('class' => 'form', 'id' => 'searchForm'); ?>
 			<?php echo form_open('search/', $attributes); ?>
 				<div class="form-group">
 					<input type="text" class="search-box form-control" id="inputSearch" name="inputSearch" placeholder="Search for Jobs" value="<?php echo $search_query ?>">
 				</div>
 				<div class="form-group">
-							<select id = 'variable' name="variable" class="form-control"> 
+					<select id = 'inputCategory' name="inputCategory" class="form-control"> 
 						<option value="">Jobs By Category</option>
 						<option value="1">Finance & Account</option>
 						<option value="2">Human Resources</option>
@@ -32,24 +31,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<option value="7">Sales</option>
 						<option value="8">Marketing</option>		
 					</select>
-					<?php if (isset($_POST['variable'])) {$cat=$_POST['variable'];}  
-					//echo $cat;
-					?>
-					<script>
-					var val = "<?php echo $cat ?>";
-					
-					function setSelectedIndex(s, i)
-					{
-					s.options[i].selected = true;
-					return;
-					}
-					setSelectedIndex(document.getElementById("variable"),val);
-					</script>
-					
 				</div>
 				<div class="form-group">
-				
-					<select id = 'variable1' name='variable1' class="form-control" >
+					<select id = 'inputExp' name='inputExp' class="form-control" >
 						<option value="">Jobs By Experience</option>
 						<option value="1">Less than 1 Year</option>
 						<option value="2">1 to 4 Years</option>
@@ -57,19 +41,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<option value="4">7 to 10 Years</option>
 						<option value="5">More than 10 Years</option>
 					</select>
-					<?php if (isset($_POST['variable1'])) {$exp=$_POST['variable1'];}  
-					//echo $exp;
-					?>
-					<script>
-					var valexp = "<?php echo $exp ?>";
-					
-					function setSelectedIndex(s, i)
-					{
-					s.options[i].selected = true;
-					return;
-					}
-					setSelectedIndex(document.getElementById("variable1"),valexp);
-					</script>
 				</div>
 				<button type="submit" class="btn btn-default">Search</button>
 			<?php echo form_close() ?>
@@ -92,47 +63,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="col-md-9">
 								<h4 class="job-item-header"><a href="job/<?php echo $row->job_id?>"><?php echo $row->title; ?></a></h4>
 								<h5>
-								<font size="2.2">Company Name: 
-								<?php echo $row->company_name; ?></h5>
-								<h5>
-									<font size="2.2">Experience: 
-									<?php echo $row->experience; ?>
-									<font size="2.2">Years 
-									</h5>
-								<h5>
-									<font size="2.2">skills: 
-										<?php echo $row->skills; ?></h5>
-								
-								
+									<a href="<?php echo base_url('profile/'.rawurlencode($row->company_reg_no).'/'); ?>">
+										<?php echo ucwords($row->company_name); ?>
+									</a>
+								</h5>
+								<h5><?php echo $row->name; ?></h5>
 							</div>
-							<div class="col-md-3 text-right">
-								<h5>
-									<font size="2.2">Job id: 
-									<?php echo $row->job_id; ?></h5>
-								<h5>
-									<font size="2.2">Company Register number: 
-									<?php echo $row->company_reg_no; ?></h5>
-									
-									<h5>
-										<font size="2.2">Company Location: 
-										<?php echo $row->location; ?></h5>
-								<h5>
-									<font size="2.2">Date Created: 
-									<?php echo $row->date_created; ?></h5>
-								<h5>
-									<font size="2.2">Published: 
-									<?php echo $row->published; ?></h5>
-								<h5>
-									<font size="2.2">Category Id: 
-									<?php echo $row->category_id; ?></h5>
-								
-					
+							<div class="col-md-3 text-right-md">
+								<h5><?php echo ucwords($row->location); ?></h5>
+								<h6><?php echo $row->date_created ?></h6>
+								<h6>Job ID: <?php echo $row->job_id ?></h6>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-12"><font size="2.2">Job Description: 
+							<div class="col-md-12">
+								<h5>Experience: <?php echo $row->experience; ?> years</h5>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h5>Skills: <?php echo $row->skills; ?></h5>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
 								<?php 
-									$str = $row->description;
+									$str = $row->job_description;
 									if (strlen($str) > 300) {
 										$str = substr($str, 0, 297) . '...';
 									}
@@ -156,6 +112,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<?php endif ?>
 			
 		</div>
+		
+		<script type="text/javascript">
+			var jq = jQuery.noConflict();
+			
+			jq(document).ready(function() {
+				jq('[name="inputCategory"]').val("<?php echo $search_cat; ?>");
+				jq('[name="inputExp"]').val("<?php echo $search_exp; ?>");
+				jq('[name="inputSearch"]').val("<?php echo $search_query; ?>");
+			});
+		</script>
 	</div>
-	
 </div>
