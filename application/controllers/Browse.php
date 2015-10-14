@@ -126,30 +126,40 @@ class Browse extends MY_Controller {
 		
 		$data['page_title'] = "Browse Jobseekers";
 		
+		$this->load->model('browse_model');
+		
 		$data['owner_list'] = $this->db->query("SELECT DISTINCT owner FROM resume_profile");
-		$data['work_list'] = $this->db->query("SELECT DISTINCT work_history FROM resume_profile");
-		$data['description_list'] = $this->db->query("SELECT DISTINCT description FROM resume_profile");
-		$data['address_list'] = $this->db->query("SELECT DISTINCT address FROM resume_profile");
-		$data['education_list'] = $this->db->query("SELECT DISTINCT edu_history FROM resume_profile");
 		
-		$data['search_query1'] = $this->input->post('inputSearch1');
-		$data['search_query2'] = $this->input->post('inputSearch2');
-		$data['search_query3'] = $this->input->post('inputSearch3');
-		$data['search_query4'] = $this->input->post('inputSearch4');
-		$data['search_query5'] = $this->input->post('inputSearch5');
+		$conditions = array();
 		
-		if($data['search_query1'] != ""){
-			$data['search_results'] = $this -> resume_profile_model -> search($data['search_query1']);
-		} else if($data['search_query2'] != ""){
-			$data['search_results'] = $this -> resume_profile_model -> search($data['search_query2']);
-		} else if($data['search_query3'] != ""){
-			$data['search_results'] = $this -> resume_profile_model -> search($data['search_query3']);
-		}else if($data['search_query4'] != ""){
-			$data['search_results'] = $this -> resume_profile_model -> search($data['search_query4']);
-		}else if($data['search_query5'] != ""){
-			$data['search_results'] = $this -> resume_profile_model -> search($data['search_query5']);
-		}else{
-			$data['search_results'] = $this -> resume_profile_model -> get();
+		$gender = $this->input->post('inputGender');
+		$data['inputGender'] = $gender;
+		if ($gender != "") 
+		{
+			$conditions['u.gender'] = $gender;
+		}
+		
+		$nationality = $this->input->post('inputNationality');
+		$data['inputNationality'] = $nationality;
+		if ($nationality != "") 
+		{
+			$conditions['u.nationality'] = $nationality;
+		}
+		
+		$email = $this->input->post('inputEmail');
+		$data['inputEmail'] = $email;
+		if ($email != "") 
+		{
+			$conditions['p.owner'] = $email;
+		}
+		
+		if( count($conditions) > 0 )
+		{
+			$data['search_results'] = $this -> browse_model -> browse_jobseekers($conditions);
+		}
+		else
+		{
+			$data['search_results'] = $this -> browse_model -> browse_jobseekers();
 		}
 		
 		$this -> load_view($data, $page);

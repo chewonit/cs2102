@@ -52,5 +52,18 @@ class browse_model extends CI_Model {
 		}
 		return $this -> db -> get();
 	}
+	
+	public function browse_jobseekers( $conditions = null ) 
+	{
+		$this->db->from('resume_profile p');
+		$this->db->join('users u', 'u.email = p.owner');
+		$this->db->where('u.role', 'jobseeker');
+		
+		if( !is_null($conditions) ) 
+		{
+			$this->db->where($conditions);
+		}
+		return $this -> db -> get();
+	}
 
 }
