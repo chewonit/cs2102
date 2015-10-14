@@ -48,6 +48,7 @@ CREATE TABLE Resume_Profile (
     )
 );
 ALTER TABLE Resume_Profile ADD FULLTEXT (owner, address, description, work_history, edu_history);
+
 -- Company
 CREATE TABLE Company (
     company_reg_no VARCHAR(255) PRIMARY KEY,
@@ -62,6 +63,8 @@ CREATE TABLE Company (
         company_admin IN (SELECT u.email FROM Users u WHERE u.role = 'employer')
     )
 );
+ALTER TABLE Company ADD FULLTEXT (company_name, location);
+
 -- Company_Employers
 CREATE TABLE Company_Employer (
     employer VARCHAR(255) PRIMARY KEY,

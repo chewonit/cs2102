@@ -33,9 +33,9 @@ class browse_model extends CI_Model {
 		return $this -> db -> get($this->tables);
 	}
 	
-	public function browse( $conditions = null ) 
+	public function browse( $conditions = null, $like = null ) 
 	{
-		$this->db->select('j.job_id, j.company_reg_no, j.date_created, j.published, j.category_id, j.title, j.description AS job_description, j.experience, j.skills, c.company_admin, c.company_name, c.location, c.description, cat.*');
+		$this->db->select('j.*, j.description AS job_description, c.*, cat.*');
 		$this->db->from('jobs j');
 		$this->db->join('company c', 'j.company_reg_no = c.company_reg_no');
 		$this->db->join('job_category cat', 'cat.category_id = j.category_id');
@@ -45,6 +45,10 @@ class browse_model extends CI_Model {
 		if( !is_null($conditions) ) 
 		{
 			$this->db->where($conditions);
+		}
+		if( !is_null($like) ) 
+		{
+			$this->db->like('j.skills', $like);
 		}
 		return $this -> db -> get();
 	}

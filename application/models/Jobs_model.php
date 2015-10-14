@@ -35,101 +35,16 @@ class Jobs_model extends CI_Model {
 		return $this -> db -> get($this->table_name);
 	}
 	
-	public function read($jobid) {
-		return $this ->db->query("SELECT * 
-		FROM jobs j, company c, job_category jc
-		WHERE job_id=$jobid AND c.company_reg_no=j.company_reg_no AND j.category_id=jc.category_id");
-		
-	}
-	public function search($data,$cat,$exp)
+	public function read($jobid) 
 	{
-		/**
-		$this -> db -> where('category_id',$cat);		
-		$this -> db -> where('experience',$exp);
-		$this->db->where("MATCH (title,description,title) AGAINST ('$data')", NULL, FALSE);
-		return $this -> db -> get($this->table_name);
-		
-		**/
-		if ($cat == 0){
-			if ($exp == 0){
-				//return $this -> db -> query("
-				//	SELECT * FROM jobs WHERE MATCH(title, description, skills) AGAINST ('$data' IN BOOLEAN MODE)");
-				return $this -> db -> query("
-					SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created, c.company_name, c.location ,j.published
-				FROM jobs j , company c 
-				WHERE c.company_reg_no = j.company_reg_no AND (j.title='$data' OR j.description = '$data')");
-			}
-			else if ($exp == 1){
-				return $this -> db -> query("
-					SELECT j.job_id, j.company_reg_no, j.category_id, j.published, j.title, j.description, j.experience, j.skills, j.date_created, c.company_name, c.location 
-				FROM jobs j , company c 
-				WHERE c.company_reg_no=j.company_reg_no AND j.experience <2 AND (j.title='$data' OR j.description = '$data')");
-			}
-			else if ($exp == 2){
-				return $this -> db -> query("
-					SELECT j.job_id, j.company_reg_no, j.category_id, j.published, j.title, j.description, j.experience, j.skills, j.date_created, c.company_name, c.location 
-				FROM jobs j , company c 
-				WHERE c.company_reg_no=j.company_reg_no AND j.experience>0 AND  j.experience <4 AND (j.title='$data' OR j.description = '$data')");
-			}
-			else if ($exp == 3){
-				return $this -> db -> query("
-					SELECT j.job_id, j.company_reg_no, j.category_id, j.published, j.title, j.description, j.experience, j.skills, j.date_created, c.company_name, c.location 
-				FROM jobs j , company c 
-				WHERE c.company_reg_no=j.company_reg_no AND experience >3 AND experience <7 AND (j.title='$data' OR j.description = '$data')");
-			}
-			else if ($exp == 4){
-				return $this -> db -> query("
-					SELECT j.job_id, j.company_reg_no, j.category_id, j.published, j.title, j.description, j.experience, j.skills, j.date_created, c.company_name, c.location 
-				FROM jobs j , company c 
-				WHERE c.company_reg_no=j.company_reg_no ANDexperience >6 AND experience <10 AND (j.title='$data' OR j.description = '$data')");
-			}
-			else if ($exp == 5){
-				return $this -> db -> query("
-					SELECT j.job_id, j.company_reg_no, j.category_id, j.published, j.title, j.description, j.experience, j.skills, j.date_created, c.company_name, c.location 
-				FROM jobs j , company c 
-				WHERE c.company_reg_no=j.company_reg_no AND experience >9 AND (j.title='$data' OR j.description = '$data')");
-			}
-		}
-		else{
-			if ($exp == 0){
-				return $this -> db -> query("
-					SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created,j.published, c.company_name, c.location 
-				FROM jobs j , company c 
-				WHERE c.company_reg_no=j.company_reg_no AND j.category_id = '$cat' AND j.category_id = '$cat' AND (title='$data' OR j.description = '$data')");
-			}
-			else if ($exp == 1){
-				return $this -> db -> query("
-					SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created,j.published, c.company_name, c.location 
-				FROM jobs j , company c 
-				WHERE c.company_reg_no=j.company_reg_no AND j.category_id = '$cat' AND j.experience <2 AND (j.title='$data' OR j.description = '$data')");
-			}
-			else if ($exp == 2){
-				return $this -> db -> query("
-					SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created,j.published, c.company_name, c.location 
-				FROM jobs j , company c 
-				WHERE c.company_reg_no=j.company_reg_no AND j.category_id = '$cat' AND j.experience >1 AND j.experience <4 AND (j.title='$data' OR j.description = '$data')");
-			}
-			else if ($exp == 3){
-				return $this -> db -> query("
-					SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created,j.published, c.company_name, c.location 
-				FROM jobs j , company c 
-				WHERE c.company_reg_no=j.company_reg_no AND j.category_id = '$cat' AND j.experience >3 AND j.experience <7 AND (j.title='$data' OR j.description = '$data')");
-			}
-			else if ($exp == 4){
-				return $this -> db -> query("
-					SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created,j.published, c.company_name, c.location 
-				FROM jobs j , company c 
-				WHERE c.company_reg_no=j.company_reg_no AND j.category_id = '$cat' AND j.experience >6 AND j.experience <10 AND (j.title='$data' OR j.description = '$data')");
-			}
-			else if ($exp == 5){
-				return $this -> db -> query("
-					SELECT j.job_id, j.company_reg_no, j.category_id, j.title, j.description, j.experience, j.skills, j.date_created,j.published, c.company_name, c.location 
-				FROM jobs j , company c 
-				WHERE c.company_reg_no=j.company_reg_no AND j.category_id = '$cat' AND j.experience >9 AND (j.title='$data' OR j.description = '$data')");
-			}
-		}
-		
+		$this->db->select('*, j.description AS job_description');
+		$this->db->from('jobs j');
+		$this->db->join('company c', 'j.company_reg_no = c.company_reg_no');
+		$this->db->join('job_category cat', 'cat.category_id = j.category_id');
+		$this->db->where('j.job_id', $jobid);
+		return $this -> db -> get();
 	}
+	
 	public function insert($data)
 	{
 		return $this -> db -> insert($this->table_name, $data);
@@ -168,6 +83,14 @@ class Jobs_model extends CI_Model {
 		$this->db->where('ja.applicant',$applicant);
 		$this->db->order_by('ja.date_submitted','desc');
 		return $this->db->get(); 
+	}
+	
+	public function get_skills() 
+	{
+		$this->db->select('skills');
+		$this->db->distinct();
+		$this->db->from('jobs'); 
+		return $this->db->get();
 	}
 	
 	function get_datatables()

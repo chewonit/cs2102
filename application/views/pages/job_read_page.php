@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</div>
 					<div class="row">
-						<div class="col-md-12"> <?php echo $row->description ; ?> </font>
+						<div class="col-md-12"> <?php echo $row->job_description ; ?> </font>
 					</div>
 				</div>
 				<div class="row">

@@ -22,8 +22,20 @@ class Browse extends MY_Controller {
 		$data['company_list'] = $this -> company_model -> get_distinct(null, "company_name");
 		$data['category_list'] = $this -> job_category_model -> get();
 		$data['location_list'] = $this -> company_model -> get_distinct('location', 'location');
-		$data['skills_list'] = $this->db->query('SELECT DISTINCT skills FROM jobs');
 		
+		$skills = array();
+		foreach ( $this -> jobs_model -> get_skills()->result() as $skill )
+		{
+			$_skills = explode(',', $skill->skills);
+			foreach ( $_skills as $x ) 
+			{
+				
+				$x = trim($x);
+				if ($x != '') $skills[$x] = $x;
+			}
+		}
+		ksort($skills);
+		$data['skills_list'] = $skills;
 		
 		$data['browse_cat'] = $this->input->post('inputCategory');
 		$data['browse_exp'] = $this->input->post('inputExp');
@@ -78,12 +90,12 @@ class Browse extends MY_Controller {
 		}
 		
 		$skills = $this->input->post('inputSkills');
-		if ($skills != "") 
+		if ($skills == "") 
 		{
-			$conditions['j.skills'] = $skills;
+			$skills = null;
 		}
 		
-		$data['browse_query'] = $this -> browse_model -> browse($conditions);
+		$data['browse_query'] = $this -> browse_model -> browse($conditions, $skills);
 		
 		$this -> load_view($data, $page);
 		

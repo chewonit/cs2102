@@ -69,9 +69,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="form-group">
 					<select name='inputSkills' class="form-control" onchange="this.form.submit();" >
 						<option value="">Jobs By Skills</option>
-						<?php foreach($skills_list->result() as $skills) : ?>
-							<option value="<?php echo $skills->skills ?>">
-								<?php echo $skills->skills ?>
+						<?php foreach($skills_list as $skills) : ?>
+							<option value="<?php echo $skills ?>">
+								<?php echo ucwords($skills) ?>
 							</option>
 						<?php endforeach ?>
 					</select>
