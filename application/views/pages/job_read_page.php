@@ -11,18 +11,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</div>
-
-	<div class="row">
-	
-		<div id="dashboard-content" class="col-md-6">
-		
-			<?php $string = $_SERVER['REQUEST_URI']; ?>
-			<?php $code = explode ("/", $string ) ?>
-			<?php $_SESSION['jobid'] = $code[3] ; ?>
- 		</div>
-		<div class="col-md-6">
-		</div>
-	</div>
 	
 	<div ="row">
 	<div class="col-md-12">
@@ -41,23 +29,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<h5><?php echo $row->name; ?></h5>
 					</div>
 					<div class="col-md-3 text-right">
-						<h5>Location: <?php echo $row->location; ?></h5>
-						<h6>Date Created: <?php echo $row->date_created ?></h6>
+						<h5><?php echo $row->location; ?></h5>
+						<h6><?php echo $row->date_created ?></h6>
 						<h6>Job ID: <?php echo $row->job_id ?></h6>
 					</div>
 				</div>
-					<div class="row">
-						<div class="col-md-12"> <?php echo $row->job_description ; ?> </font>
+				<div class="row">
+					<div class="col-md-12">
+						<h5>Experience: <?php echo $row->experience; ?> years</h5>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-					<font size="2.2">Experience: <?php echo $row->experience; ?> </font>
+						<h5>Skills: <?php echo $row->skills; ?></h5>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12">
-					<font size="2.2">Skills: <?php echo $row->skills; ?> </font>
+					<div class="col-md-12"> 
+						<?php echo $row->job_description ; ?>
 					</div>
 				</div>
 				<div class="row">

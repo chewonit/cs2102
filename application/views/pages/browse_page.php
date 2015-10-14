@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<option value="">Jobs By Skills</option>
 						<?php foreach($skills_list as $skills) : ?>
 							<option value="<?php echo $skills ?>">
-								<?php echo ucwords($skills) ?>
+								<?php echo strtolower($skills) ?>
 							</option>
 						<?php endforeach ?>
 					</select>
