@@ -33,9 +33,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-1 control-label">Location</label>
+				<label class="col-sm-1 control-label">Address</label>
 				<div class="col-sm-10">
-					<h5><?php echo ucwords($company_profile->location) ?></h5>
+					<h5><?php echo ucwords($company_profile->address) ?></h5>
 				</div>
 			</div>
 			<div class="form-group">

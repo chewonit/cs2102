@@ -108,7 +108,7 @@ class Profile extends MY_Controller {
 		
 		$data = array(
 			'company_name'=> $this->input->post('hiddenCompanyName'),
-			'location'=> $this->input->post('inputLocation'),
+			'address'=> $this->input->post('inputAddress'),
 			'description' => $this->input->post('inputDescription'),
 		);
 		$this -> company_model -> update($company_reg_no, $data); 

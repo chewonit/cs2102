@@ -42,6 +42,7 @@ class Admin extends MY_Controller {
 			$row[] = $user->first_name;
 			$row[] = $user->last_name;
 			$row[] = $user->nationality;
+			$row[] = $user->dob;
 			$row[] = $user->contact;
 			$row[] = $user->gender;
 			$row[] = $user->role;
@@ -74,6 +75,9 @@ class Admin extends MY_Controller {
 		$response_array = array();
 		$this->form_validation_users_add();
 		
+		$inputDob = trim($this->input->post('inputDob'));
+		$inputDob = $inputDob == '' ? date("Y-m-d") : date("Y-m-d", strtotime($inputDob));
+		
 		$create_user_data = array(
 			'first_name' => strtolower($this->input->post('inputFirstName')),
 			'last_name' => strtolower($this->input->post('inputLastName')),
@@ -82,7 +86,8 @@ class Admin extends MY_Controller {
 			'nationality' => strtolower($this->input->post('inputNationality')),
 			'contact' => $this->input->post('inputContact'),
 			'gender' => strtolower($this->input->post('inputGender')),
-			'role' => strtolower($this->input->post('inputAccount'))
+			'role' => strtolower($this->input->post('inputAccount')),
+			'dob' => $inputDob
 		);
 		
 		if ( $this->form_validation->run() ) 
@@ -111,13 +116,17 @@ class Admin extends MY_Controller {
 		$response_array = array();
 		$this->form_validation_users_update();
 		
+		$inputDob = trim($this->input->post('inputDob'));
+		$inputDob = $inputDob == '' ? date("Y-m-d") : date("Y-m-d", strtotime($inputDob));
+		
 		$create_user_data = array(
 			'first_name' => strtolower($this->input->post('inputFirstName')),
 			'last_name' => strtolower($this->input->post('inputLastName')),
 			'nationality' => strtolower($this->input->post('inputNationality')),
 			'contact' => $this->input->post('inputContact'),
 			'gender' => strtolower($this->input->post('inputGender')),
-			'role' => strtolower($this->input->post('inputAccount'))
+			'role' => strtolower($this->input->post('inputAccount')),
+			'dob' => $inputDob
 		);
 		
 		if ( $this->form_validation->run() ) 
@@ -157,6 +166,7 @@ class Admin extends MY_Controller {
 		$this->form_validation->set_rules('inputContact', 'Contact', 'trim|required|is_natural');
 		$this->form_validation->set_rules('inputGender', 'Gender', 'trim|required');
 		$this->form_validation->set_rules('inputAccount', 'Account', 'trim|required');
+		$this->form_validation->set_rules('inputDob', 'Date of Birth', 'trim|required');
 		
 		$this->form_validation->set_message('is_unique', 'The email has already been registered.');
 		$this->form_validation->set_message('password_check', 'The password must contain Alphabets and Numbers.');
@@ -170,6 +180,7 @@ class Admin extends MY_Controller {
 		$this->form_validation->set_rules('inputContact', 'Contact', 'trim|required|is_natural');
 		$this->form_validation->set_rules('inputGender', 'Gender', 'trim|required');
 		$this->form_validation->set_rules('inputAccount', 'Account', 'trim|required');
+		$this->form_validation->set_rules('inputDob', 'Date of Birth', 'trim|required');
 	}
 	
 	
@@ -468,7 +479,7 @@ class Admin extends MY_Controller {
 			$row[] = $item->company_reg_no;
 			$row[] = $item->company_admin;
 			$row[] = $item->company_name;
-			$row[] = $item->location;
+			$row[] = $item->address;
 			$row[] = $item->description;
 
 			//add action buttons to each row
@@ -502,14 +513,14 @@ class Admin extends MY_Controller {
 		$this->form_validation->set_rules('inputRegNo', 'Company Reg No', 'trim|required');
 		$this->form_validation->set_rules('inputAdmin', 'Company Admin', 'trim|required');
 		$this->form_validation->set_rules('inputName', 'Company Name', 'trim|required');
-		$this->form_validation->set_rules('inputLocation', 'Location', 'trim|required');
+		$this->form_validation->set_rules('inputAddress', 'Address', 'trim|required');
 		$this->form_validation->set_rules('inputDescription', 'Description', 'trim|required');
 		
 		$create_user_data = array(
 			'company_reg_no' => strtolower($this->input->post('inputRegNo')),
 			'company_admin' => strtolower($this->input->post('inputAdmin')),
 			'company_name' => strtolower($this->input->post('inputName')),
-			'location' => strtolower($this->input->post('inputLocation')),
+			'address' => strtolower($this->input->post('inputAddress')),
 			'description' => strtolower($this->input->post('inputDescription'))
 		);
 		
@@ -541,13 +552,13 @@ class Admin extends MY_Controller {
 		$this->form_validation->reset_validation();
 		$this->form_validation->set_rules('inputAdmin', 'Company Admin', 'trim|required');
 		$this->form_validation->set_rules('inputName', 'Company Name', 'trim|required');
-		$this->form_validation->set_rules('inputLocation', 'Location', 'trim|required');
+		$this->form_validation->set_rules('inputAddress', 'Address', 'trim|required');
 		$this->form_validation->set_rules('inputDescription', 'Description', 'trim|required');
 		
 		$create_user_data = array(
 			'company_admin' => strtolower($this->input->post('inputAdmin')),
 			'company_name' => strtolower($this->input->post('inputName')),
-			'location' => strtolower($this->input->post('inputLocation')),
+			'address' => strtolower($this->input->post('inputAddress')),
 			'description' => strtolower($this->input->post('inputDescription'))
 		);
 		

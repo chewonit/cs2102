@@ -40,6 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<th>First Name</th>
 						<th>Last Name</th>
 						<th>Nationality</th>
+						<th>Date of Birth</th>
 						<th>Contact</th>
 						<th>Gender</th>
 						<th>Role</th>
@@ -55,6 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<th>First Name</th>
 						<th>Last Name</th>
 						<th>Nationality</th>
+						<th>Date of Birth</th>
 						<th>Contact</th>
 						<th>Gender</th>
 						<th>Role</th>
@@ -122,6 +124,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				jq('[name="inputContact"]').val(data.contact);
 				jq('[name="inputGender"]').val(data.gender);
 				jq('[name="inputAccount"]').val(data.role);
+				jq('[name="inputDob"]').val(data.dob);
 
 				jq('#modal_form_update').modal('show'); // show bootstrap modal when complete loaded
 				jq('.modal-title').text('Edit Entry'); // Set title to Bootstrap modal title
@@ -315,6 +318,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					error.insertAfter(element);
 			}
 		});
+		
+		jq(".form_datetime").datetimepicker({format: 'yyyy-mm-dd'});
 	});	
 
 	</script>
@@ -577,6 +582,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="control-label col-md-3">Date of Birth</label>
+								<div class="col-md-9">
+									<input required type="text" class="form-control form_datetime" id="inputDob" name="inputDob"placeholder="Date of Birth">
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="control-label col-md-3">Role</label>
 								<div class="col-md-9">
 									<select name="inputAccount" class="form-control">
@@ -835,6 +846,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<option value="female">Female</option>
 										<option value="male">Male</option>
 									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">Date of Birth</label>
+								<div class="col-md-9">
+									<input required type="text" class="form-control form_datetime" id="inputDob" name="inputDob"placeholder="Date of Birth">
 								</div>
 							</div>
 							<div class="form-group">

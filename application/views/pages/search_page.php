@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<h5><?php echo $row->name; ?></h5>
 							</div>
 							<div class="col-md-3 text-right-md">
-								<h5><?php echo ucwords($row->location); ?></h5>
+								<h5><?php echo ucwords($row->address); ?></h5>
 								<h6><?php echo $row->date_created ?></h6>
 								<h6>Job ID: <?php echo $row->job_id ?></h6>
 							</div>

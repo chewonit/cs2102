@@ -26,12 +26,13 @@ CREATE TABLE IF NOT EXISTS Users (
     nationality VARCHAR(32) NOT NULL,
     contact INT UNSIGNED NOT NULL,
     gender CHAR(6) NOT NULL,
+    dob DATE NOT NULL,
     role CHAR(9) NOT NULL REFERENCES Roles(role),
     CONSTRAINT Check_Gender CHECK (gender ='female' OR gender='male')
 );
-INSERT INTO `Users` VALUES ('demo@demo.com', MD5('pass1234'), 'demo', 'demo', 'singaporean', '91234567', 'female', 'admin');
-INSERT INTO `Users` VALUES ('john@demo.com', MD5('pass1234'), 'john', 'doe', 'singaporean', '81234567', 'male', 'jobseeker');
-INSERT INTO `Users` VALUES ('elaine@demo.com', MD5('pass1234'), 'elaine', 'teo', 'singaporean', '87654321', 'female', 'employer');
+INSERT INTO `Users` VALUES ('demo@demo.com', MD5('pass1234'), 'demo', 'demo', 'singaporean', '91234567', 'female', 'admin', '1980-01-01');
+INSERT INTO `Users` VALUES ('john@demo.com', MD5('pass1234'), 'john', 'doe', 'singaporean', '81234567', 'male', 'jobseeker', '1995-01-01');
+INSERT INTO `Users` VALUES ('elaine@demo.com', MD5('pass1234'), 'elaine', 'teo', 'singaporean', '87654321', 'female', 'employer', '1985-01-01');
 
 -- Resume_Profile
 CREATE TABLE Resume_Profile (
@@ -54,7 +55,7 @@ CREATE TABLE Company (
     company_reg_no VARCHAR(255) PRIMARY KEY,
     company_admin VARCHAR(255) unique NOT NULL,
     company_name VARCHAR(255) UNIQUE NOT NULL,
-    location VARCHAR(65535) NOT NULL,
+    address TEXT NOT NULL,
     description TEXT NOT NULL,
     FOREIGN KEY (company_admin) REFERENCES Users(email)
     	ON DELETE CASCADE

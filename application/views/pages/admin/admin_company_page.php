@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<th>Reg. Number</th>
 						<th>Admin</th>
 						<th>Name</th>
-						<th>Location</th>
+						<th>Address</th>
 						<th>Description</th>
 						<th style="width:125px;">Action</th>
 						</tr>
@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<th>Reg. Number</th>
 						<th>Admin</th>
 						<th>Name</th>
-						<th>Location</th>
+						<th>Address</th>
 						<th>Description</th>
 						<th>Action</th>
 						</tr>
@@ -113,7 +113,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				jq('[name="inputRegNo"]').val(data.company_reg_no);
 				jq('[name="inputAdmin"]').val(data.company_admin);
 				jq('[name="inputName"]').val(data.company_name);
-				jq('[name="inputLocation"]').val(data.location);
+				jq('[name="inputAddress"]').val(data.address);
 				jq('[name="inputDescription"]').val(data.description);
 
 				jq('#modal_form_update').modal('show'); // show bootstrap modal when complete loaded
@@ -214,14 +214,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				inputRegNo: "required",
 				inputAdmin: "required",
 				inputName: "required",
-				inputLocation: "required",
+				inputAddress: "required",
 				inputDescription: "required"
 			},
 			messages: {
 				inputRegNo: "Please enter your compnay registration number.",
 				inputAdmin: "Please enter the company admin.",
 				inputName: "Please enter the company name.",
-				inputLocation: "Please enter your location.",
+				inputAddress: "Please enter your Address.",
 				inputDescription: "Please enter a description."
 			}
 		});
@@ -230,13 +230,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			rules: {
 				inputAdmin: "required",
 				inputName: "required",
-				inputLocation: "required",
+				inputAddress: "required",
 				inputDescription: "required"
 			},
 			messages: {
 				inputAdmin: "Please enter the company admin.",
 				inputName: "Please enter the company name.",
-				inputLocation: "Please enter your location.",
+				inputAddress: "Please enter your Address.",
 				inputDescription: "Please enter a description."
 			}
 		});
@@ -275,9 +275,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3">Location</label>
+								<label class="control-label col-md-3">Address</label>
 								<div class="col-md-9">
-									<textarea class="form-control" id="inputLocation" name="inputLocation" rows="3" placeholder="Location" required></textarea>
+									<textarea class="form-control" id="inputAddress" name="inputAddress" rows="3" placeholder="Address" required></textarea>
 								</div>
 							</div>
 							<div class="form-group">
@@ -321,9 +321,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3">Location</label>
+								<label class="control-label col-md-3">Address</label>
 								<div class="col-md-9">
-									<textarea class="form-control" id="inputLocation" name="inputLocation" rows="3" placeholder="Location" required></textarea>
+									<textarea class="form-control" id="inputAddress" name="inputAddress" rows="3" placeholder="Address" required></textarea>
 								</div>
 							</div>
 							<div class="form-group">

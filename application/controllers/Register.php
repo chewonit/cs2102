@@ -36,6 +36,9 @@ class Register extends MY_Controller {
 	{
 		$this->init_form_validation();
 		
+		$inputDob = trim($this->input->post('inputDob'));
+		$inputDob = $inputDob == '' ? date("Y-m-d") : date("Y-m-d", strtotime($inputDob));
+		
 		$create_user_data = array(
 			'first_name' => strtolower($this->input->post('inputFirstName')),
 			'last_name' => strtolower($this->input->post('inputLastName')),
@@ -44,7 +47,8 @@ class Register extends MY_Controller {
 			'nationality' => strtolower($this->input->post('inputNationality')),
 			'contact' => $this->input->post('inputContact'),
 			'gender' => strtolower($this->input->post('inputGender')),
-			'role' => strtolower($this->input->post('inputAccount'))
+			'role' => strtolower($this->input->post('inputAccount')),
+			'dob' => $inputDob
 		);
 		
 		// The sign up form has been submitted.
@@ -92,6 +96,7 @@ class Register extends MY_Controller {
 		$this->form_validation->set_rules('inputContact', 'Contact', 'trim|required|is_natural');
 		$this->form_validation->set_rules('inputGender', 'Gender', 'trim|required');
 		$this->form_validation->set_rules('inputAccount', 'Account', 'trim|required');
+		$this->form_validation->set_rules('inputDob', 'Date of Birth', 'trim|required');
 		
 		$this->form_validation->set_message('is_unique', 'The email has already been registered.');
 		$this->form_validation->set_message('password_check', 'The password must contain Alphabets and Numbers.');

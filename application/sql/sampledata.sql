@@ -1,43 +1,43 @@
 /*---sample jobseekers---*/
 INSERT INTO `Users` VALUES 
-('john01@demo.com', MD5('pass1234'), 'john01', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john02@demo.com', MD5('pass1234'), 'john02', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john03@demo.com', MD5('pass1234'), 'john03', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john04@demo.com', MD5('pass1234'), 'john04', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john05@demo.com', MD5('pass1234'), 'john05', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john06@demo.com', MD5('pass1234'), 'john06', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john07@demo.com', MD5('pass1234'), 'john07', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john08@demo.com', MD5('pass1234'), 'john08', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john09@demo.com', MD5('pass1234'), 'john09', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john10@demo.com', MD5('pass1234'), 'john10', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john11@demo.com', MD5('pass1234'), 'john11', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john12@demo.com', MD5('pass1234'), 'john12', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john13@demo.com', MD5('pass1234'), 'john13', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john14@demo.com', MD5('pass1234'), 'john14', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john15@demo.com', MD5('pass1234'), 'john15', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker'),
-('john16@demo.com', MD5('pass1234'), 'john16', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker');
+('john01@demo.com', MD5('pass1234'), 'john01', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1990-01-01'),
+('john02@demo.com', MD5('pass1234'), 'john02', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1990-02-01'),
+('john03@demo.com', MD5('pass1234'), 'john03', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1991-03-01'),
+('john04@demo.com', MD5('pass1234'), 'john04', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1991-04-01'),
+('john05@demo.com', MD5('pass1234'), 'john05', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1992-05-01'),
+('john06@demo.com', MD5('pass1234'), 'john06', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1992-06-01'),
+('john07@demo.com', MD5('pass1234'), 'john07', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1993-07-01'),
+('john08@demo.com', MD5('pass1234'), 'john08', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1993-08-01'),
+('john09@demo.com', MD5('pass1234'), 'john09', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1994-09-01'),
+('john10@demo.com', MD5('pass1234'), 'john10', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1994-10-01'),
+('john11@demo.com', MD5('pass1234'), 'john11', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1995-11-01'),
+('john12@demo.com', MD5('pass1234'), 'john12', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1995-12-01'),
+('john13@demo.com', MD5('pass1234'), 'john13', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1996-01-01'),
+('john14@demo.com', MD5('pass1234'), 'john14', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1996-02-01'),
+('john15@demo.com', MD5('pass1234'), 'john15', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1996-03-01'),
+('john16@demo.com', MD5('pass1234'), 'john16', 'doe', 'Singaporean', '81234567', 'male', 'jobseeker', '1996-04-01');
 
 /*---sample employers---*/
 INSERT INTO `Users` VALUES 
-('elaine01@demo.com', MD5('pass1234'), 'elaine01', 'teo', 'Singaporean', '87654321', 'female', 'employer'),
-('elaine02@demo.com', MD5('pass1234'), 'elaine02', 'teo', 'Singaporean', '87654321', 'female', 'employer'),
-('elaine03@demo.com', MD5('pass1234'), 'elaine03', 'teo', 'Singaporean', '87654321', 'female', 'employer'),
-('elaine04@demo.com', MD5('pass1234'), 'elaine04', 'teo', 'Singaporean', '87654321', 'female', 'employer'),
-('elaine05@demo.com', MD5('pass1234'), 'elaine05', 'teo', 'Singaporean', '87654321', 'female', 'employer'),
-('elaine06@demo.com', MD5('pass1234'), 'elaine06', 'teo', 'Singaporean', '87654321', 'female', 'employer'),
-('elaine07@demo.com', MD5('pass1234'), 'elaine07', 'teo', 'Singaporean', '87654321', 'female', 'employer'),
-('elaine08@demo.com', MD5('pass1234'), 'elaine08', 'teo', 'Singaporean', '87654321', 'female', 'employer');
+('elaine01@demo.com', MD5('pass1234'), 'elaine01', 'teo', 'Singaporean', '87654321', 'female', 'employer', '1985-01-01'),
+('elaine02@demo.com', MD5('pass1234'), 'elaine02', 'teo', 'Singaporean', '87654321', 'female', 'employer', '1985-08-01'),
+('elaine03@demo.com', MD5('pass1234'), 'elaine03', 'teo', 'Singaporean', '87654321', 'female', 'employer', '1985-03-01'),
+('elaine04@demo.com', MD5('pass1234'), 'elaine04', 'teo', 'Singaporean', '87654321', 'female', 'employer', '1986-04-01'),
+('elaine05@demo.com', MD5('pass1234'), 'elaine05', 'teo', 'Singaporean', '87654321', 'female', 'employer', '1986-05-01'),
+('elaine06@demo.com', MD5('pass1234'), 'elaine06', 'teo', 'Singaporean', '87654321', 'female', 'employer', '1986-06-01'),
+('elaine07@demo.com', MD5('pass1234'), 'elaine07', 'teo', 'Singaporean', '87654321', 'female', 'employer', '1987-07-01'),
+('elaine08@demo.com', MD5('pass1234'), 'elaine08', 'teo', 'Singaporean', '87654321', 'female', 'employer', '1987-08-01');
 
 /*---sample companies---*/
-INSERT INTO `company`(`company_reg_no`, `company_admin`, `company_name`, `location`, `description`) VALUES 
-('c01','elaine01@demo.com','companycat01','Changi','company hiring Finance & Account'),
-('c02','elaine02@demo.com','companycat02','Jurong','company hiring Human Resources'),
-('c03','elaine03@demo.com','companycat03','Changi','company hiring Purchase & Supply Chain'),
-('c04','elaine04@demo.com','companycat04','Jurong','company hiring Adminstrations/ Secretarial'),
-('c05','elaine05@demo.com','companycat05','Changi','company hiring Legal'),
-('c06','elaine06@demo.com','companycat06','Jurong','company hiring Customer Service/ BPO/ KPO'),
-('c07','elaine07@demo.com','companycat07','Changi','company hiring Sales'),
-('c08','elaine08@demo.com','companycat08','Jurong','company hiring Marketing');
+INSERT INTO `company`(`company_reg_no`, `company_admin`, `company_name`, `address`, `description`) VALUES 
+('c01','elaine01@demo.com','companycat01','1 Changi Rd','company hiring Finance & Account'),
+('c02','elaine02@demo.com','companycat02','1 Jurong Rd','company hiring Human Resources'),
+('c03','elaine03@demo.com','companycat03','2 Changi Rd','company hiring Purchase & Supply Chain'),
+('c04','elaine04@demo.com','companycat04','2 Jurong Rd','company hiring Adminstrations/ Secretarial'),
+('c05','elaine05@demo.com','companycat05','3 Changi Rd','company hiring Legal'),
+('c06','elaine06@demo.com','companycat06','3 Jurong Rd','company hiring Customer Service/ BPO/ KPO'),
+('c07','elaine07@demo.com','companycat07','4 Changi Rd','company hiring Sales'),
+('c08','elaine08@demo.com','companycat08','4 Jurong Rd','company hiring Marketing');
 
 /*---sample companies employers---*/
 INSERT INTO `company_employer`(`employer`, `company_reg_no`, `accepted`) VALUES 

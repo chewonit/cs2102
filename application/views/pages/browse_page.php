@@ -56,11 +56,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				
 				<div class="form-group">
-					<select name='inputLocation' class="form-control" onchange="this.form.submit();" >
-						<option value="">Jobs By Location</option>
-						<?php foreach($location_list->result() as $location) : ?>
-							<option value="<?php echo $location->location ?>">
-								<?php echo $location->location ?>
+					<select name='inputAddress' class="form-control" onchange="this.form.submit();" >
+						<option value="">Jobs By Address</option>
+						<?php foreach($address_list->result() as $address) : ?>
+							<option value="<?php echo $address->address ?>">
+								<?php echo $address->address ?>
 							</option>
 						<?php endforeach ?>
 					</select>
@@ -106,7 +106,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<h5><?php echo $row->name ?></h5>
 							</div>
 							<div class="col-md-3 text-right-md">
-								<h5><?php echo ucwords($row->location); ?></h5>
+								<h5><?php echo ucwords($row->address); ?></h5>
 								<h6><?php echo $row->date_created ?></h6>
 								<h6>Job ID: <?php echo $row->job_id ?></h6>
 							</div>
@@ -156,7 +156,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				jq('[name="inputCategory"]').val("<?php echo $browse_cat; ?>");
 				jq('[name="inputExp"]').val("<?php echo $browse_exp; ?>");
 				jq('[name="inputCompany"]').val("<?php echo $browse_name; ?>");
-				jq('[name="inputLocation"]').val("<?php echo $browse_loc; ?>");
+				jq('[name="inputAddress"]').val("<?php echo $browse_loc; ?>");
 				jq('[name="inputSkills"]').val("<?php echo $browse_skill; ?>");
 			});
 		</script>

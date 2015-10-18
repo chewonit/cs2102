@@ -183,7 +183,7 @@ class Company extends MY_Controller {
 		'company_reg_no' => $this->input->post('inputRegNo'), 
 		'company_admin' => $this->input->post('inputEmail'), 
 		'company_name' => $this->input->post('inputCompanyName'), 
-		'location' => $this->input->post('inputLocation'),
+		'address' => $this->input->post('inputAddress'),
 		'description' => $this->input->post('inputDescription')
 		);
 		
@@ -218,14 +218,14 @@ class Company extends MY_Controller {
 	{
 		$this->form_validation->set_rules('inputRegNo', 'Company Registration Number', 'trim|required|is_unique[company.company_reg_no]');
 		$this->form_validation->set_rules('inputCompanyName', 'Company Name', 'trim|required|is_unique[company.company_name]');
-		$this->form_validation->set_rules('inputLocation', 'Location', 'trim|required');
+		$this->form_validation->set_rules('inputAddress', 'Address', 'trim|required');
 		$this->form_validation->set_rules('inputDescription', 'Description', 'trim|required');
 		
 		$data_entry = array(
 			'company_reg_no' => $this->input->post('inputRegNo'),
 			'company_name' => $this->input->post('inputCompanyName'),
 			'company_admin' => $this->input->post('inputEmail'),
-			'location' => $this->input->post('inputLocation'),
+			'address' => $this->input->post('inputAddress'),
 			'description' => $this->input->post('inputDescription'),
 		);
 		

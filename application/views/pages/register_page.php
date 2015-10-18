@@ -55,7 +55,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								positiveNumber: true
 							},
 							inputGender: "required",
-							inputAccount: "required"
+							inputAccount: "required",
+							inputDob: "required"
 						},
 						messages: {
 							inputFirstName: "Please specify your first name.",
@@ -76,7 +77,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								number: "Please enter a valid phone number."
 							},
 							inputGender: "Please spcify your gender.",
-							inputAccount: "Please select one option"
+							inputAccount: "Please select one option",
+							inputDob: "Please enter your date of birth"
 						},
 						errorPlacement: function(error, element) {
 							if (element.attr("name") == "inputEmail" 
@@ -86,6 +88,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								error.insertAfter(element);
 						}
 					});
+					
+					jq(".form_datetime").datetimepicker({format: 'yyyy-mm-dd'});
 				});			
 			</script>
 			
@@ -362,6 +366,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</div>
 						</div>
 						<div class="form-group col-md-6">
+							<label for="inputDob">Date of Birth:</label><br />
+							<input required type="text" class="form-control form_datetime" id="inputDob" name="inputDob"placeholder="Date of Birth">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6">
 							<label for="inputAccount">Account:</label><br />
 							<div class="btn-group" data-toggle="buttons">
 								<label class="btn btn-default active">
@@ -371,6 +381,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<input type="radio" name="inputAccount" id="inputAccount_employer" autocomplete="off" value="employer"> Employer
 								</label>
 							</div>
+						</div>
+						<div class="form-group col-md-6">
+							
 						</div>
 					</div>
 					<button type="submit" class="btn btn-default btn-success">Sign Up</button>

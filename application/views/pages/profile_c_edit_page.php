@@ -32,9 +32,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputLocation" class="col-sm-2 control-label">Location</label>
+					<label for="inputAddress" class="col-sm-2 control-label">Address</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="inputLocation" name="inputLocation" placeholder="Location" value="<?php echo $company_profile->location; ?>" required>
+						<input type="text" class="form-control" id="inputAddress" name="inputAddress" placeholder="Address" value="<?php echo $company_profile->address; ?>" required>
 					</div>
 				</div>
 				<div class="form-group">

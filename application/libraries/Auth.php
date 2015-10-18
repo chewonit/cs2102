@@ -46,7 +46,8 @@ class Auth {
 			'nationality' => $data['nationality'],
 			'contact' => $data['contact'],
 			'gender' => $data['gender'],
-			'role' => $data['role']
+			'role' => $data['role'],
+			'dob' => $data['dob']
 		);
 		
 		return $this->ci->users_model->insert($create_user_data);
