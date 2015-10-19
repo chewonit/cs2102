@@ -13,13 +13,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-12">
 			
-			<section>
 			<?php $attributes = array('class' => 'form-horizontal'); ?>
 			<?php echo form_open('#', $attributes); ?>
 			
-			<div class="container">
+			<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
@@ -38,6 +37,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<label class="col-sm-2 control-label">Last Name</label>
 						<div class="col-sm-10">
 							<h5><?php echo ucwords($user_data->last_name) ?></h5>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Date of Birth</label>
+						<div class="col-sm-10">
+							<h5><?php echo $user_data->dob ?></h5>
 						</div>
 					</div>
 
@@ -66,8 +71,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			
 			<?php echo form_close(); ?>
-			</section>
-		
+			
+			<hr />
+			
 		</div>
 	</div>
 		
@@ -80,35 +86,65 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<?php else : ?>
 		
-			<section>
 			<?php $attributes = array('class' => 'form-horizontal'); ?>
 			<?php echo form_open('#', $attributes); ?>
-			<div class="form-group">
-				<label class="col-sm-1 control-label">Address</label>
-				<div class="col-sm-11">
-					<h5 class="profile-public-field"><?php echo $user_profile->address ?></h5>
+			
+			<div class="container-fluid">
+			<div class="row">
+			
+				<div class="col-md-6">
+			
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Address</label>
+						<div class="col-sm-10">
+							<h5 class="profile-public-field"><?php echo $user_profile->address ?></h5>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Description</label>
+						<div class="col-sm-10">
+							<h5><?php echo $user_profile->description ?></h5>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Work History</label>
+						<div class="col-sm-10">
+							<h5><?php echo $user_profile->work_history ?></h5>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Edu History</label>
+						<div class="col-sm-10">
+							<h5><?php echo $user_profile->edu_history ?></h5>
+						</div>
+					</div>
+				
 				</div>
+				
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Location Preference</label>
+						<div class="col-sm-10">
+							<h5><?php echo $user_profile->location_pref ?></h5>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Skills</label>
+						<div class="col-sm-10">
+							<h5 class="profile-public-field"><?php echo $user_profile->skills ?></h5>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Interest Areas</label>
+						<div class="col-sm-10">
+							<h5><?php echo $user_profile->interest_area ?></h5>
+						</div>
+					</div>
+				</div>
+				
 			</div>
-			<div class="form-group">
-				<label class="col-sm-1 control-label">Description</label>
-				<div class="col-sm-11">
-					<h5><?php echo $user_profile->description ?></h5>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-1 control-label">Work History</label>
-				<div class="col-sm-11">
-					<h5><?php echo $user_profile->work_history ?></h5>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-1 control-label">Edu History</label>
-				<div class="col-sm-11">
-					<h5><?php echo $user_profile->edu_history ?></h5>
-				</div>
 			</div>
 			<?php echo form_close(); ?>
-			</section>
 			
 			<?php endif ?>
 			

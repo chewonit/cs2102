@@ -105,4 +105,12 @@ class Resume_Profile_model extends CI_Model {
 	public function browse($keyword) {
 		return $this->db->query("SELECT DISTINCT ('$keyword') FROM resume_profile");
 	}
+	
+	public function get_profile_with_user($owner) 
+	{
+		$this->db->from("$this->table_name p");
+		$this->db->where('p.owner', $owner);
+		$this->db->join('users u', 'u.email = p.owner');
+        return $this -> db -> get();
+	}
 }

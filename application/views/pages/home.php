@@ -37,8 +37,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-md-6">
 			<a class="job-featured" href="<?php echo base_url('job/'.$row->job_id) ?>">
 				<section class="job-item">
-					<h4><?php echo $row->title; ?></h4>
-					<h5><?php echo $row->company_name; ?></h5>
+					<h4><?php echo ucwords($row->title); ?></h4>
+					<h5><?php echo ucwords($row->company_name); ?></h5>
 					<p><?php 
 							$str = $row->description;
 							if (strlen($str) > 140) {

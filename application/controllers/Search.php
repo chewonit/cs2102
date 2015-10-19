@@ -91,13 +91,45 @@ class Search extends MY_Controller {
 		$this -> check_page_files('/views/pages/' . $page . '.php');
 		
 		$data['page_title'] = "Search Jobseekers";
+		
+		$conditions = array();
+		
+		$gender = $this->input->post('inputGender');
+		$data['inputGender'] = $gender;
+		if ($gender != "") 
+		{
+			$conditions['u.gender'] = $gender;
+		}
+		
+		$nationality = $this->input->post('inputNationality');
+		$data['inputNationality'] = $nationality;
+		if ($nationality != "") 
+		{
+			$conditions['u.nationality'] = $nationality;
+		}
+		
+		$location = $this->input->post('inputLocation');
+		$data['inputLocation'] = $location;
+		if ($location != "") 
+		{
+			$conditions['p.location_pref'] = $location;
+		}
 
 		$data['search_query'] = $this->input->post('inputSearch');
 		
-		if($data['search_query'] == ""){
-			$data['search_results'] = $this -> resume_profile_model -> get();
-		}else{
-			$data['search_results'] = $this -> resume_profile_model -> search($data['search_query']);
+		if($data['search_query'] == "" && count($conditions) <= 0 )
+		{
+			$data['search_results'] = $this -> search_model -> search_jobseekers();
+		}
+		else if($data['search_query'] == "" && count($conditions) > 0 )
+		{
+			$data['search_results'] = $this -> search_model 
+				-> search_jobseekers( $conditions );
+		}		
+		else
+		{
+			$data['search_results'] = $this -> search_model 
+				-> search_jobseekers( $conditions, $data['search_query'] );
 		}
 		
 		$this -> load_view($data, $page);

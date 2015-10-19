@@ -55,7 +55,7 @@ class Job_List extends MY_Controller {
 
 		$this->check_page_files('/views/pages/' . $page . '.php');
 
-		$data['page_title'] = "Job List";
+		$data['page_title'] = "Job Application List";
 		
 		$email = $this->auth->get_info()->email;
 		$data['job_list'] = $this->jobs_model->get_job_list_applicant( $email )->result();

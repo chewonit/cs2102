@@ -16,7 +16,7 @@ class Search_model extends CI_Model {
 		$this->db->join('job_category cat', 'cat.category_id = j.category_id');
 		
 		$search_fields = "j.Title, j.Description, j.Skills";
-		$search_fields2 = "c.Company_name, c.Location";
+		$search_fields2 = "c.Company_name, c.Address";
 		
 		if( !is_null($conditions) ) 
 		{
@@ -24,8 +24,36 @@ class Search_model extends CI_Model {
 		}
 		if( !is_null($search) ) 
 		{
-			$this->db->where("MATCH (".$search_fields.") AGAINST ('$search')", NULL, FALSE);
-			$this->db->or_where("MATCH (".$search_fields2.") AGAINST ('$search')", NULL, FALSE);
+			$clause = "MATCH (".$search_fields.") AGAINST ('$search')";
+			$clause .= " OR MATCH (".$search_fields2.") AGAINST ('$search')";
+			
+			$this->db->where("( $clause )", NULL, FALSE);
+		}
+		
+		return $this -> db -> get();
+	}
+	
+	
+	public function search_jobseekers( $conditions = null , $keywords = null ) 
+	{
+		$this->db->from('resume_profile p');
+		$this->db->join('users u', 'u.email = p.owner');
+		$this->db->where('u.role', 'jobseeker');
+		
+		if( !is_null($conditions) ) 
+		{
+			$this->db->where($conditions);
+		}
+		
+		if( !is_null($keywords) ) 
+		{
+			$search_fields = "p.owner, p.address, p.description, p.work_history, p.edu_history, p.skills, p.interest_area";
+			$search_fields2 = "u.first_name, u.last_name";
+			
+			$clause = "MATCH (".$search_fields.") AGAINST ('$keywords')";
+			$clause .= " OR MATCH (".$search_fields2.") AGAINST ('$keywords')";
+			
+			$this->db->where("( $clause )", NULL, FALSE);
 		}
 		
 		return $this -> db -> get();

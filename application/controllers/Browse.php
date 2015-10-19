@@ -152,6 +152,13 @@ class Browse extends MY_Controller {
 			$conditions['p.owner'] = $email;
 		}
 		
+		$location = $this->input->post('inputLocation');
+		$data['inputLocation'] = $location;
+		if ($location != "") 
+		{
+			$conditions['p.location_pref'] = $location;
+		}
+		
 		if( count($conditions) > 0 )
 		{
 			$data['search_results'] = $this -> browse_model -> browse_jobseekers($conditions);

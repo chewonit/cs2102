@@ -116,6 +116,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<input type="text" class="form-control" id="inputNationality" name="inputNationality" placeholder="Nationality" value="<?php echo $user_info['nationality'] ?>" readonly>
 					</div>
 				</div>
+				<div class="form-group">
+					<label for="inputDob" class="col-sm-2 control-label">Date of Birth</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="inputDob" name="inputDob" placeholder="Nationality" value="<?php echo $user_info['dob'] ?>" readonly>
+					</div>
+				</div>
 				<?php echo form_close(); ?>
 			</section>
 		</div>		

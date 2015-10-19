@@ -233,6 +233,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<option value="zimbabwean">Zimbabwean</option>
 					</select>
 				</div>
+				<div class="form-group">
+					<select required class="form-control" id="inputLocation" name="inputLocation" onchange="this.form.submit();">
+						<option value="">Location Preference</option>
+						<option value="central">Central</option>
+						<option value="north">North</option>
+						<option value="south">South</option>
+						<option value="east">East</option>
+						<option value="west">West</option>
+					</select>
+				</div>
 			<?php echo form_close() ?>
 			
 			<a href="<?php echo base_url('browse/'); ?>">
@@ -242,7 +252,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 		<div class="col-md-9">
 		    
-			<h4>Please select a category to browse under.</h4>
 			<?php if ( count($search_results->result()) == 0) : ?>
 
 			<h4>No results found.</h4>
@@ -274,6 +283,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<h5>
 									<?php echo ucwords($row->nationality); ?>
 								</h5>
+								<h5>
+									<?php echo "Prefers: ".ucwords($row->location_pref); ?>
+								</h5>
 							</div>
 						</div>
 						<div class="row">
@@ -303,6 +315,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				jq('[name="inputEmail"]').val("<?php echo $inputEmail; ?>");
 				jq('[name="inputGender"]').val("<?php echo $inputGender; ?>");
 				jq('[name="inputNationality"]').val("<?php echo $inputNationality; ?>");
+				jq('[name="inputLocation"]').val("<?php echo $inputLocation; ?>");
 			});
 		</script>
 	</div>

@@ -30,6 +30,8 @@ CREATE TABLE IF NOT EXISTS Users (
     role CHAR(9) NOT NULL REFERENCES Roles(role),
     CONSTRAINT Check_Gender CHECK (gender ='female' OR gender='male')
 );
+ALTER TABLE Users ADD FULLTEXT (first_name, last_name);
+
 INSERT INTO `Users` VALUES ('demo@demo.com', MD5('pass1234'), 'demo', 'demo', 'singaporean', '91234567', 'female', 'admin', '1980-01-01');
 INSERT INTO `Users` VALUES ('john@demo.com', MD5('pass1234'), 'john', 'doe', 'singaporean', '81234567', 'male', 'jobseeker', '1995-01-01');
 INSERT INTO `Users` VALUES ('elaine@demo.com', MD5('pass1234'), 'elaine', 'teo', 'singaporean', '87654321', 'female', 'employer', '1985-01-01');
@@ -40,7 +42,10 @@ CREATE TABLE Resume_Profile (
     address VARCHAR(65535) NOT NULL,
     description TEXT NOT NULL,
     work_history TEXT,
-    edu_history TEXT,
+    edu_history TEXT,    
+	skills TEXT,
+    location_pref TEXT NOT NULL,
+    interest_area TEXT NOT NULL,
     FOREIGN KEY (owner) REFERENCES Users(email)
     	ON DELETE CASCADE
     	ON UPDATE CASCADE,
@@ -48,7 +53,7 @@ CREATE TABLE Resume_Profile (
         owner IN (SELECT u.email FROM Users u WHERE u.role = 'jobseeker')
     )
 );
-ALTER TABLE Resume_Profile ADD FULLTEXT (owner, address, description, work_history, edu_history);
+ALTER TABLE Resume_Profile ADD FULLTEXT (owner, address, description, work_history, edu_history, skills, interest_area);
 
 -- Company
 CREATE TABLE Company (
@@ -64,7 +69,7 @@ CREATE TABLE Company (
         company_admin IN (SELECT u.email FROM Users u WHERE u.role = 'employer')
     )
 );
-ALTER TABLE Company ADD FULLTEXT (company_name, location);
+ALTER TABLE Company ADD FULLTEXT (company_name, address);
 
 -- Company_Employers
 CREATE TABLE Company_Employer (

@@ -33,13 +33,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="col-md-9">
 								<h4 class="job-item-header">
 									<a href="<?php echo base_url("job/$row->job_id/") ?>">
-										<?php echo $row->title; ?>
+										<?php echo ucwords($row->title); ?>
 									</a>
 								</h4>
-								<h5><?php echo $row->company_name; ?></h5>
+								<h5><?php echo ucwords($row->company_name); ?></h5>
 							</div>
 							<div class="col-md-3 text-right">
-								<h5><?php echo $row->location; ?></h5>
+								<h5><?php echo ucwords($row->location); ?></h5>
 								<h6><?php echo $row->date_created ?></h6>
 							</div>
 						</div>

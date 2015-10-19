@@ -88,15 +88,17 @@ class Profile extends MY_Controller {
 	 */
 	
 	public function update(){
-		//$data['owner'] = $this->db->query('SELECT owner FROM resume_profile');
-		//$data['owner'] = $this -> resume_profile_model -> get('owner');
+	
 		$email = $this->auth->get_info()->email;
 		
 		$data = array(
-		'address'=> $this->input->post('inputProfileAddress'),
-		'description' => $this->input->post('inputProfileAbout'),
-		'edu_history' => $this->input->post('inputProfileEducation'),
-		'work_history' => $this->input->post('inputProfileWork')
+			'address'=> $this->input->post('inputProfileAddress'),
+			'description' => $this->input->post('inputProfileAbout'),
+			'edu_history' => $this->input->post('inputProfileEducation'),
+			'work_history' => $this->input->post('inputProfileWork'),
+			'skills' => $this->input->post('inputSkills'),
+			'interest_area' => $this->input->post('inputInterest'),
+			'location_pref' => $this->input->post('inputLocation'),
 		);
 		$this -> resume_profile_model -> update($email,$data); 
 		$this -> index();	
@@ -125,11 +127,7 @@ class Profile extends MY_Controller {
 		$data['page_title'] = "Profile";
 		
 		$email = $this->auth->get_info()->email;
-		$data['resume_profile'] = $this -> resume_profile_model -> get();
-		$data['resume_profile2'] = $this -> users_model -> get();
-		$data['first_name'] = $this->db->query("SELECT u.first_name FROM users u,resume_profile p WHERE u.email = p.owner AND p.owner = '$email'");
-		$data['last_name'] = $this->db->query("SELECT u.last_name FROM users u,resume_profile p WHERE u.email = p.owner AND p.owner = '$email'");
-		//$this->update();
+		$data['resume_profile'] = $this -> resume_profile_model -> get_profile_with_user($email);
 		
 		$this->load_view($data, $page);
 	

@@ -108,6 +108,7 @@ class Dashboard extends MY_Controller {
 			'nationality' => ucwords($user_info->nationality),
 			'gender' => ucwords($user_info->gender),
 			'contact' => $user_info->contact,
+			'dob' => $user_info->dob,
 		);
 	}
 	
