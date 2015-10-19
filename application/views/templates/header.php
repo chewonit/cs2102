@@ -84,13 +84,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					
 				</ul>
 			</li>
-			<div id="logout-buttons-section">
+			<li><div id="logout-buttons-section">
 				<a href="<?php echo site_url("login/logout_user/"); ?>">			
 					<button type="button" class="btn btn-default navbar-btn btn-danger">
 						<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log out
 					</button>
 				</a>
-			</div>
+			</div></li>
 			<?php else : ?>
 			<div id="login-buttons-section">
 				<a href="<?php echo site_url("register/"); ?>">			
