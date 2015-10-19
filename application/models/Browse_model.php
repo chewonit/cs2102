@@ -65,5 +65,14 @@ class browse_model extends CI_Model {
 		}
 		return $this -> db -> get();
 	}
+	
+	public function get_company_with_jobs() 
+	{
+		$this->db->select('c.company_reg_no, c.company_name');
+		$this->db->distinct();
+		$this->db->from('jobs j');
+		$this->db->join('company c', 'j.company_reg_no = c.company_reg_no');
+		return $this -> db -> get();
+	}
 
 }

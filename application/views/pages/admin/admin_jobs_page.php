@@ -44,6 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<th>Description</th>
 						<th>Experience</th>
 						<th>Skills</th>
+						<th>Location</th>
 						<th style="width:125px;">Action</th>
 						</tr>
 					</thead>
@@ -60,6 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<th>Description</th>
 						<th>Experience</th>
 						<th>Skills</th>
+						<th>Location</th>
 						<th>Action</th>
 						</tr>
 					</tfoot>
@@ -125,6 +127,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				jq('[name="inputDescription"]').val(data.description);
 				jq('[name="inputExperience"]').val(data.experience);
 				jq('[name="inputSkills"]').val(data.skills);
+				jq('[name="inputLocation"]').val(data.location);
 
 				jq('#modal_form_update').modal('show'); // show bootstrap modal when complete loaded
 				jq('.modal-title').text('Edit Entry'); // Set title to Bootstrap modal title
@@ -229,7 +232,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				inputExperience: {
 					required: true,
 					number: true
-				}
+				},
+				inputLocation: "required"
 			},
 			messages: {
 				inputRegNo: "Please enter the company registration number.",
@@ -240,7 +244,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				inputExperience: {
 					required: "Please enter the abount of experience.",
 					number: "Please enter a number only."
-				}
+				},
+				inputLocation: "Please select a location."
 			}
 		});
 		
@@ -253,7 +258,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				inputExperience: {
 					required: true,
 					number: true
-				}
+				},
+				inputLocation: "required"
 			},
 			messages: {
 				inputPublished: "Please select to publish this Job.",
@@ -263,7 +269,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				inputExperience: {
 					required: "Please enter the abount of experience.",
 					number: "Please enter a number only."
-				}
+				},
+				inputLocation: "Please select a location."
 			}
 		});
 	});	
@@ -334,6 +341,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<input type="text" class="form-control" id="inputSkills" name="inputSkills" placeholder="Skills">
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">Location</label>
+								<div class="col-md-9">
+									<select required name="inputLocation" class="form-control">
+										<option value="central">Central</option>
+										<option value="north">North</option>
+										<option value="south">South</option>
+										<option value="east">East</option>
+										<option value="west">West</option>
+									</select>
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>
@@ -400,6 +419,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<label class="control-label col-md-3">Skills</label>
 								<div class="col-md-9">
 									<input type="text" class="form-control" id="inputSkills" name="inputSkills" placeholder="Skills">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">Location</label>
+								<div class="col-md-9">
+									<select required name="inputLocation" class="form-control">
+										<option value="central">Central</option>
+										<option value="north">North</option>
+										<option value="south">South</option>
+										<option value="east">East</option>
+										<option value="west">West</option>
+									</select>
 								</div>
 							</div>
 						</div>

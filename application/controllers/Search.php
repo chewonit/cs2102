@@ -20,6 +20,7 @@ class Search extends MY_Controller {
 		
 		$data['search_query'] = $this->input->post('inputSearch');
 		$data['search_cat'] = $this->input->post('inputCategory');
+		$data['search_location'] = $this->input->post('inputLocation');
 		$data['search_exp'] = $this->input->post('inputExp');
 		
 		$conditions = array();
@@ -53,6 +54,12 @@ class Search extends MY_Controller {
 					$conditions['experience >'] = 10;
 					break;
 			}
+		}
+		
+		$location = $this->input->post('inputLocation');
+		if ($location != "") 
+		{
+			$conditions['j.location'] = $location;
 		}
 		
 		if( $search_string == "") 

@@ -81,6 +81,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<input type="text" class="form-control" id="inputSkills" name="inputSkills" placeholder="Skills">
 				</div>
 			</div>
+			<div class="form-group">
+				<label for="inputLocation" class="col-sm-2 control-label">Location</label>
+				<div class="col-sm-10">
+					<select class="form-control" id="inputLocation" name="inputLocation" required>
+						<option value="central">Central</option>
+						<option value="north">North</option>
+						<option value="south">South</option>
+						<option value="east">East</option>
+						<option value="west">West</option>
+					</select>
+				</div>
+			</div>
 			
 		</div>
 		

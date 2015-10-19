@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				<div class="form-group">
 					<select id = 'inputCategory' name="inputCategory" class="form-control"> 
-						<option value="">Jobs By Category</option>
+						<option value="">Category</option>
 						<option value="1">Finance & Account</option>
 						<option value="2">Human Resources</option>
 						<option value="3">Purchase & Supply Chain</option>
@@ -34,12 +34,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				<div class="form-group">
 					<select id = 'inputExp' name='inputExp' class="form-control" >
-						<option value="">Jobs By Experience</option>
+						<option value="">Experience</option>
 						<option value="1">Less than 1 Year</option>
 						<option value="2">1 to 4 Years</option>
 						<option value="3">4 to 7 Years</option>
 						<option value="4">7 to 10 Years</option>
 						<option value="5">More than 10 Years</option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<select name='inputLocation' class="form-control" onchange="this.form.submit();" >
+						<option value="">Location</option>
+						<option value="central">Central</option>
+						<option value="north">North</option>
+						<option value="south">South</option>
+						<option value="east">East</option>
+						<option value="west">West</option>
 					</select>
 				</div>
 				<button type="submit" class="btn btn-default">Search</button>
@@ -70,7 +81,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<h5><?php echo $row->name; ?></h5>
 							</div>
 							<div class="col-md-3 text-right-md">
-								<h5><?php echo ucwords($row->address); ?></h5>
+								<h5><?php echo ucwords($row->location); ?></h5>
 								<h6><?php echo $row->date_created ?></h6>
 								<h6>Job ID: <?php echo $row->job_id ?></h6>
 							</div>
@@ -99,7 +110,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="row">
 							<div class="col-md-12 job-item-btns">
 								<button class="btn btn-default btn-sm" onclick="document.location.href='job/<?php echo $row->job_id?>'">More Info</button>
-								<?php if($is_login) : ?>
+								<?php if($is_jobseeker) : ?>
 								<button type="submit" class="btn btn-default btn-sm btn-success">Apply</button> 
 								<?php endif ?>
 							</div>
@@ -120,6 +131,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				jq('[name="inputCategory"]').val("<?php echo $search_cat; ?>");
 				jq('[name="inputExp"]').val("<?php echo $search_exp; ?>");
 				jq('[name="inputSearch"]').val("<?php echo $search_query; ?>");
+				jq('[name="inputLocation"]').val("<?php echo $search_location; ?>");
 			});
 		</script>
 	</div>

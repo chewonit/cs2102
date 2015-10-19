@@ -19,9 +19,8 @@ class Browse extends MY_Controller {
 		$this->load->model('browse_model');
 		
 		$data['job_list'] = $this -> jobs_model -> get();
-		$data['company_list'] = $this -> company_model -> get_distinct(null, "company_name");
+		$data['company_list'] = $this -> browse_model -> get_company_with_jobs();
 		$data['category_list'] = $this -> job_category_model -> get();
-		$data['address_list'] = $this -> company_model -> get_distinct('address', 'address');
 		
 		$skills = array();
 		foreach ( $this -> jobs_model -> get_skills()->result() as $skill )
@@ -40,7 +39,7 @@ class Browse extends MY_Controller {
 		$data['browse_cat'] = $this->input->post('inputCategory');
 		$data['browse_exp'] = $this->input->post('inputExp');
 		$data['browse_name'] = $this->input->post('inputCompany');
-		$data['browse_loc'] = $this->input->post('inputAddress');
+		$data['browse_loc'] = $this->input->post('inputLocation');
 		$data['browse_skill'] = $this->input->post('inputSkills');
 		
 		$conditions = array();
@@ -83,10 +82,10 @@ class Browse extends MY_Controller {
 			$conditions['c.company_reg_no'] = $company;
 		}
 		
-		$address = $this->input->post('inputAddress');
-		if ($address != "") 
+		$location = $this->input->post('inputLocation');
+		if ($location != "") 
 		{
-			$conditions['c.address'] = $address;
+			$conditions['j.location'] = $location;
 		}
 		
 		$skills = $this->input->post('inputSkills');

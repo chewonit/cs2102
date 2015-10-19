@@ -31,6 +31,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-datetimepicker.min.css')?>">
 	<script src="<?php echo base_url('assets/js/bootstrap-datetimepicker.min.js')?>"></script>
 	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	
 	<?php echo link_tag('assets/css/main.css')?>
 
 </head>

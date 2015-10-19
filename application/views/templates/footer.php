@@ -4,7 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <footer class="footer">
 	<div class="container">
-		<p class="text-muted">CS2102 Group 9.</p>
+		<p class="text-muted">
+			<a class="link-nostyle" style="text-decoration:none;" href ="https://github.com/chewonit/cs2102" target="_blank">
+				<i style="font-size:24px" class="fa fa-github-square fa-lg"></i> 
+			</a>&nbsp;
+			CS2102 Group 9.
+		</p>
 	</div>
 </footer>
 

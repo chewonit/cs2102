@@ -898,6 +898,7 @@ class Admin extends MY_Controller {
 			$row[] = $item->description;
 			$row[] = $item->experience;
 			$row[] = $item->skills;
+			$row[] = $item->location;
 
 			//add action buttons to each row
 			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_entry('."'".$item->job_id."'".", '".$item->company_reg_no."'".')"><i class="glyphicon glyphicon-pencil"></i></a>
@@ -935,6 +936,7 @@ class Admin extends MY_Controller {
 		$this->form_validation->set_rules('inputTitle', 'Title', 'trim|required');
 		$this->form_validation->set_rules('inputDescription', 'Description', 'trim|required');
 		$this->form_validation->set_rules('inputExperience', 'Experience', 'trim|required');
+		$this->form_validation->set_rules('inputLocation', 'Location', 'trim|required');
 		
 		$inputSkills = $this->input->post('inputSkills');
 		$inputSkills = $inputSkills == '' ? NULL : $inputSkills;
@@ -946,7 +948,8 @@ class Admin extends MY_Controller {
 			'title' => strtolower($this->input->post('inputTitle')),
 			'description' => strtolower($this->input->post('inputDescription')),
 			'experience' => strtolower($this->input->post('inputExperience')),
-			'skills' => $inputSkills
+			'skills' => $inputSkills,
+			'location' => strtolower($this->input->post('inputLocation'))
 		);
 		
 		if ( $this->form_validation->run() ) 
@@ -980,6 +983,7 @@ class Admin extends MY_Controller {
 		$this->form_validation->set_rules('inputTitle', 'Title', 'trim|required');
 		$this->form_validation->set_rules('inputDescription', 'Description', 'trim|required');
 		$this->form_validation->set_rules('inputExperience', 'Experience', 'trim|required');
+		$this->form_validation->set_rules('inputLocation', 'Location', 'trim|required');
 		
 		$inputSkills = $this->input->post('inputSkills');
 		$inputSkills = $inputSkills == '' ? NULL : $inputSkills;
@@ -990,7 +994,8 @@ class Admin extends MY_Controller {
 			'title' => strtolower($this->input->post('inputTitle')),
 			'description' => strtolower($this->input->post('inputDescription')),
 			'experience' => strtolower($this->input->post('inputExperience')),
-			'skills' => $inputSkills
+			'skills' => $inputSkills,
+			'location' => strtolower($this->input->post('inputLocation'))
 		);
 		
 		if ( $this->form_validation->run() ) 

@@ -20,16 +20,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="container-fluid" >
 				<div class="row">
 					<div class="col-md-9">
-						<h4 class="job-item-header"><?php echo $row->title; ?></h4>
+						<h4 class="job-item-header"><?php echo ucwords($row->title); ?></h4>
 						<h5>
 							<a class="link-nostyle" href="<?php echo base_url('profile/' . rawurlencode($row->company_reg_no) .'/' ); ?>">
 								<?php echo ucwords($row->company_name); ?>
 							</a>
 						</h5>
-						<h5><?php echo $row->name; ?></h5>
+						<h5><?php echo ucwords($row->name); ?></h5>
 					</div>
 					<div class="col-md-3 text-right">
-						<h5><?php echo $row->location; ?></h5>
+						<h5><?php echo ucwords($row->location); ?></h5>
 						<h6><?php echo $row->date_created ?></h6>
 						<h6>Job ID: <?php echo $row->job_id ?></h6>
 					</div>

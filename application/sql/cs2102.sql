@@ -107,6 +107,7 @@ CREATE TABLE Jobs (
     description TEXT NOT NULL,
     experience INT UNSIGNED DEFAULT 0,
     skills TEXT,
+	location TEXT NOT NULL,
     PRIMARY KEY (job_id, company_reg_no),
     FOREIGN KEY (company_reg_no) REFERENCES Company(company_reg_no)
     	ON DELETE CASCADE

@@ -21,20 +21,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				
 				<div class="form-group">
 					<select name="inputCategory" class="form-control" onchange="this.form.submit()" ; >
-						<option value="">Jobs By Category</option>					
+						<option value="">Category</option>					
 						<?php foreach($category_list->result() as $category) : ?>
 							<option value="<?php echo $category->category_id ?>">
 								<?php echo $category->name ?>
 							</option>
 						<?php endforeach ?>	
 					</select>
-					
-					
 				</div>
 
 				<div class="form-group">
 					<select name='inputExp' class="form-control" onchange="this.form.submit();" >
-						<option value="">Jobs By Experience</option>
+						<option value="">Experience</option>
 						<option value="1">Less than 1 Year</option>
 						<option value="2">1 to 4 Years</option>
 						<option value="3">4 to 7 Years</option>
@@ -46,29 +44,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				
 				<div class="form-group">
 					<select name='inputCompany' class="form-control" onchange="this.form.submit();" >
-						<option value="">Jobs By Company</option>
+						<option value="">Company</option>
 						<?php foreach($company_list->result() as $company) : ?>
-							<option value="<?php echo ucwords($company->company_reg_no) ?>">
-								<?php echo $company->company_name ?>
+							<option value="<?php echo $company->company_reg_no ?>">
+								<?php echo ucwords($company->company_name) ?>
 							</option>
 						<?php endforeach ?>
 					</select>
 				</div>
 				
 				<div class="form-group">
-					<select name='inputAddress' class="form-control" onchange="this.form.submit();" >
-						<option value="">Jobs By Address</option>
-						<?php foreach($address_list->result() as $address) : ?>
-							<option value="<?php echo $address->address ?>">
-								<?php echo $address->address ?>
-							</option>
-						<?php endforeach ?>
+					<select name='inputLocation' class="form-control" onchange="this.form.submit();" >
+						<option value="">Location</option>
+						<option value="central">Central</option>
+						<option value="north">North</option>
+						<option value="south">South</option>
+						<option value="east">East</option>
+						<option value="west">West</option>
 					</select>
 				</div>
 				
 				<div class="form-group">
 					<select name='inputSkills' class="form-control" onchange="this.form.submit();" >
-						<option value="">Jobs By Skills</option>
+						<option value="">Skills</option>
 						<?php foreach($skills_list as $skills) : ?>
 							<option value="<?php echo $skills ?>">
 								<?php echo strtolower($skills) ?>
@@ -106,7 +104,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<h5><?php echo $row->name ?></h5>
 							</div>
 							<div class="col-md-3 text-right-md">
-								<h5><?php echo ucwords($row->address); ?></h5>
+								<h5><?php echo ucwords($row->location); ?></h5>
 								<h6><?php echo $row->date_created ?></h6>
 								<h6>Job ID: <?php echo $row->job_id ?></h6>
 							</div>
@@ -137,7 +135,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								
 								<button class="btn btn-default btn-sm" onclick="document.location.href='job/<?php echo $row->job_id?>'">More Info</button>
 								
-								<?php if($is_login) : ?>
+								<?php if($is_jobseeker) : ?>
 								<button type="submit" class="btn btn-default btn-sm btn-success">Apply</button> 
 								<?php endif ?>
 							</div>
@@ -156,7 +154,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				jq('[name="inputCategory"]').val("<?php echo $browse_cat; ?>");
 				jq('[name="inputExp"]').val("<?php echo $browse_exp; ?>");
 				jq('[name="inputCompany"]').val("<?php echo $browse_name; ?>");
-				jq('[name="inputAddress"]').val("<?php echo $browse_loc; ?>");
+				jq('[name="inputLocation"]').val("<?php echo $browse_loc; ?>");
 				jq('[name="inputSkills"]').val("<?php echo $browse_skill; ?>");
 			});
 		</script>

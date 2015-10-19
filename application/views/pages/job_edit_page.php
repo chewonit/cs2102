@@ -21,6 +21,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			<section>
 				<div class="form-group">
+					<label class="col-sm-2 control-label">Job ID</label>
+					<div class="col-sm-10">
+						<h5 class="profile-public-field"><?php echo $job_details->job_id; ?></h5>
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="inputTitle" class="col-sm-2 control-label">Title</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="inputTitle" name="inputTitle" placeholder="Title" value="<?php echo ucwords($job_details->title); ?>" required>
@@ -36,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<input type="hidden" name="hiddenRegNo" value="<?php echo $job_details->company_reg_no; ?>">
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">Update</button>
+						<button type="submit" class="btn btn-default">Update Job</button>
 						<button type="button" class="btn btn-default btn-danger" 
 						onClick="delete_job('<?php echo $job_details->job_id; ?>', '<?php echo $job_details->company_reg_no; ?>')">Delete Job</button>
 					</div>
@@ -85,9 +91,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">Job ID</label>
+				<label for="inputLocation" class="col-sm-2 control-label">Location</label>
 				<div class="col-sm-10">
-					<h5 class="profile-public-field"><?php echo $job_details->job_id; ?></h5>
+					<select class="form-control" id="inputLocation" name="inputLocation" required>
+						<option value="central">Central</option>
+						<option value="north">North</option>
+						<option value="south">South</option>
+						<option value="east">East</option>
+						<option value="west">West</option>
+					</select>
 				</div>
 			</div>
 			
@@ -148,6 +160,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		jq( document ).ready(function() {
 			jq('[name="inputPublished"]').val("<?php echo $job_details->published ? 'true' : 'false'; ?>");
 			jq('[name="inputCategory"]').val("<?php echo $job_details->category_id; ?>");
+			jq('[name="inputLocation"]').val("<?php echo $job_details->location; ?>");
 		});
 		
 		function delete_job(job_id, company_reg_no) {

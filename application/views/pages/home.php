@@ -77,50 +77,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<a href="http://www.dice.com" target="_blank">www.dice.com</a> or other job offer sites for examples and data.
 			
 			</p>
-			
-			<hr />
-		
-			<p>
-				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
-				Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
-				Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
-				Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. 
-				In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. 
-				Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. 
-				Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. 
-				Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. 
-				Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, 
-				sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, 
-				lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. 
-				Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. 
-				Donec sodales sagittis magna.
-			</p>
-
-			<p>
-				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
-				Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
-				Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
-				Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. 
-				In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. 
-				Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. 
-				Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. 
-				Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. 
-				Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, 
-				sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, 
-				lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. 
-				Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. 
-				Donec sodales sagittis magna.
-			</p>
 		
 		</div>
 		<div class="col-md-3">
-			<div class="well">
-				User ID: demo@demo.com<br />
-				Password: pass1234
-			</div>
-			<div class="well">
-				Is Logged in: <?php echo $is_login ? 'True' : 'False'; ?>
-			</div>
+			<a href ="https://github.com/chewonit/cs2102" target="_blank">
+				<button type="button" class="btn btn-primary btn-lg btn-block">
+					<i class="fa fa-github-square fa-3x"></i><br />
+					Find us on GitHub
+				</button>
+			</a>
 		</div>
 	</div>
 </div>

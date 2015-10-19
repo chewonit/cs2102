@@ -66,7 +66,7 @@ class Jobs_model extends CI_Model {
 	
 	public function get_job_list_company($company_reg_no) 
 	{
-		$this->db->select('j.job_id, j.company_reg_no, j.date_created, j.published, j.category_id, j.title, j.description AS job_description, j.experience, j.skills, c.company_admin, c.company_name, c.location, c.description');
+		$this->db->select('*, j.description AS job_description');
 		$this->db->from('jobs AS j'); 
 		$this->db->join('company c', 'c.company_reg_no = j.company_reg_no');
 		$this->db->where('j.company_reg_no',$company_reg_no);
@@ -76,7 +76,7 @@ class Jobs_model extends CI_Model {
 	
 	public function get_job_list_applicant($applicant) 
 	{
-		$this->db->select('j.job_id, j.company_reg_no, j.date_created, j.published, j.category_id, j.title, j.description AS job_description, j.experience, j.skills, c.company_admin, c.company_name, c.location, c.description, ja.applicant');
+		$this->db->select('*, j.description AS job_description');
 		$this->db->from('jobs AS j'); 
 		$this->db->join('company c', 'c.company_reg_no = j.company_reg_no');
 		$this->db->join('job_application ja', 'ja.job_id = j.job_id');

@@ -206,6 +206,7 @@ class Job extends MY_Controller {
 		$this->form_validation->set_rules('inputPublished', 'Published', 'trim|required');
 		$this->form_validation->set_rules('inputExperience', 'Experience', 'trim|required');
 		$this->form_validation->set_rules('inputCategory', 'Category', 'trim|required');
+		$this->form_validation->set_rules('inputLocation', 'Location', 'trim|required');
 		
 		$create_user_data = array(
 			'company_reg_no' => $this->input->post('hiddenRegNo'),
@@ -214,7 +215,8 @@ class Job extends MY_Controller {
 			'published' => $this->input->post('inputPublished'),
 			'experience' => $this->input->post('inputExperience'),
 			'skills' => strtolower($this->input->post('inputSkills')),
-			'category_id' => $this->input->post('inputCategory')
+			'category_id' => $this->input->post('inputCategory'),
+			'location' => $this->input->post('inputLocation')
 		);
 		
 		if ( $this->form_validation->run() ) 
@@ -261,6 +263,7 @@ class Job extends MY_Controller {
 		$this->form_validation->set_rules('inputPublished', 'Published', 'trim|required');
 		$this->form_validation->set_rules('inputExperience', 'Experience', 'trim|required');
 		$this->form_validation->set_rules('inputCategory', 'Category', 'trim|required');
+		$this->form_validation->set_rules('inputLocation', 'Location', 'trim|required');
 		
 		$create_user_data = array(
 			'title' => $this->input->post('inputTitle'),
@@ -268,7 +271,8 @@ class Job extends MY_Controller {
 			'published' => $this->input->post('inputPublished'),
 			'experience' => $this->input->post('inputExperience'),
 			'skills' => strtolower($this->input->post('inputSkills')),
-			'category_id' => $this->input->post('inputCategory')
+			'category_id' => $this->input->post('inputCategory'),
+			'location' => $this->input->post('inputLocation')
 		);
 		
 		if ( $this->form_validation->run() ) 
