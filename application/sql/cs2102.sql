@@ -100,6 +100,8 @@ CREATE TABLE Job_Category (
         parent <> category_id
     )
 );
+ALTER TABLE Job_Category ADD FULLTEXT (name);
+
 
 -- Jobs
 CREATE TABLE Jobs (

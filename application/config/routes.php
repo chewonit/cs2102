@@ -83,4 +83,5 @@ $route['job/create'] = 'job/create';
 $route['job/create_job'] = 'job/create_job';
 $route['job/update'] = 'job/update';
 $route['job/(:any)'] = 'job/index/$1';
+$route['job_match'] = 'job_match';
 $route['translate_uri_dashes'] = FALSE;
