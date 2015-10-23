@@ -12,7 +12,7 @@ class Pages extends MY_Controller {
         }
 		
 		$this->load->model("home_model");
-        $data['latest_jobs'] = $this -> home_model -> get_limit(4);
+        $data['latest_jobs'] = $this -> home_model -> get_limit(6);
 
 		$data['nav_class'] = "home";
 		

@@ -38,15 +38,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<a class="job-featured" href="<?php echo base_url('job/'.$row->job_id) ?>">
 				<section class="job-item">
 					<h4><?php echo ucwords($row->title); ?></h4>
-					<h5><?php echo ucwords($row->company_name); ?></h5>
-					<p><?php 
-							$str = $row->description;
-							if (strlen($str) > 140) {
-								$str = substr($str, 0, 137) . '...';
-							}
-							echo $str;
-						?>
-					</p>
+					<h5><?php echo ucwords($row->company_name) .", " . ucwords($row->location); ?></h5>
+					<h6><?php echo ucwords($row->experience) . ' year(s) experience'; ?></h6>
 				</section>
 			</a>
 		</div>

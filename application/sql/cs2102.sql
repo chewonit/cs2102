@@ -13,10 +13,6 @@ CREATE TABLE IF NOT EXISTS Roles (
     role CHAR(9) PRIMARY KEY
 );
 
-INSERT INTO `Roles` VALUES ('admin');
-INSERT INTO `Roles` VALUES ('jobseeker');
-INSERT INTO `Roles` VALUES ('employer');
-
 -- Users
 CREATE TABLE IF NOT EXISTS Users (
     email VARCHAR(255) PRIMARY KEY,
@@ -26,15 +22,11 @@ CREATE TABLE IF NOT EXISTS Users (
     nationality VARCHAR(32) NOT NULL,
     contact INT UNSIGNED NOT NULL,
     gender CHAR(6) NOT NULL,
-    dob DATE NOT NULL,
     role CHAR(9) NOT NULL REFERENCES Roles(role),
+    dob DATE NOT NULL,
     CONSTRAINT Check_Gender CHECK (gender ='female' OR gender='male')
 );
-ALTER TABLE Users ADD FULLTEXT (first_name, last_name);
 
-INSERT INTO `Users` VALUES ('demo@demo.com', MD5('pass1234'), 'demo', 'demo', 'singaporean', '91234567', 'female', 'admin', '1980-01-01');
-INSERT INTO `Users` VALUES ('john@demo.com', MD5('pass1234'), 'john', 'doe', 'singaporean', '81234567', 'male', 'jobseeker', '1995-01-01');
-INSERT INTO `Users` VALUES ('elaine@demo.com', MD5('pass1234'), 'elaine', 'teo', 'singaporean', '87654321', 'female', 'employer', '1985-01-01');
 
 -- Resume_Profile
 CREATE TABLE Resume_Profile (
@@ -46,6 +38,7 @@ CREATE TABLE Resume_Profile (
 	skills TEXT,
     location_pref TEXT NOT NULL,
     interest_area TEXT NOT NULL,
+	FULLTEXT (owner, address, description, work_history, edu_history, skills, interest_area),
     FOREIGN KEY (owner) REFERENCES Users(email)
     	ON DELETE CASCADE
     	ON UPDATE CASCADE,
@@ -53,7 +46,6 @@ CREATE TABLE Resume_Profile (
         owner IN (SELECT u.email FROM Users u WHERE u.role = 'jobseeker')
     )
 );
-ALTER TABLE Resume_Profile ADD FULLTEXT (owner, address, description, work_history, edu_history, skills, interest_area);
 
 -- Company
 CREATE TABLE Company (
@@ -62,14 +54,14 @@ CREATE TABLE Company (
     company_name VARCHAR(255) UNIQUE NOT NULL,
     address TEXT NOT NULL,
     description TEXT NOT NULL,
-    FOREIGN KEY (company_admin) REFERENCES Users(email)
+    FULLTEXT (company_name, address),
+	FOREIGN KEY (company_admin) REFERENCES Users(email)
     	ON DELETE CASCADE
     	ON UPDATE CASCADE,
     CONSTRAINT Company_Admin_Not_Employer CHECK (
         company_admin IN (SELECT u.email FROM Users u WHERE u.role = 'employer')
     )
 );
-ALTER TABLE Company ADD FULLTEXT (company_name, address);
 
 -- Company_Employers
 CREATE TABLE Company_Employer (
@@ -93,6 +85,7 @@ CREATE TABLE Job_Category (
     name VARCHAR(255) NOT NULL UNIQUE,
     parent INT,
     PRIMARY KEY (category_id),
+	FULLTEXT (name),
     FOREIGN KEY (parent) REFERENCES Job_Category(category_id)
     	ON DELETE CASCADE
     	ON UPDATE CASCADE,
@@ -100,7 +93,6 @@ CREATE TABLE Job_Category (
         parent <> category_id
     )
 );
-ALTER TABLE Job_Category ADD FULLTEXT (name);
 
 
 -- Jobs
@@ -115,14 +107,13 @@ CREATE TABLE Jobs (
     experience INT UNSIGNED DEFAULT 0,
     skills TEXT,
 	location TEXT NOT NULL,
+	FULLTEXT (title, description, skills),
     PRIMARY KEY (job_id, company_reg_no),
     FOREIGN KEY (company_reg_no) REFERENCES Company(company_reg_no)
     	ON DELETE CASCADE
     	ON UPDATE CASCADE,
     FOREIGN KEY (category_id) REFERENCES Job_Category(category_id)
 );
-
-ALTER TABLE Jobs ADD FULLTEXT (title, description, skills);
 
 -- Job_Applications
 CREATE TABLE Job_Application (
