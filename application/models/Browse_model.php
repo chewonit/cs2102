@@ -39,6 +39,7 @@ class browse_model extends CI_Model {
 		$this->db->from('jobs j');
 		$this->db->join('company c', 'j.company_reg_no = c.company_reg_no');
 		$this->db->join('job_category cat', 'cat.category_id = j.category_id');
+		$this->db->where('j.published', 1);
 		
 		$search_fields = "j.Title, j.Description, j.Skills";
 		
