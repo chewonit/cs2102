@@ -1,4 +1,17 @@
 --
+-- clear data
+--
+-- Drop Tables
+DELETE FROM Job_Application;
+DELETE FROM Jobs;
+DELETE FROM Job_Category;
+DELETE FROM Company_Employer;
+DELETE FROM Company;
+DELETE FROM Resume_Profile;
+DELETE FROM Users;
+DELETE FROM Roles;
+
+--
 -- roles
 --
 INSERT INTO `Roles` VALUES 
@@ -402,29 +415,110 @@ To be successful in this role the candidate should be passionate in customer ser
 'photoshop, illustrator, in-design', 'central');
 
 
-/*---possible combinations---
-description: map to category 1 - 8
-work_history: map to experience (1,3,6,9) and title
-edu_history: 'diploma', 'degree'
-
 --
 -- resumes
 --
-INSERT INTO `resume_profile`(`owner`, `address`, `description`, `work_history`, `edu_history`) VALUES 
-('john01@demo.com','Singapore','Finance & Account','1 year as assistant','diploma'),
-('john02@demo.com','Singapore','Finance & Account','3 year as executive','degree'),
-('john03@demo.com','Singapore','Human Resources','6 year as manager','diploma'),
-('john04@demo.com','Singapore','Human Resources','9 year as director','degree'),
-('john05@demo.com','Singapore','Purchase & Supply Chain','1 year as assistant','diploma'),
-('john06@demo.com','Singapore','Purchase & Supply Chain','3 year as executive','degree'),
-('john07@demo.com','Singapore','Adminstrations/ Secretarial','6 year as manager','diploma'),
-('john08@demo.com','Singapore','Adminstrations/ Secretarial','9 year as director','degree'),
-('john09@demo.com','Singapore','Legal','1 year as assistant','diploma'),
-('john10@demo.com','Singapore','Legal','3 year as executive','degree'),
-('john11@demo.com','Singapore','Customer Service/ BPO/ KPO','6 year as manager','diploma'),
-('john12@demo.com','Singapore','Customer Service/ BPO/ KPO','9 year as director','degree'),
-('john13@demo.com','Singapore','Sales','1 year as assistant','diploma'),
-('john14@demo.com','Singapore','Sales','3 year as executive','degree'),
-('john15@demo.com','Singapore','Marketing','6 year as manager','diploma'),
-('john16@demo.com','Singapore','Marketing','9 year as director','degree');
-*/
+INSERT INTO `resume_profile`(`owner`, `address`, `description`, `work_history`, `edu_history`, `skills`, `location_pref`, `interest_area`) VALUES 
+('john@jobseeker.com', 'Blk 14 Bedok Street 26, #16-45', 
+'Description', 
+'Work', 'Education', 'skills', 'central', 'interest'),
+
+('judy@jobseeker.com', 'Blk 16 Woodlands Street 20, #06-35', 
+'Description', 
+'Work', 'Education', 'skills', 'north', 'interest'),
+
+('june@jobseeker.com', '50 Ghim Moh Garden', 
+'Description', 
+'Work', 'Education', 'skills', 'central', 'interest'),
+
+('james@jobseeker.com', 'Blk 14 Sengkang Street 30, #01-31', 
+'Description', 
+'Work', 'Education', 'skills', 'central', 'interest'),
+
+('jamie@jobseeker.com', 'Blk 10 Kallang Street 23, #04-04', 
+'Description', 
+'Work', 'Education', 'skills', 'central', 'interest'),
+
+('jason@jobseeker.com', '28 Pasir Panjang Road', 
+'Description', 
+'Work', 'Education', 'skills', 'south', 'interest'),
+
+('jesse@jobseeker.com', 'Blk 498 Sengkang Street 17, #07-43', 
+'Description', 
+'Work', 'Education', 'skills', 'central', 'interest'),
+
+('jimmy@jobseeker.com', 'Blk 198 Bukit Merah Street 29, #18-01', 
+'Description', 
+'Work', 'Education', 'skills', 'central', 'interest'),
+
+('jackie@jobseeker.com', '78 Seletar Avenue North, #18-07', 
+'Description', 
+'Work', 'Education', 'skills', 'north', 'interest'),
+
+('janice@jobseeker.com', 'Blk 317 Tampines Street 13, #10-37', 
+'Description', 
+'Work', 'Education', 'skills', 'east', 'interest'),
+
+('jarvis@jobseeker.com', '7 Farrer Hill, #02-30', 
+'Description', 
+'Work', 'Education', 'skills', 'central', 'interest'),
+
+('jazlyn@jobseeker.com', 'Blk 28 Lorong 7 Geylang East, #07-06', 
+'Description', 
+'Work', 'Education', 'skills', 'central', 'interest'),
+
+('jeremy@jobseeker.com', 'Blk 350 Jurong Central Street 25, #14-03', 
+'Description', 
+'Work', 'Education', 'skills', 'west', 'interest'),
+
+('jerome@jobseeker.com', 'Blk 43 Kallang Street 21, #03-08', 
+'Description', 
+'Work', 'Education', 'skills', 'central', 'interest'),
+
+('jonnie@jobseeker.com', '4 Sengkang Crescent', 
+'Description', 
+'Work', 'Education', 'skills', 'central', 'interest'),
+
+('joshua@jobseeker.com', '2 Jurong East Estate', 
+'Description', 
+'Work', 'Education', 'skills', 'west', 'interest'),
+
+('jasmine@jobseeker.com', 'Blk 29 Lorong 6 Jurong West, #10-09', 
+'Description', 
+'Work', 'Education', 'skills', 'west', 'interest'),
+
+('jericho@jobseeker.com', 'Blk 316 Serangoon North Street 29, #02-27', 
+'Description', 
+'Work', 'Education', 'skills', 'central', 'interest'),
+
+('jessica@jobseeker.com', 'Blk 17 Yishun Street 86, #11-34', 
+'Description', 
+'Work', 'Education', 'skills', 'north', 'interest'),
+
+('jullian@jobseeker.com', '70 Admiralty Circle, #14-41', 
+'Description', 
+'Work', 'Education', 'skills', 'north', 'interest'),
+
+('justice@jobseeker.com', 'Blk 126 Lorong 5 Joo Koon, #02-25', 
+'Description', 
+'Work', 'Education', 'skills', 'west', 'interest'),
+
+('jennifer@jobseeker.com', 'Blk 449 Clementi Street 32, #12-22', 
+'Description', 
+'Work', 'Education', 'skills', 'west', 'interest'),
+
+('jonathan@jobseeker.com', 'Blk 479 Woodlands Street 39, #14-45', 
+'Description', 
+'Work', 'Education', 'skills', 'central', 'interest'),
+
+('joycelyn@jobseeker.com', '25 Pandan Valley View', 
+'Description', 
+'Work', 'Education', 'skills', 'central', 'interest'),
+
+('jeannette@jobseeker.com', '75 Jalan Tekad', 
+'Description', 
+'Work', 'Education', 'skills', 'central', 'interest'),
+
+('jefferson@jobseeker.com', '37 Innova Heights', 
+'Description', 
+'Work', 'Education', 'skills', 'central', 'interest');
