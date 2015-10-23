@@ -420,8 +420,8 @@ To be successful in this role the candidate should be passionate in customer ser
 --
 INSERT INTO `resume_profile`(`owner`, `address`, `description`, `work_history`, `edu_history`, `skills`, `location_pref`, `interest_area`) VALUES 
 ('john@jobseeker.com', 'Blk 14 Bedok Street 26, #16-45', 
-'Description', 
-'Work', 'Education', 'skills', 'central', 'interest'),
+'I love web development. In my free time I explore the various new technologies of web development. I also take some time to browse through the award winning web designs to learn from them improve my design skills.', 
+'1 year as a Web Designer at Web Co.<br />Freelance Web Developer.', 'Degree in Computer Science.', 'html, css, js, php, photoshop, illustrator, in-design', 'central', 'interest'),
 
 ('judy@jobseeker.com', 'Blk 16 Woodlands Street 20, #06-35', 
 'Description', 
