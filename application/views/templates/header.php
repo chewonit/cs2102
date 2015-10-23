@@ -62,15 +62,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<li><a href="<?php echo site_url("job_match/"); ?>">Match</a></li>
 			<?php endif ?>
 			
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Demo <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="<?php echo site_url("demo/query/"); ?>">Query</a></li>
-					<li><a href="<?php echo site_url("demo/insert/"); ?>">Insert</a></li>
-					<li><a href="<?php echo site_url("demo/update/"); ?>">Update</a></li>
-					<li><a href="<?php echo site_url("demo/delete/"); ?>">Delete</a></li>
-				</ul>
-			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			
