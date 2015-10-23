@@ -49,7 +49,7 @@ class browse_model extends CI_Model {
 		}
 		if( !is_null($like) ) 
 		{
-			$this->db->like('j.skills', $like);
+			$this->db->like("j.skills", "$like", NULL, FALSE);
 		}
 		if( !is_null($email) ) 
 		{
