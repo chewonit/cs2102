@@ -76,15 +76,15 @@ INSERT INTO `Users` VALUES
 -- 
 -- Job Categories
 -- 
-INSERT INTO `job_category` (`category_id`, `name`, `parent`) VALUES 
-('1', 'Finance & Account', NULL),
-('2', 'Information Technology (IT)', NULL),
-('3', 'Human Resources', NULL),
-('4', 'Adminstrations/ Secretarial', NULL),
-('5', 'Design', NULL),
-('6', 'Customer Service/ BPO/ KPO', NULL),
-('7', 'Sales', NULL),
-('8', 'Marketing', NULL);
+INSERT INTO `job_category` (`category_id`, `name`) VALUES 
+('1', 'Finance & Account'),
+('2', 'Information Technology (IT)'),
+('3', 'Human Resources'),
+('4', 'Adminstrations/ Secretarial'),
+('5', 'Design'),
+('6', 'Customer Service/ BPO/ KPO'),
+('7', 'Sales'),
+('8', 'Marketing');
 
 
 --

@@ -83,15 +83,8 @@ CREATE TABLE Company_Employer (
 CREATE TABLE Job_Category (
     category_id INT AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL UNIQUE,
-    parent INT,
     PRIMARY KEY (category_id),
-	FULLTEXT (name),
-    FOREIGN KEY (parent) REFERENCES Job_Category(category_id)
-    	ON DELETE CASCADE
-    	ON UPDATE CASCADE,
-    CONSTRAINT Invalid_Category_Parent CHECK (
-        parent <> category_id
-    )
+	FULLTEXT (name)
 );
 
 
