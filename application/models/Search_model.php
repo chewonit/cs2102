@@ -8,7 +8,7 @@ class Search_model extends CI_Model {
 		parent::__construct();
 	}
     
-	public function get( $conditions = null, $search = null ) 
+	public function get( $conditions = null, $search = null, $email = null ) 
 	{
 		$this->db->select('*, j.description AS job_description');
 		$this->db->from('jobs j');
@@ -28,6 +28,11 @@ class Search_model extends CI_Model {
 			$clause .= " OR MATCH (".$search_fields2.") AGAINST ('$search')";
 			
 			$this->db->where("( $clause )", NULL, FALSE);
+		}
+		
+		if( !is_null($email) ) 
+		{
+			$this->db->where("`job_id` NOT IN (SELECT `job_id` FROM job_application WHERE `applicant` = '$email')");
 		}
 		
 		return $this -> db -> get();

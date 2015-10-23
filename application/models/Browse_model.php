@@ -33,9 +33,9 @@ class browse_model extends CI_Model {
 		return $this -> db -> get($this->tables);
 	}
 	
-	public function browse( $conditions = null, $like = null ) 
+	public function browse( $conditions = null, $like = null, $email = null ) 
 	{
-		$this->db->select('j.*, j.description AS job_description, c.*, cat.*');
+		$this->db->select('*, j.description AS job_description');
 		$this->db->from('jobs j');
 		$this->db->join('company c', 'j.company_reg_no = c.company_reg_no');
 		$this->db->join('job_category cat', 'cat.category_id = j.category_id');
@@ -50,6 +50,11 @@ class browse_model extends CI_Model {
 		{
 			$this->db->like('j.skills', $like);
 		}
+		if( !is_null($email) ) 
+		{
+			$this->db->where("`job_id` NOT IN (SELECT `job_id` FROM job_application WHERE `applicant` = '$email')");
+		}
+		
 		return $this -> db -> get();
 	}
 	

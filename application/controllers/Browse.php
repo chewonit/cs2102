@@ -10,6 +10,11 @@ class Browse extends MY_Controller {
 			return;
 		}
 		
+		$email = null;
+		if ($this->is_jobseeker()) {
+			$email = $this->auth->get_info()->email;
+		}
+		
 		$page = 'browse_page';
 
 		$this -> check_page_files('/views/pages/' . $page . '.php');
@@ -94,7 +99,7 @@ class Browse extends MY_Controller {
 			$skills = null;
 		}
 		
-		$data['browse_query'] = $this -> browse_model -> browse($conditions, $skills);
+		$data['browse_query'] = $this -> browse_model -> browse($conditions, $skills, $email);
 		
 		$this -> load_view($data, $page);
 		

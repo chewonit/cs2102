@@ -10,6 +10,11 @@ class Search extends MY_Controller {
 			return;
 		}
 		
+		$email = null;
+		if ($this->is_jobseeker()) {
+			$email = $this->auth->get_info()->email;
+		}
+		
 		$page = 'search_page';
 
 		$this -> check_page_files('/views/pages/' . $page . '.php');
@@ -64,14 +69,14 @@ class Search extends MY_Controller {
 		
 		if( $search_string == "") 
 		{
-			$data['search_results'] = $this -> search_model -> get($conditions);
+			$data['search_results'] = $this -> search_model -> get($conditions, null, $email);
 		}
 		else 
 		{
 			/*
 			 * Call upon model to perform search on tables.
 			 */
-			$data['search_results'] = $this -> search_model -> get( $conditions, $search_string );
+			$data['search_results'] = $this -> search_model -> get( $conditions, $search_string, $email);
 		}
 		
 		$this -> load_view($data, $page);
