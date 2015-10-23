@@ -18,7 +18,29 @@ class Job_Match_model extends CI_Model {
 		{
 			$profile = $result[0];
 			
-			$this->db->select('*, j.description AS job_description');
+			$search_fields = "j.Title, j.Description, j.Skills";
+			$search_fields1 = "c.Company_name, c.Address";
+			$search_fields2 = "cat.Name";
+			
+			$this->db->select("*, j.description AS job_description,
+				MATCH (".$search_fields.") AGAINST ('$profile->description') AS rankA1,
+				MATCH (".$search_fields.") AGAINST ('$profile->work_history') AS rankA2,
+				MATCH (".$search_fields.") AGAINST ('$profile->edu_history') AS rankA3,
+				MATCH (".$search_fields.") AGAINST ('$profile->skills') AS rankA4,
+				MATCH (".$search_fields.") AGAINST ('$profile->interest_area') AS rankA5,
+				
+				MATCH (".$search_fields1.") AGAINST ('$profile->description') AS rankB1,
+				MATCH (".$search_fields1.") AGAINST ('$profile->work_history') AS rankB2,
+				MATCH (".$search_fields1.") AGAINST ('$profile->edu_history') AS rankB3,
+				MATCH (".$search_fields1.") AGAINST ('$profile->skills') AS rankB4,
+				MATCH (".$search_fields1.") AGAINST ('$profile->interest_area') AS rankB5,
+				
+				MATCH (".$search_fields2.") AGAINST ('$profile->description') AS rankC1,
+				MATCH (".$search_fields2.") AGAINST ('$profile->work_history') AS rankC2,
+				MATCH (".$search_fields2.") AGAINST ('$profile->edu_history') AS rankC3,
+				MATCH (".$search_fields2.") AGAINST ('$profile->skills') AS rankC4,
+				MATCH (".$search_fields2.") AGAINST ('$profile->interest_area') AS rankC5
+				");
 			$this->db->from('jobs j');
 			$this->db->join('company c', 'j.company_reg_no = c.company_reg_no');
 			$this->db->join('job_category cat', 'cat.category_id = j.category_id');
@@ -26,22 +48,17 @@ class Job_Match_model extends CI_Model {
 			
 			$this->db->where("`job_id` NOT IN (SELECT `job_id` FROM job_application WHERE `applicant` = '$email')");
 			
-			$search_fields = "j.Title, j.Description, j.Skills";
-				
+			
 			$clause = "MATCH (".$search_fields.") AGAINST ('$profile->description')";
 			$clause .= " OR MATCH (".$search_fields.") AGAINST ('$profile->work_history')";
 			$clause .= " OR MATCH (".$search_fields.") AGAINST ('$profile->edu_history')";
 			$clause .= " OR MATCH (".$search_fields.") AGAINST ('$profile->skills')";
 			$clause .= " OR MATCH (".$search_fields.") AGAINST ('$profile->interest_area')";
 			
-			$search_fields1 = "c.Company_name, c.Address";
-			
 			$clause = " MATCH (".$search_fields1.") AGAINST ('$profile->description')";
 			$clause .= " OR MATCH (".$search_fields1.") AGAINST ('$profile->work_history')";
 			$clause .= " OR MATCH (".$search_fields1.") AGAINST ('$profile->edu_history')";
 			$clause .= " OR MATCH (".$search_fields1.") AGAINST ('$profile->interest_area')";
-			
-			$search_fields2 = "cat.Name";
 			
 			$clause = " MATCH (".$search_fields2.") AGAINST ('$profile->description')";
 			$clause .= " OR MATCH (".$search_fields2.") AGAINST ('$profile->work_history')";
@@ -49,6 +66,12 @@ class Job_Match_model extends CI_Model {
 			$clause .= " OR MATCH (".$search_fields2.") AGAINST ('$profile->interest_area')";
 
 			$this->db->where("( $clause OR j.location = '$profile->location_pref')", NULL, FALSE);
+			
+			$this->db->order_by("
+				rankA1, rankA4, rankA2, rankA5, rankA3,
+				rankB2, rankB1, rankB3, rankB4, rankB3,
+				rankA1, rankA3, rankA5, rankA4, rankA2
+				", "desc");
 			
 			$result = $this -> db -> get()->result();
 			
