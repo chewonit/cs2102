@@ -80,6 +80,7 @@ class Jobs_model extends CI_Model {
 		$this->db->from('jobs AS j'); 
 		$this->db->join('company c', 'c.company_reg_no = j.company_reg_no');
 		$this->db->join('job_application ja', 'ja.job_id = j.job_id');
+		$this->db->join('job_category cat', 'cat.category_id = j.category_id');
 		$this->db->where('ja.applicant',$applicant);
 		$this->db->order_by('ja.date_submitted','desc');
 		return $this->db->get(); 

@@ -72,7 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-9">
-								<h4 class="job-item-header"><a href="job/<?php echo $row->job_id?>"><?php echo $row->title; ?></a></h4>
+								<h4 class="job-item-header"><a href="job/<?php echo $row->job_id?>"><?php echo ucwords($row->title); ?></a></h4>
 								<h5>
 									<a href="<?php echo base_url('profile/'.rawurlencode($row->company_reg_no).'/'); ?>">
 										<?php echo ucwords($row->company_name); ?>
