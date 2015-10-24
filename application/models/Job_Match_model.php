@@ -68,9 +68,9 @@ class Job_Match_model extends CI_Model {
 			$this->db->where("( $clause OR j.location = '$profile->location_pref')", NULL, FALSE);
 			
 			$this->db->order_by("
-				rankA1, rankA4, rankA2, rankA5, rankA3,
+				rankA4, rankA2, rankA5, rankA3, rankA1,
 				rankB2, rankB1, rankB3, rankB4, rankB3,
-				rankA1, rankA3, rankA5, rankA4, rankA2
+				rankC1, rankC3, rankC5, rankC4, rankC2
 				", "desc");
 			
 			$result = $this -> db -> get()->result();
