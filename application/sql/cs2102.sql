@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS Users (
     gender CHAR(6) NOT NULL,
     role CHAR(9) NOT NULL REFERENCES Roles(role),
     dob DATE NOT NULL,
+	FULLTEXT (first_name, last_name),
     CONSTRAINT Check_Gender CHECK (gender ='female' OR gender='male')
 );
 
