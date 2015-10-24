@@ -29,48 +29,48 @@ INSERT INTO `Users` VALUES
 --
 INSERT INTO `Users` VALUES 
 ('john@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'john', 'doe', 'singaporean', '81234567', 'male', 'jobseeker', '1990-01-01'),
-('judy@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'judy', 'teo', 'singaporean', '81234567', 'female', 'jobseeker', '1990-02-01'),
-('june@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'june', 'tan', 'singaporean', '81234567', 'female', 'jobseeker', '1990-03-01'),
-('james@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'james', 'lim', 'singaporean', '81234567', 'male', 'jobseeker', '1990-04-01'),
-('jamie@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jamie', 'gan', 'singaporean', '81234567', 'female', 'jobseeker', '1990-05-01'),
-('jason@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jason', 'doe', 'singaporean', '81234567', 'male', 'jobseeker', '1990-06-01'),
-('jesse@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jesse', 'teo', 'singaporean', '81234567', 'female', 'jobseeker', '1990-07-01'),
-('jimmy@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jimmy', 'tan', 'singaporean', '81234567', 'male', 'jobseeker', '1990-08-01'),
-('jackie@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jackie', 'lim', 'singaporean', '81234567', 'male', 'jobseeker', '1990-09-01'),
-('janice@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'janice', 'gan', 'singaporean', '81234567', 'female', 'jobseeker', '1990-10-01'),
-('jarvis@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jarvis', 'doe', 'singaporean', '81234567', 'male', 'jobseeker', '1990-11-01'),
-('jazlyn@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jazlyn', 'teo', 'singaporean', '81234567', 'female', 'jobseeker', '1990-12-01'),
-('jeremy@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jeremy', 'tan', 'singaporean', '81234567', 'male', 'jobseeker', '1991-01-01'),
-('jerome@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jerome', 'lim', 'singaporean', '81234567', 'male', 'jobseeker', '1991-03-01'),
-('jonnie@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jonnie', 'gan', 'singaporean', '81234567', 'male', 'jobseeker', '1991-05-01'),
-('joshua@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'joshua', 'doe', 'singaporean', '81234567', 'male', 'jobseeker', '1991-07-01'),
-('jasmine@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jasmine', 'teo', 'singaporean', '81234567', 'female', 'jobseeker', '1991-09-01'),
-('jericho@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jericho', 'tan', 'singaporean', '81234567', 'male', 'jobseeker', '1991-11-01'),
-('jessica@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jessica', 'lim', 'singaporean', '81234567', 'female', 'jobseeker', '1988-01-01'),
-('jullian@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jullian', 'gan', 'singaporean', '81234567', 'male', 'jobseeker', '1988-05-01'),
-('justice@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'justice', 'bao', 'singaporean', '81234567', 'male', 'jobseeker', '1987-06-01'),
-('jennifer@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jennifer', 'teo', 'singaporean', '81234567', 'female', 'jobseeker', '1986-01-01'),
-('jonathan@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jonathan', 'tan', 'singaporean', '81234567', 'male', 'jobseeker', '1985-01-01'),
-('joycelyn@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'joycelyn', 'lim', 'singaporean', '81234567', 'female', 'jobseeker', '1984-01-01'),
-('jeannette@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jeannette', 'gan', 'singaporean', '81234567', 'female', 'jobseeker', '1983-01-01'),
-('jefferson@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jefferson', 'doe', 'singaporean', '81234567', 'male', 'jobseeker', '1982-01-01');
+('judy@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'judy', 'teo', 'singaporean', '81234568', 'female', 'jobseeker', '1990-02-01'),
+('june@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'june', 'tan', 'singaporean', '81234569', 'female', 'jobseeker', '1990-03-01'),
+('james@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'james', 'lim', 'vietnamese', '81234570', 'male', 'jobseeker', '1990-04-01'),
+('jamie@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jamie', 'gan', 'singaporean', '81234571', 'female', 'jobseeker', '1990-05-01'),
+('jason@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jason', 'doe', 'japanese', '81234572', 'male', 'jobseeker', '1990-06-01'),
+('jesse@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jesse', 'teo', 'singaporean', '81234573', 'female', 'jobseeker', '1990-07-01'),
+('jimmy@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jimmy', 'tan', 'singaporean', '81234574', 'male', 'jobseeker', '1990-08-01'),
+('jackie@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jackie', 'lim', 'malaysian', '81234575', 'male', 'jobseeker', '1990-09-01'),
+('janice@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'janice', 'gan', 'british', '81234576', 'female', 'jobseeker', '1990-10-01'),
+('jarvis@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jarvis', 'doe', 'singaporean', '81234577', 'male', 'jobseeker', '1990-11-01'),
+('jazlyn@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jazlyn', 'teo', 'indonesian', '81234578', 'female', 'jobseeker', '1990-12-01'),
+('jeremy@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jeremy', 'tan', 'singaporean', '81234579', 'male', 'jobseeker', '1991-01-01'),
+('jerome@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jerome', 'lim', 'japanese', '81234580', 'male', 'jobseeker', '1991-03-01'),
+('jonnie@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jonnie', 'gan', 'vietnamese', '81234581', 'male', 'jobseeker', '1991-05-01'),
+('joshua@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'joshua', 'doe', 'singaporean', '81234582', 'male', 'jobseeker', '1991-07-01'),
+('jasmine@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jasmine', 'teo', 'singaporean', '81234583', 'female', 'jobseeker', '1991-09-01'),
+('jericho@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jericho', 'tan', 'singaporean', '81234584', 'male', 'jobseeker', '1991-11-01'),
+('jessica@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jessica', 'lim', 'malaysian', '81234585', 'female', 'jobseeker', '1988-01-01'),
+('jullian@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jullian', 'gan', 'singaporean', '81234586', 'male', 'jobseeker', '1988-05-01'),
+('justice@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'justice', 'bao', 'british', '81234587', 'male', 'jobseeker', '1987-06-01'),
+('jennifer@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jennifer', 'teo', 'indonesian', '81234588', 'female', 'jobseeker', '1986-01-01'),
+('jonathan@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jonathan', 'tan', 'singaporean', '81234589', 'male', 'jobseeker', '1985-01-01'),
+('joycelyn@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'joycelyn', 'lim', 'singaporean', '81234590', 'female', 'jobseeker', '1984-01-01'),
+('jeannette@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jeannette', 'gan', 'malaysian', '81234591', 'female', 'jobseeker', '1983-01-01'),
+('jefferson@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'jefferson', 'doe', 'singaporean', '81234592', 'male', 'jobseeker', '1982-01-01');
 
 --
 -- employers 
 --
 INSERT INTO `Users` VALUES 
 ('eva@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'eva', 'chen', 'singaporean', '87654321', 'female', 'employer', '1985-01-01'),
-('ella@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'ella', 'chao', 'Singaporean', '87654321', 'female', 'employer', '1985-01-01'),
-('emma@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'emma', 'yang', 'Singaporean', '87654321', 'female', 'employer', '1985-08-01'),
-('emily@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'emily', 'wang', 'Singaporean', '87654321', 'female', 'employer', '1985-03-01'),
-('erica@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'erica', 'zhao', 'Singaporean', '87654321', 'female', 'employer', '1986-04-01'),
-('elaine@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'elaine', 'chen', 'Singaporean', '87654321', 'female', 'employer', '1986-05-01'),
-('evonne@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'evonne', 'chao', 'Singaporean', '87654321', 'female', 'employer', '1986-06-01'),
-('eleanor@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'eleanor', 'yang', 'Singaporean', '87654321', 'female', 'employer', '1987-07-01'),
-('electra@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'electra', 'wang', 'Singaporean', '87654321', 'female', 'employer', '1987-08-01'),
-('evelynn@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'evelynn', 'zhao', 'Singaporean', '87654321', 'female', 'employer', '1987-09-01'),
-('elizabeth@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'elizabeth', 'chen', 'Singaporean', '87654321', 'female', 'employer', '1987-10-01'),
-('elizabella@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'elizabella', 'chao', 'Singaporean', '87654321', 'female', 'employer', '1987-11-01');
+('ella@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'ella', 'chao', 'Singaporean', '87654322', 'female', 'employer', '1985-01-01'),
+('emma@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'emma', 'yang', 'Singaporean', '87654323', 'female', 'employer', '1985-08-01'),
+('emily@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'emily', 'wang', 'british', '87654324', 'female', 'employer', '1985-03-01'),
+('erica@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'erica', 'zhao', 'Singaporean', '87654325', 'female', 'employer', '1986-04-01'),
+('elaine@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'elaine', 'chen', 'Singaporean', '87654326', 'female', 'employer', '1986-05-01'),
+('evonne@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'evonne', 'chao', 'Singaporean', '87654327', 'female', 'employer', '1986-06-01'),
+('eleanor@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'eleanor', 'yang', 'Singaporean', '87654328', 'female', 'employer', '1987-07-01'),
+('electra@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'electra', 'wang', 'Singaporean', '87654329', 'female', 'employer', '1987-08-01'),
+('evelynn@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'evelynn', 'zhao', 'indonesian', '87654320', 'female', 'employer', '1987-09-01'),
+('elizabeth@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'elizabeth', 'chen', 'malaysian', '87654311', 'female', 'employer', '1987-10-01'),
+('elizabella@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'elizabella', 'chao', 'Singaporean', '87654331', 'female', 'employer', '1987-11-01');
 
 
 -- 
@@ -95,7 +95,7 @@ INSERT INTO `company`(`company_reg_no`, `company_admin`, `company_name`, `addres
 
 ('c02','ella@employer.com','Singtel','31 Exeter Road, Comcentre Singapore 239732','The Singtel Group is Asia\'s leading communications group. Singtel is the largest listed Singapore company on the Singapore Exchange by market capitalisation. We are also listed on the Australian Securities Exchange following our acquisition of Optus in August 2001. To serve the needs of multinational corporations, Singtel has a vast network of offices in countries and territories throughout Asia Pacific, in Europe and the USA, while Optus has a network of offices around Australia.  The Group employs more than 22,000 staff worldwide.'),
 
-('c03','emma@employer.com','Capita Technology','Collyer Quay, 049318','A dedicated technical Staffing and Search division of Capita ever committed to fulfilling our clientsí dynamic technical human capital needs across all industries with its Professional, Personalized and Passionate approach'),
+('c03','emma@employer.com','Capita Technology','Collyer Quay, 049318','A dedicated technical Staffing and Search division of Capita ever committed to fulfilling our clients¬í dynamic technical human capital needs across all industries with its Professional, Personalized and Passionate approach'),
 
 ('c04','emily@employer.com','Randstad','50 Raffles Pl, #17-02/05 Singapore Land Tower, 048623','An innovative and ever evolving MNC mining firm is seeking for an enthusiastic HR Admin Executive to join their dynamic team. They are one of the leading mining firm in business sectors, the organization\'s increased commitment to its employees and has raised a new role. They offer attractive package salary $3500 per month + attractive benefits.'),
 
@@ -225,8 +225,8 @@ You can work in an agile environment, and have done test driven development. You
 <br /><br />
 Requirements:
 <br /><br />
-- Possess a degree in Information Technologyí/Computer Science<br />
-- Min 3 yearsí experience in technology, retail, e-commerce and/or customer support organisation.<br />
+- Possess a degree in Information Technology¬í/Computer Science<br />
+- Min 3 years¬í experience in technology, retail, e-commerce and/or customer support organisation.<br />
 - HTML and CSS proficient.<br />
 - Understands e-commerce site architecture and maintenance.<br />
 - Comfortable with complex database structures and queries.<br />
@@ -281,7 +281,7 @@ Examples of websites developed is to be provided in the resume or during intervi
 <br /><br />
 Engage internal stakeholders for discussions and gathers user requirements.<br />
 Performs technical solution analysis, impact analysis, application design and development.<br />
-Engage in continual improvement to ensure that enhancements are built based on customersí requirements.
+Engage in continual improvement to ensure that enhancements are built based on customers¬í requirements.
 <br /><br />
 Job Requirements<br /><br />
 Bachelor degree or higher in Computer Science or related field<br />
@@ -315,9 +315,9 @@ To qualify for this attractive role, you must be diploma educated with at least 
 (13,'c04', '2015-09-23 21:33:42', 3, 
 'Assistant HR Manager (Training & Development)', 
 'About the job<br />
-ï $7000 per month + attractive benefits.<br />
-ï East <br />
-ï 5 days work week<br />
+¬ï $7000 per month + attractive benefits.<br />
+¬ï East <br />
+¬ï 5 days work week<br />
 <br />
 Reporting to HR Manager, you will be working with the training and operation team to roll out training programs (soft skills, service development and managerial leadership training). You will be in charge of training admin coordination such as workshops & external courses. The role calls for partnering with the top management to identify strategic change opportunities and executing on the deliverables.
 <br /><br />
@@ -421,104 +421,119 @@ To be successful in this role the candidate should be passionate in customer ser
 INSERT INTO `resume_profile`(`owner`, `address`, `description`, `work_history`, `edu_history`, `skills`, `location_pref`, `interest_area`) VALUES 
 ('john@jobseeker.com', 'Blk 14 Bedok Street 26, #16-45', 
 'I love web development. In my free time I explore the various new technologies of web development. I also take some time to browse through the award winning web designs to learn from them improve my design skills.', 
-'1 year as a Web Designer at Web Co.<br />Freelance Web Developer.', 'Degree in Computer Science.', 'html, css, js, php, photoshop, illustrator, in-design', 'central', 'interest'),
+'1 year as a Web Designer at Web Co.<br />Freelance Web Developer.', 'Degree in Computer Science.', 'html, css, js, php, photoshop, illustrator, in-design', 'central', 'volunteering'),
 
 ('judy@jobseeker.com', 'Blk 16 Woodlands Street 20, #06-35', 
-'Description', 
-'Work', 'Education', 'skills', 'north', 'interest'),
+'I am an enthusiastic team leader who is interested in human anatomy and the recovery and improvement of health. I intend to develop my knowledge and skills in healing patients in my course of study in NTU, as well as raising my management and leadership skills in planning roles in co-curricular activities. Upon graduation, I aspire to work in hospitals and health organisations to practise my technical skills and also my management skills if possible.', 
+'Temporary Data Entry Assistant in eBay Singapore Service Pte Ltd ', 'Degree in Biomedical Sciences & Chinese Medicine', 'microsoft office, customer service, management, strategic planning', 'north', 'Joining a nonprofit board. Skills-based volunteering (pro bono consulting). Animal Welfare. Disaster and Humanitarian Relief. Social Services'),
 
 ('june@jobseeker.com', '50 Ghim Moh Garden', 
-'Description', 
-'Work', 'Education', 'skills', 'central', 'interest'),
+'A highly driven individual, with great passion in building strong teams and serving others. A strong team player with the ability to work well in teams under stressful circumstances. A player that is willing to step out of my comfort zone to achieve what needs to be done. Held several key positions as student leaders for school-wide events and co-curricular activities, with experience leading teams filled with people of diverse backgrounds and skills. ', 
+'Administrative Assistant in Borneo Motors Singapore Pte Ltd', 'Bachelor of Science, Information Systems', 'java, javascript, eclipse, hibernate, oracle, Marketing Management', 'central', 'Customer service'),
 
 ('james@jobseeker.com', 'Blk 14 Sengkang Street 30, #01-31', 
-'Description', 
-'Work', 'Education', 'skills', 'central', 'interest'),
+'Yearns for a career that can make a difference and visible impact to businesses and the society. Eager to learn and develop, not only the technical skills, but also the soft skills of managing relationships and remaining calm and motivated, while embracing new challenges at work.', 
+'Admin in City Developments Limited', 'Singapore Management University, Bachelor of Accountancy', 'microsoft office, volunteering, Client relations and communications, accounting ', 'central', 'volunteering'),
 
 ('jamie@jobseeker.com', 'Blk 10 Kallang Street 23, #04-04', 
-'Description', 
-'Work', 'Education', 'skills', 'central', 'interest'),
+'Firmly believes in having a co-curriculum activity, or a hobby in the midst of our pursuit for excellence in our ‚Äúwork‚Äù which, in phase of our life, is our studies. Believes in taking the opportunities to improve myself, be it in communication skills, people management skills, or project management etc. ', 
+'Bar Assistant in Marche', 'National University of Singapore Mechanical Engineering,', 'customer services, microsoft excel, mircrosft office, microsoft powerpoint', 'central', 'interest'),
 
 ('jason@jobseeker.com', '28 Pasir Panjang Road', 
-'Description', 
-'Work', 'Education', 'skills', 'south', 'interest'),
+'Experienced Marketing professional in achieving business goals by translating marketing objectives on strategic product roadmap into marketing demand generation programs. Solid project management with analytical mind with 360 holistic marketing base experiences. ', 
+'Business Development and Marketing Director in Emerson Process Management', 'University of Exeter
+BA (Hons), Accounting and Finance', 'New Business Development, Marketing Management, accounting', 'south', 'Cycling'),
 
 ('jesse@jobseeker.com', 'Blk 498 Sengkang Street 17, #07-43', 
-'Description', 
-'Work', 'Education', 'skills', 'central', 'interest'),
+'Well versed in traditional above the line (ATL), below the line (BTL) as well as new age technical marketing digital techniques such as Search and Social Media Marketing (SSMM). Proven track record in optimising business return of investments (ROIs) with data driven decisions for all marketing campaigns and programs. ', 
+'Business Development Director in Emerson Industrial Automation', 'Nanyang Techonological University
+Bachelor of Science (B.Sc.), Maritime Studies', 'New Business Development, Marketing Management', 'central', 'Cycling'),
 
 ('jimmy@jobseeker.com', 'Blk 198 Bukit Merah Street 29, #18-01', 
-'Description', 
-'Work', 'Education', 'skills', 'central', 'interest'),
+'Specialise in Marketing Programmes such as: Demand Generation, Lead Generation, B2B Acquisition Marketing, Customer Retention Strategy, Product Marketing & Positioning, Integrated Digital Marketing Strategies, Content Marketing, Channel Marketing and Management, Co-Marketing Partnerships and etc.', 
+'Strategic Planner in Emerson Network Power', 'University of Notre Dame - Mendoza College of Business
+MBA, Diploma in Visual Communication or Graphic Design', 'six sigma, hr, admin, accounting', 'central', 'cycling, art, music'),
 
 ('jackie@jobseeker.com', '78 Seletar Avenue North, #18-07', 
-'Description', 
-'Work', 'Education', 'skills', 'north', 'interest'),
+'Possess 8 years of consumer marketing experience in the telecommunications, music, entertainment and FMCG industries and 4 years in business-to-business marketing with proven track records in achieving sales and marketing objectives.', 
+'Product Support Engineer in Honeywell Aerospace, Account Manager, Enterprise Business Group
+StarHub', 'University of Michigan
+BS, Mechanical Engineering', 'Operations Management', 'north', 'social media, photography, travelling'),
 
 ('janice@jobseeker.com', 'Blk 317 Tampines Street 13, #10-37', 
-'Description', 
-'Work', 'Education', 'skills', 'east', 'interest'),
+'Having years of experience in product development and management, a thinker with mind full of dynamic, creative and stunning ideas, a doer with capabilities to turn innovation ideas into reality to help business achieve its goals, a learner who always has the drive to seek and learn new things. Equipped with good communication and interpersonal skills, always enjoy talking and liaising with customers to maintain a good relationship.', 
+'Business Development Director (Strategy & Planning) at Component Technology, Assistant Manager, Marketing (South-East Asia)
+Tyco Fire & Security', 'Essec Business School Paris
+MBA', 'Marketing Strategy, Marketing Management,photoshop, illustrator, in-design', 'east', 'Marketing, Music, Travel & Discovery, Photography, Technology, Social Media and Cycling'),
 
 ('jarvis@jobseeker.com', '7 Farrer Hill, #02-30', 
-'Description', 
-'Work', 'Education', 'skills', 'central', 'interest'),
+'Strong interest and academic achievement in the field of Management and Health, Outstanding analytical skills developed through using research knowledge to determine impact of
+health policies, identification of key issues, development of robust, well-supported recommendations', 
+'Marketing Manager at Advanced Materials Technologies Pte Ltd', 'National University of Singapore Mechanical Engineer Degree', 'product management, Marketing Management, product development, product marketing', 'central', 'Economic Empowerment, Reading, Dancing'),
 
 ('jazlyn@jobseeker.com', 'Blk 28 Lorong 7 Geylang East, #07-06', 
-'Description', 
-'Work', 'Education', 'skills', 'central', 'interest'),
+'She is a sought-after speaker, and has traveled the world, sharing her personal story and her insights on technology, business, entrepreneurship, and how to make our lives less Dot Complicated.', 
+'Solution Architect (Digital Technologies)', 'National University of Ireland, Dublin
+Bachelor of Science, Marketing', 'html, css, js, asp, asp.net, c#, vb, Advertising', 'central', 'Social Media'),
 
 ('jeremy@jobseeker.com', 'Blk 350 Jurong Central Street 25, #14-03', 
-'Description', 
-'Work', 'Education', 'skills', 'west', 'interest'),
+'I have interest in the shipping and vessel industry. I possess high level of creativity, integrity and trust', 
+'Associate Marketing Director at StarHub', 'Tunku Abdul Rahman University (UTAR)
+Bachelor (Hons), Computer Science', 'Marketing Strategy, photoshop, in-design', 'west', 'Travel, Photography'),
 
 ('jerome@jobseeker.com', 'Blk 43 Kallang Street 21, #03-08', 
-'Description', 
-'Work', 'Education', 'skills', 'central', 'interest'),
+'Create business strategies and develop existing customer sales, marketing tools and product launching. To achieve high carrier growth through a continuous learning process and keep myself dynamic, visionary and competitive with the changing scenario of the world.', 
+'Strategic Account Management, Enterprise Business Group', 'Singapore Management Unviersity MBA', 'Advertising', 'central', 'Social Media, Unified Communication'),
 
 ('jonnie@jobseeker.com', '4 Sengkang Crescent', 
-'Description', 
-'Work', 'Education', 'skills', 'central', 'interest'),
+'I possess excellent verbal and written communication skills and have an outgoing and pleasant personality. In previous positions, I have dealt with the general public and people from many Ethnic and Social backgrounds. I am accustomed to working in high pressure situations brought about by intense schedule and budget requirements and in on-site working environments. I have proven myself to be a team player who can provide solid and reliable support to team members as well as being able to work independently and unsupervised where the situation requires.', 
+'Executive Recruiter', 'Chatsworth Medi@rt Academy, Professional Diploma, Advertising & Design (Major in Advertising)', 'E-commerce, Advertising, Business Development, Staff training & development', 'central', 'Travel, Dancing, Singing'),
 
 ('joshua@jobseeker.com', '2 Jurong East Estate', 
-'Description', 
-'Work', 'Education', 'skills', 'west', 'interest'),
+'I have enjoyed my work in the various positions I have held to date and have participated in a proactive and enthusiastic manner. By nature I am conscientious, reliable, flexible and co-operative. I possess good analytical and problem solving skills and am able to schedule and prioritize the workload. I have a curious nature and have a passion to learn and enrich my life.', 
+'Payroll Officer / Executive', 'Management Development Institute of Singapore, endorsed by University of Bradford, UK', 'Marketing Strategy, Product Marketing, Client relations and communications ', 'west', 'Photography, New Technology, Music'),
 
 ('jasmine@jobseeker.com', 'Blk 29 Lorong 6 Jurong West, #10-09', 
-'Description', 
-'Work', 'Education', 'skills', 'west', 'interest'),
+'Serial start-up and consumer internet product guy. enjoys putting disruptive technology in the hands of millions. strong bias for upending stodgy old industries.', 
+'Software Engineer (Java/J2EE), Web Developer (PHP/Python)', 'Seng Kang Secondary School
+GCE N Level, General Studies', 'E-commerce, Product Marketing', 'west', 'Editorial Designing, New Technology, Economic Empowerment, Unified Communication'),
 
 ('jericho@jobseeker.com', 'Blk 316 Serangoon North Street 29, #02-27', 
-'Description', 
-'Work', 'Education', 'skills', 'central', 'interest'),
+'I was born in Sao Paulo, Brazil and graduated with a degree Economics with honors from Harvard University in 2006. I currently reside in Singapore.', 
+'Treasury Accounts Executive (Shipping Industry)', 'Birmingham City University Bachelor of Arts (BA), Business Administration, Management and Operations', 'Digital Marketing, Advertising, python, linux, apache', 'central', 'Social Media, New Technology, Internet technology, Music'),
 
 ('jessica@jobseeker.com', 'Blk 17 Yishun Street 86, #11-34', 
-'Description', 
-'Work', 'Education', 'skills', 'north', 'interest'),
+'Internet executive with over 19 years of experience, including general management of mid to large size organizations, corporate development, product development, business operations, and strategy. ', 
+'Vessel Accountant (Shipping Industry)', 'University of Bradford
+Bachelor of Science (B.S.) 2nd class upper honours, Business And Management ', 'illustrator, in-design, Product Marketing, Unified Communications, admin', 'north', 'Editorial Designing, swimming, football, basketball'),
 
 ('jullian@jobseeker.com', '70 Admiralty Circle, #14-41', 
-'Description', 
-'Work', 'Education', 'skills', 'north', 'interest'),
+'Global management executive with more than 30 years of experience leading multi-cultural teams in complex organizations focused on energy, power, chemical, water, industrial and automotive fields. ', 
+'Voyage Accounting Executive (Shipping Industry)', 'Singapore Institute of Management
+Bachelors Degree, Business Administration, Management and Operations', 'Digital Marketing, Advertising', 'north', 'Cycling, Photography, New Technology, Dancing'),
 
 ('justice@jobseeker.com', 'Blk 126 Lorong 5 Joo Koon, #02-25', 
-'Description', 
-'Work', 'Education', 'skills', 'west', 'interest'),
+'Experience in Investment Banking, Private Equity and Project Finance. Prefer to work near Raffles Place (Central)', 
+'Vessel Accounts Executive (Shipping Industry)', 'Imperial College London, MSc International Health Management, Management, Distinction', 'E-commerce, Digital Marketing, Staff training & development,Unified Communications', 'west', 'Economic Empowerment, Unified Communication, swimming, football, basketball'),
 
 ('jennifer@jobseeker.com', 'Blk 449 Clementi Street 32, #12-22', 
-'Description', 
-'Work', 'Education', 'skills', 'west', 'interest'),
+'I am currently trying out many languages and platforms to find out which field I am passionate in. In the present, I am currently leaned towards mobile development. I have an adequate experience in languages such as C++, Java, Python, JavaScript. I have experience in mobile development on Android, and web development as well.
+From a behavioral perspective, I am also confident that I am a team player, as I have learned a lot about team dynamics due to my previous experience as leader in organizations.', 
+'Solution Architect (Web Content Technologies), Accounts Assistant (Commodity Trading Industry)', 'Universitetet i Oslo / University of Oslo (UiO), Bachelor of Arts (B.A.), Health Economics and Health Management', 'Marketing Strategy, Advertising', 'west', 'Travel'),
 
 ('jonathan@jobseeker.com', 'Blk 479 Woodlands Street 39, #14-45', 
-'Description', 
-'Work', 'Education', 'skills', 'central', 'interest'),
+'Passionate about any kind of software development and research in computing-related field. I am interest in jobs such as Software designing and solution architect. ', 
+'Web Application Developer', 'Baruch College, City University of New York (CUNY), Masters of Science, Industrial & Organizational Psychology', 'Java 1.5,
+Servlet/JSP, Javascript, Struts, Spring, Product Marketing, Digital Marketing, hr', 'central', 'Cycling, Social Media'),
 
 ('joycelyn@jobseeker.com', '25 Pandan Valley View', 
-'Description', 
-'Work', 'Education', 'skills', 'central', 'interest'),
+'Before I began my professional career, I gained a strong 4 years of Java experience while attending Otterbein College to earn my Bachelor of Science in Computer Science. I also took classes here that sparked my passion for mobile and web development.', 
+'Assistant HR Manager (Training & Development)', 'Singapore Management University, Bachelor of Business Management (Hons), Finance & Operations Management', 'Marketing Strategy, E-commerce, Staff training & development, Unified Communications', 'central', 'Unified Communication, Internet technology, Management training, public speaking, investing, cross-country skiing, swimming, football, basketball'),
 
 ('jeannette@jobseeker.com', '75 Jalan Tekad', 
-'Description', 
-'Work', 'Education', 'skills', 'central', 'interest'),
+'Driving international growth of Singapore companies at IE Singapore. Building and strengthening the Cambridge Business School Singapore Alumni network as the key contact in Singapore.', 
+'Creative Designer', 'National University of Singapore, B.Comp, Information Systems (1st Class Honours)', 'Marketing Strategy, Client relations and communications ', 'central', 'Editorial Designing, Economic Empowerment, Internet technology, Singing'),
 
 ('jefferson@jobseeker.com', '37 Innova Heights', 
-'Description', 
-'Work', 'Education', 'skills', 'central', 'interest');
+'Tie-loathing adventurer and thrill seeker, who believes in turning ideas into reality. Interested in being a creative designer. Possess excellent communication and interpersonal skill', 
+'Customer Service (Banking/Insurance)', 'The University of Edinburgh e-Comerce, Conceptualising Scotland, Chemistry, Principles of Finance', 'E-commerce, Advertising, Client relations and communications, hr, admin ', 'central', 'Travel, Photography, New Technology');
