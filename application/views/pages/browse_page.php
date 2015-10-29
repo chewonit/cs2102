@@ -135,9 +135,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								
 								<button class="btn btn-default btn-sm" onclick="document.location.href='job/<?php echo $row->job_id?>'">More Info</button>
 								
-								<?php if($is_jobseeker) : ?>
-								<button type="submit" class="btn btn-default btn-sm btn-success">Apply</button> 
-								<?php endif ?>
 							</div>
 						</div>
 						</tr>
