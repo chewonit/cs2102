@@ -37,7 +37,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<tr>
 						<th>Category ID</th>
 						<th>Category Name</th>
-						<th>Parent</th>
 						<th style="width:125px;">Action</th>
 						</tr>
 					</thead>
@@ -47,7 +46,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<tr>
 						<th>Category ID</th>
 						<th>Category Name</th>
-						<th>Parent</th>
 						<th>Action</th>
 						</tr>
 					</tfoot>
@@ -108,7 +106,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				jq('[name="originalCategoryId"]').val(data.category_id);
 				jq('[name="inputCategoryId"]').val(data.category_id);
 				jq('[name="inputName"]').val(data.name);
-				jq('[name="inputParent"]').val(data.parent);
 
 				jq('#modal_form_update').modal('show'); // show bootstrap modal when complete loaded
 				jq('.modal-title').text('Edit Entry'); // Set title to Bootstrap modal title
@@ -248,17 +245,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<input required type="text" class="form-control" id="inputName" name="inputName" placeholder="Category Name">
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3">Category Parent</label>
-								<div class="col-md-9">
-									<select class="form-control" id="inputParent" name="inputParent">
-										<option value="">None</option>
-										<?php foreach ($job_categories as $job_category) : ?>
-											<option value="<?php echo $job_category->category_id ?>"><?php echo $job_category->name ?></option>
-										<?php endforeach ?>
-									</select>
-								</div>
-							</div>
 						</div>
 					</form>
 				</div>
@@ -285,17 +271,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<label class="control-label col-md-3">Category Name</label>
 								<div class="col-md-9">
 									<input required type="text" class="form-control" id="inputName" name="inputName" placeholder="Category Name">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3">Category Parent</label>
-								<div class="col-md-9">
-									<select class="form-control" id="inputParent" name="inputParent">
-										<option value="">None</option>
-										<?php foreach ($job_categories as $job_category) : ?>
-											<option value="<?php echo $job_category->category_id ?>"><?php echo $job_category->name ?></option>
-										<?php endforeach ?>
-									</select>
 								</div>
 							</div>
 						</div>

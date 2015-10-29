@@ -739,7 +739,7 @@ class Admin extends MY_Controller {
 		
 		$data['page_title'] = $this->page_title;
 		$data['job_categories'] = $this->job_category_model->get()->result();
-
+		
 		$this->check_page_files('/views/pages/' . $page . '.php');
 
 		$this->load_view($data, $page);
@@ -755,7 +755,6 @@ class Admin extends MY_Controller {
 			$row = array();
 			$row[] = $item->category_id;
 			$row[] = $item->name;
-			$row[] = $item->parent;
 
 			//add action buttons to each row
 			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void()" title="Edit" onclick="edit_entry('."'".$item->category_id."'".')"><i class="glyphicon glyphicon-pencil"></i></a>

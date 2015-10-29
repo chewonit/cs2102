@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Job_Category_model extends CI_Model {
     
     private $table_name = "job_category";
-	private $column = array('category_id', 'name', 'parent');
+	private $column = array('category_id', 'name');
     
     public function __construct()
     {
