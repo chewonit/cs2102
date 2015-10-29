@@ -108,13 +108,7 @@ Our team is focused to bring innovative and strategic solutions to both clients 
 <br /><br />
 At Hays, we believe the right job can transform a person\'s life and the right person can transform a business. We\'re passionate about connecting our candidates with the right job for them.
 <br /><br />
-That\'s why, for over 33 years, we\'ve powered the world of work.'),
-
-('c08','eleanor@employer.com','companycat04','2 Jurong Rd','company hiring Adminstrations/ Secretarial'),
-('c09','electra@employer.com','companycat05','3 Changi Rd','company hiring Legal'),
-('c10','evelynn@employer.com','companycat06','3 Jurong Rd','company hiring Customer Service/ BPO/ KPO'),
-('c11','elizabeth@employer.com','companycat07','4 Changi Rd','company hiring Sales'),
-('c12','elizabella@employer.com','companycat08','4 Jurong Rd','company hiring Marketing');
+That\'s why, for over 33 years, we\'ve powered the world of work.');
 
 --
 -- companies employers
@@ -126,12 +120,7 @@ INSERT INTO `company_employer`(`employer`, `company_reg_no`, `accepted`) VALUES
 ('emily@employer.com','c04',1),
 ('erica@employer.com','c05',1),
 ('elaine@employer.com','c06',1),
-('evonne@employer.com','c07',1),
-('eleanor@employer.com','c08',1),
-('electra@employer.com','c09',1),
-('evelynn@employer.com','c10',1),
-('elizabeth@employer.com','c11',1),
-('elizabella@employer.com','c12',1);
+('evonne@employer.com','c07',1);
 
 --
 -- jobs
