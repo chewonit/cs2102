@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 				<button type="submit" class="btn btn-default">Submit</button>
 				
-				<input type="button" class="btn btn-default" onClick="parent.location='/cs2102/company/create/'" value='Create Company'>
+				<a href="<?php echo base_url('company/create/') ?>"><button type="button" class="btn btn-default">Create Company</button></a>
 				
 				<?php //if($join_success) : ?>
 				<!--<div class="alert alert-success alert-dismissible" role="alert">
