@@ -20,6 +20,8 @@ class Search extends MY_Controller {
 		$this -> check_page_files('/views/pages/' . $page . '.php');
 		
 		$data['page_title'] = "Search";
+		
+		$data['category_list'] = $this -> job_category_model -> get();
 
 		$search_string = $this->input->post('inputSearch');
 		

@@ -526,3 +526,22 @@ Servlet/JSP, Javascript, Struts, Spring, Product Marketing, Digital Marketing, h
 ('jefferson@jobseeker.com', '37 Innova Heights', 
 'Tie-loathing adventurer and thrill seeker, who believes in turning ideas into reality. Interested in being a creative designer. Possess excellent communication and interpersonal skill', 
 'Customer Service (Banking/Insurance)', 'The University of Edinburgh e-Comerce, Conceptualising Scotland, Chemistry, Principles of Finance', 'E-commerce, Advertising, Client relations and communications, hr, admin ', 'central', 'Travel, Photography, New Technology');
+
+
+--
+-- Job Application
+--
+INSERT INTO `job_application` VALUES 
+('john@jobseeker.com', 6, '2015-10-20 15:15:00'),
+('janice@jobseeker.com', 16, '2015-10-25 15:15:00'),
+('janice@jobseeker.com', 17, '2015-10-25 18:15:00'),
+('jeremy@jobseeker.com', 16, '2015-10-26 11:15:00'),
+('jeremy@jobseeker.com', 17, '2015-10-26 14:15:00'),
+('james@jobseeker.com', 3, '2015-10-15 15:15:00'),
+('james@jobseeker.com', 5, '2015-10-15 19:15:00'),
+('jason@jobseeker.com', 3, '2015-10-18 19:00:00'),
+('jason@jobseeker.com', 5, '2015-10-20 20:15:00'),
+('jimmy@jobseeker.com', 3, '2015-10-19 10:30:00'),
+('jimmy@jobseeker.com', 5, '2015-10-20 11:15:00');
+
+

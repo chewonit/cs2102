@@ -20,16 +20,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<input type="text" class="search-box form-control" id="inputSearch" name="inputSearch" placeholder="Search for Jobs" value="<?php echo $search_query ?>">
 				</div>
 				<div class="form-group">
-					<select id = 'inputCategory' name="inputCategory" class="form-control"> 
-						<option value="">Category</option>
-						<option value="1">Finance & Account</option>
-						<option value="2">Human Resources</option>
-						<option value="3">Purchase & Supply Chain</option>
-						<option value="4">Administrations/ Secretarial</option>
-						<option value="5">Legal</option>
-						<option value="6">Customer Service/ BPO/ KPO</option>
-						<option value="7">Sales</option>
-						<option value="8">Marketing</option>		
+					<select name="inputCategory" class="form-control" onchange="this.form.submit()" ; >
+						<option value="">Category</option>					
+						<?php foreach($category_list->result() as $category) : ?>
+							<option value="<?php echo $category->category_id ?>">
+								<?php echo $category->name ?>
+							</option>
+						<?php endforeach ?>	
 					</select>
 				</div>
 				<div class="form-group">
