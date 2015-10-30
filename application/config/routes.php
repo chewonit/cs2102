@@ -70,6 +70,7 @@ $route['search'] = 'search';
 $route['dashboard'] = 'dashboard';
 $route['profile'] = 'profile';
 $route['profile/update'] = 'profile/update';
+$route['profile/create'] = 'profile/create';
 $route['profile/updateCompanyProfile'] = 'profile/updateCompanyProfile';
 $route['profile/(:any)'] = 'profile/index/$1';
 $route['admin'] = 'admin';

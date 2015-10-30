@@ -16,6 +16,7 @@ class Home_model extends CI_Model {
 		$this->db->select('j.*, c.company_name');
 		$this->db->from('jobs j, company c');
 		$this->db->where('j.company_reg_no = c.company_reg_no');
+		$this->db->where('j.published = 1');
 		$this->db->limit($limit);
 		$this->db->order_by('j.date_created', 'desc');
 		return $this -> db -> get();

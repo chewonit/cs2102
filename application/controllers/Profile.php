@@ -81,7 +81,7 @@ class Profile extends MY_Controller {
 	}
 	
 	/**
-	 * Loads the Jobseeker private profile view.
+	 * Updates the JObseeker Profile.
 	 *
 	 * @access	private
 	 * @return	
@@ -101,6 +101,32 @@ class Profile extends MY_Controller {
 			'location_pref' => $this->input->post('inputLocation'),
 		);
 		$this -> resume_profile_model -> update($email,$data); 
+		$this -> index();	
+	}
+	
+	/**
+	 * Creates a new Jobseeker Profile.
+	 *
+	 * @access	private
+	 * @return	
+	 */
+	
+	public function create(){
+	
+		$email = $this->auth->get_info()->email;
+		
+		$data = array(
+			'owner' => $email,
+			'address'=> $this->input->post('inputProfileAddress'),
+			'description' => $this->input->post('inputProfileAbout'),
+			'edu_history' => $this->input->post('inputProfileEducation'),
+			'work_history' => $this->input->post('inputProfileWork'),
+			'skills' => $this->input->post('inputSkills'),
+			'interest_area' => $this->input->post('inputInterest'),
+			'location_pref' => $this->input->post('inputLocation'),
+		);
+		
+		$this -> resume_profile_model -> insert($data); 
 		$this -> index();	
 	}
 	

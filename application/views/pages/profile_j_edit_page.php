@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-md-12">
 			
 			<?php $attributes = array('class' => 'form-horizontal'); ?>
-			<?php echo form_open('profile/update/', $attributes); ?>
+			<?php echo form_open('profile/create/', $attributes); ?>
 			<div class="col-md-12">
 				<div class="container-fluid">
 				<div class="row">
