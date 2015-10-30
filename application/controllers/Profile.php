@@ -129,6 +129,11 @@ class Profile extends MY_Controller {
 		$email = $this->auth->get_info()->email;
 		$data['resume_profile'] = $this -> resume_profile_model -> get_profile_with_user($email);
 		
+		$info = $this->auth->get_info();
+		$data['email'] = $info->email;
+		$data['first_name'] = $info->first_name;
+		$data['last_name'] = $info->last_name;
+		
 		$this->load_view($data, $page);
 	
 	}

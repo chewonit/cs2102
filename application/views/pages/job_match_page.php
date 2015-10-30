@@ -18,10 +18,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php if( count($job_list) == 0 ) : ?>
 	<div class="row">
 		<div class="col-md-12">
-			<h4>No applications.</h4>
+			<h4>No offers.</h4>
+			<h4>Please remember to complete your <a href="<?php echo base_url('profile/')?>">profile</a>.</h4>
 		</div>
 	</div>
-	<?php endif ?>
+	<?php else : ?>
 	
 	<div class="row">
 		<div class="col-md-12">
@@ -91,4 +92,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 	</script>
 
+	<?php endif ?>
 </div>
