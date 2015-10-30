@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<option value="">Category</option>					
 						<?php foreach($category_list->result() as $category) : ?>
 							<option value="<?php echo $category->category_id ?>">
-								<?php echo $category->name ?>
+								<?php echo ucwords($category->name) ?>
 							</option>
 						<?php endforeach ?>	
 					</select>

@@ -148,7 +148,8 @@ class Profile extends MY_Controller {
 		$data['page_title'] = "Company Profile";
 		
 		$company_reg_no = $company_employer->company_reg_no;
-		$data['company_profile'] = $this->company_model->get($company_reg_no)->result()[0];
+		$data['company_profile'] = $this->company_model->get($company_reg_no)->result();
+		$data['company_profile'] = $data['company_profile'][0];
 		
 		/*
 		 * Check if is Company admin

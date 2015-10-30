@@ -49,8 +49,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="col-sm-10">
 					<select class="form-control" id="inputPublished" name="inputPublished" required>
 						<option value="">Select One</option>
-						<option value="true">True</option>
-						<option value="false">False</option>
+						<option value="1">True</option>
+						<option value="0">False</option>
 					</select>
 				</div>
 			</div>

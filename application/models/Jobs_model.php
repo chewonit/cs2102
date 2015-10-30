@@ -1,6 +1,4 @@
-
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Jobs_model extends CI_Model {
     
@@ -146,4 +144,3 @@ class Jobs_model extends CI_Model {
 		return $this->db->count_all_results();
 	}
 }
-

@@ -2,32 +2,32 @@
 -- clear data
 --
 -- Drop Tables
-DELETE FROM Job_Application;
-DELETE FROM Jobs;
-DELETE FROM Job_Category;
-DELETE FROM Company_Employer;
-DELETE FROM Company;
-DELETE FROM Resume_Profile;
-DELETE FROM Users;
-DELETE FROM Roles;
+DELETE FROM job_application;
+DELETE FROM jobs;
+DELETE FROM job_category;
+DELETE FROM company_employer;
+DELETE FROM company;
+DELETE FROM resume_profile;
+DELETE FROM users;
+DELETE FROM roles;
 
 --
 -- roles
 --
-INSERT INTO `Roles` VALUES 
+INSERT INTO `roles` VALUES 
 ('admin'), ('jobseeker'), ('employer');
 
 --
 -- admin
 --
-INSERT INTO `Users` VALUES 
+INSERT INTO `users` VALUES 
 ('admin@admin.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'Admin', 'Admin', 'singaporean', '91234567', 'female', 'admin', '1980-01-01'),
 ('demo@demo.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'demo', 'demo', 'singaporean', '91234567', 'female', 'admin', '1980-02-01');
 
 --
 -- jobseekers 
 --
-INSERT INTO `Users` VALUES 
+INSERT INTO `users` VALUES 
 ('john@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'john', 'doe', 'singaporean', '81234567', 'male', 'jobseeker', '1990-01-01'),
 ('judy@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'judy', 'teo', 'singaporean', '81234568', 'female', 'jobseeker', '1990-02-01'),
 ('june@jobseeker.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'june', 'tan', 'singaporean', '81234569', 'female', 'jobseeker', '1990-03-01'),
@@ -58,7 +58,7 @@ INSERT INTO `Users` VALUES
 --
 -- employers 
 --
-INSERT INTO `Users` VALUES 
+INSERT INTO `users` VALUES 
 ('eva@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'eva', 'chen', 'singaporean', '87654321', 'female', 'employer', '1985-01-01'),
 ('ella@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'ella', 'chao', 'Singaporean', '87654322', 'female', 'employer', '1985-01-01'),
 ('emma@employer.com', '62c8ad0a15d9d1ca38d5dee762a16e01', 'emma', 'yang', 'Singaporean', '87654323', 'female', 'employer', '1985-08-01'),

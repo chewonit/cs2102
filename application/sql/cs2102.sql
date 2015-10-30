@@ -1,20 +1,20 @@
 -- Drop Tables
-DROP TABLE IF EXISTS Job_Application;
-DROP TABLE IF EXISTS Jobs;
-DROP TABLE IF EXISTS Job_Category;
-DROP TABLE IF EXISTS Company_Employer;
-DROP TABLE IF EXISTS Company;
-DROP TABLE IF EXISTS Resume_Profile;
-DROP TABLE IF EXISTS Users;
-DROP TABLE IF EXISTS Roles;
+DROP TABLE IF EXISTS job_application;
+DROP TABLE IF EXISTS jobs;
+DROP TABLE IF EXISTS job_category;
+DROP TABLE IF EXISTS company_employer;
+DROP TABLE IF EXISTS company;
+DROP TABLE IF EXISTS resume_profile;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS roles;
 
 -- Roles
-CREATE TABLE IF NOT EXISTS Roles (
+CREATE TABLE IF NOT EXISTS roles (
     role CHAR(9) PRIMARY KEY
 );
 
 -- Users
-CREATE TABLE IF NOT EXISTS Users (
+CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(255) PRIMARY KEY,
     password CHAR(32) NOT NULL,
     first_name VARCHAR(255) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS Users (
 
 
 -- Resume_Profile
-CREATE TABLE Resume_Profile (
+CREATE TABLE resume_profile (
     owner VARCHAR(255) PRIMARY KEY,
     address VARCHAR(65535) NOT NULL,
     description TEXT NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE Resume_Profile (
 );
 
 -- Company
-CREATE TABLE Company (
+CREATE TABLE company (
     company_reg_no VARCHAR(255) PRIMARY KEY,
     company_admin VARCHAR(255) unique NOT NULL,
     company_name VARCHAR(255) UNIQUE NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE Company (
 );
 
 -- Company_Employers
-CREATE TABLE Company_Employer (
+CREATE TABLE company_employer (
     employer VARCHAR(255) PRIMARY KEY,
     company_reg_no VARCHAR(255) NOT NULL,
     accepted BOOLEAN NOT NULL DEFAULT FALSE,
@@ -81,7 +81,7 @@ CREATE TABLE Company_Employer (
 );
 
 -- Job_Category
-CREATE TABLE Job_Category (
+CREATE TABLE job_category (
     category_id INT AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL UNIQUE,
     PRIMARY KEY (category_id),
@@ -90,7 +90,7 @@ CREATE TABLE Job_Category (
 
 
 -- Jobs
-CREATE TABLE Jobs (
+CREATE TABLE jobs (
     job_id INT UNSIGNED AUTO_INCREMENT,
     company_reg_no VARCHAR(255),
     date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -110,7 +110,7 @@ CREATE TABLE Jobs (
 );
 
 -- Job_Applications
-CREATE TABLE Job_Application (
+CREATE TABLE job_application (
     applicant VARCHAR(255),
     job_id INT UNSIGNED,
     date_submitted DATETIME DEFAULT CURRENT_TIMESTAMP,

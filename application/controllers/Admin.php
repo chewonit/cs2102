@@ -785,13 +785,9 @@ class Admin extends MY_Controller {
 		
 		$this->form_validation->reset_validation();
 		$this->form_validation->set_rules('inputName', 'Name', 'trim|required');
-		
-		$inputParent = $this->input->post('inputParent');
-		$inputParent = $inputParent == '' ? NULL : $inputParent;
-		
+				
 		$create_user_data = array(
-			'name' => strtolower($this->input->post('inputName')),
-			'parent' => $inputParent
+			'name' => strtolower($this->input->post('inputName'))
 		);
 		
 		if ( $this->form_validation->run() ) 

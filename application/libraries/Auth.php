@@ -160,7 +160,8 @@ class Auth {
 		$email = $this->ci->session->userdata('email');
 		$user_info = $this->ci->users_model->get( $email );
 		
-		return $user_info->result()[0];
+		$result = $user_info->result();
+		return $result[0];
 	}
 	
 	/**
